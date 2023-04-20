@@ -18,6 +18,6 @@
    <a href="insertBoard.do"> 글 쓰기 바로가기</a>
    <br>
    <a href="test.do"> 테스트</a>
-   		   
+   		   asd
 </body>
 </html>
