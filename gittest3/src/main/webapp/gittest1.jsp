@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 	asdasdasdasasasas456
+=======
+	asdasdasdasasasas123
+>>>>>>> branch 'main' of https://github.com/giftfrommom/human_final_project.git
 </body>
 </html>
