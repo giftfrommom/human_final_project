@@ -16,8 +16,14 @@
 	
 	요기를
 	
+<<<<<<< HEAD
 	하이하이
 	
+=======
+	여기에 이만큼 추가
+	
+
+>>>>>>> branch 'main' of https://github.com/giftfrommom/human_final_project.git
 	
 </body>
 </html>
