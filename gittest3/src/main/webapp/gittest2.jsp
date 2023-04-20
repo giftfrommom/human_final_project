@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-
-	asdasdasdasasasas123456
-
+	test2파일
 </body>
 </html>
