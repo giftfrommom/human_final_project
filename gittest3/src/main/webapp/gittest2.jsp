@@ -7,6 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	test2파일
+	test2
+	
+	난 요렇게
+	
+	요기를
+	
+	
 </body>
 </html>
