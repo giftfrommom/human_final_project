@@ -7,6 +7,7 @@
 <title>05_DdipWrite</title>
 </head>
 <body>
+<%@ include file="/header.jsp" %>
 	05_DdipWrite
 </body>
 </html>
