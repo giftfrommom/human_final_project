@@ -213,13 +213,13 @@
             <i class="fab fa-reddit"></i>
             <a href="">띱</a>
         </div>
-        <ul class="navbar__menu" style="padding-left: 300px;">
+        <ul class="navbar__menu" style="padding-left: 350px; margin-top: 13px;">
             <li><a href="">가게리스트</a></li>
             <li><a href="">공구페이지</a></li>
             <li><a href="">커뮤니티</a></li>
             <li><a href="">고객센터</a></li>
         </ul>
-        <ul class="navbar__icons" style="padding-left: 200px;">
+        <ul class="navbar__icons" style="padding-left: 200px; margin-top: 13px">
             <li style="cursor: pointer; color: black;">로그인</li>
             <li style="cursor: pointer; color: black;">회원가입</li>
             <input type="checkbox" id="menuicon">
