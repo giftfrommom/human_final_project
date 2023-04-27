@@ -19,11 +19,15 @@
 	<link href="/resources/css/styles.css" rel="stylesheet" />
 <style>
 	@font-face {
-	    font-family: 'gwangyang';
+	    font-family: 'gwangyangbold';
+	    src: url('/resources/fonts/GwangyangSunshineBold.ttf') format('truetype');
+	}
+	@font-face {
+	    font-family: 'gwangyangregular';
 	    src: url('/resources/fonts/GwangyangSunshineBold.ttf') format('truetype');
 	}
 	*{
-		font-family: 'gwangyang';
+		font-family: 'gwangyangbold';
 	}
 	.btn {
 	  color: #60646A;
@@ -180,7 +184,7 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container TabMenu">
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
         <li class="nav-item"><a href="#" class="nav-link selected">전체</a></li>
