@@ -57,7 +57,7 @@
 		text-align: center;
 		font-size: 21px;
 	}
-	hr {
+	.hrline {
 	  width: 775px; /* 수평선의 가로폭을 50%로 조정 */
 	  margin: 0 auto; /* 가운데 정렬 */
 	}
@@ -96,14 +96,40 @@
  	  border: solid 1.5px black; 
 	  margin-top: 10px;
 	  margin-bottom: 10px;
-	  padding: 15px;
-	  
+	  padding: 15px;	  
+	}
+	.containerBtn{
+		text-align:center;
+		margin-bottom:20px;
+	}
+	.containerTitle{
+		margin-left:313px;
 	}
 	
 	
 	</style>
 </head>
 <body>
+<%@ include file="/header.jsp" %>
+<!-- Post header-->
+<div class="containerTitle mt-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Post content-->
+            <article>
+                <!-- Post header-->
+                <header class="mb-4">
+                    <!-- Post title-->
+                    <h1 class="fw-bolder mb-1">교촌치킨</h1>
+                    <!-- Post meta content-->
+                    <div class="text-muted fst-italic mb-2">Posted on January 1, 2023 by Start Bootstrap</div>
+                  
+                </header>
+                            
+            </article>
+        </div>               
+    </div>
+</div>
 <div class="container">
 	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
 	  <div class="carousel-indicators">
@@ -146,7 +172,7 @@
   		</div>
 	</div>
 </div>
-<hr>
+<hr class="hrline">
 
 <div class="container TabReview" >
 	<div class="review">
@@ -239,11 +265,14 @@
 <!-- 	</table> -->
 <!-- </div> -->
 
-<div class="container" >
+<div class="containerBtn" >
 	<a class="btn mt-auto" href="#">띱 버튼</a>
 	<a class="btn mt-auto" href="#">이전 버튼</a>
 </div>
-
+<!-- Footer-->
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
+        </footer>
  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>
