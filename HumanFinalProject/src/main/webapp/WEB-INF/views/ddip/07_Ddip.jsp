@@ -80,6 +80,13 @@
 		height: 30px;
 		background-color: #A2F5D5;
 	}
+	.leftpic{
+		width: 900px;
+		height: 330px;
+	}
+	.card-3 {
+	  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	}
 </style>
 </head>
     <body>    
@@ -101,10 +108,10 @@
                         
 <!--                         <div id="map"class="img-fluid rounded" style="width:746px;height:331px;"></div>                         -->
                     </article>
-                    <figure class="mb-4">
-                    <img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." />
+                    <figure class="mb-4 card-3">
+                    <img class="img-fluid rounded leftpic" src="/resources/assets/교촌치킨1.jpg" alt="..." />
                     </figure>
-                    <div class="img-fluid rounded party1" >
+                    <div class="img-fluid rounded party1 card-3" >
                   		<div class="party2">
 	                     	<img src="/resources/assets/참여.png" alt="..." />                
 	                     	<img src="/resources/assets/참여.png" alt="..." />
@@ -118,7 +125,7 @@
                 <!-- Side widgets-->              
                 <div class="col-lg-5 left">
                     <!-- Search widget-->
-                    <div class="card mb-4">
+                    <div class="card mb-4 card-3">
                         <div class="card-header title">장소</div>
                         <div class="card-body">
                             <div class="input-group">
@@ -127,7 +134,7 @@
                             </div>
                         </div>
                     </div>                  
-                    <div class="card mb-4">
+                    <div class="card mb-4 card-3">
                         <div class="card-header title">시간</div>
                         <div class="card-body">
                             <div class="input-group">
@@ -135,7 +142,7 @@
                             </div>
                         </div>
                     </div>                                    
-                    <div class="card mb-4">
+                    <div class="card mb-4 card-3">
                         <div class="card-header title">메시지</div>
                         <div class="card-body">
 							<textarea class="form-control" placeholder="교촌 아시죠? 진짜 맛있는거..도와주세요ㅠㅠ" style="height: 100px" readonly></textarea>					

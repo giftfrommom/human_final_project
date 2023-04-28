@@ -56,6 +56,9 @@
 		text-align:center;
 		margin-bottom:20px;
 	}
+	.card-3 {
+	  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	}
 </style>
 </head>
     <body>    
@@ -77,7 +80,7 @@
                         <!-- Preview image figure-->
                         <div id="map"class="img-fluid rounded" style="width:746px;height:331px;"></div>                        
                     </article>
-                    <section class="mb-5">                      
+                    <section class="mb-5 ">                      
                         <h2 class="fw-bolder mb-4 mt-5">띱! 이용 꿀띱!</h2>
                         <p class="fs-5 mb-4">1. 추천 장소를 띱 장소로 설정하면 띱 성공률이 높아요.</p>
                         <p class="fs-5 mb-4">2. 더 많은 띱 인원을 모아 띱 성공시에 할인 금액이 더 커요.</p>
@@ -89,7 +92,7 @@
                 <!-- Side widgets-->              
                 <div class="col-lg-5 left">
                     <!-- Search widget-->
-                    <div class="card mb-4">
+                    <div class="card mb-4 card-3">
                         <div class="card-header title">장소</div>
                         <div class="card-body">
                             <div class="input-group">
@@ -97,7 +100,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-4">
+                    <div class="card mb-4 card-3">
                         <div class="card-header title">인원수</div>
                         <div class="card-body">
                             <div class="input-group">
@@ -110,7 +113,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-4">
+                    <div class="card mb-4 card-3">
                         <div class="card-header title">시간</div>
                         <div class="card-body">
                             <div class="input-group">
@@ -118,7 +121,7 @@
                             </div>
                         </div>
                     </div>                  
-                    <div class="card mb-4">
+                    <div class="card mb-4 card-3">
                         <div class="card-header title">첨부 파일</div>
                         <div class="card-body">
                             <div class="mb-3">
@@ -127,7 +130,7 @@
 							</div>
                         </div>
                     </div>
-                    <div class="card mb-4">
+                    <div class="card mb-4 card-3">
                         <div class="card-header title">메시지</div>
                         <div class="card-body">
 							<textarea class="form-control" placeholder="띱 게시물에 표시할 내용을 입력하세요." style="height: 100px"></textarea>					

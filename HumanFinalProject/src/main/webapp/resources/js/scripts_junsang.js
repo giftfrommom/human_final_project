@@ -34,13 +34,11 @@ $(function() {
 		
 	})
 	
-	// 04_store ajax탭 이동
+	// 04_store ajax탭 이동	
 	$('.TabMenuReview').on('click','.nav-link',function(){
 		
 		$(this).addClass('selected');
 		$('.nav-link').not(this).removeClass('selected');
-		
-		var inputData = "1";
 		
 		$.ajax( {
 			url : "/store/ajaxtest",
@@ -48,29 +46,33 @@ $(function() {
 			type : "post",
 //			dataType : 'json',
 			success : function(ajaxData){ 
-				alert(ajaxData);		
-				console.log(ajaxData);
 				
-				$('.TabMenu').remove();
-				// 태그를 만드는 작업 (*)기존태그는 지우고
-				let tagHtml = "<tr>"+
-		              "<td>1</td> "+
-		              "<td>제목2</td> "+
-		              "<td>감독2</td> "+
-		              "<td>날짜2</td> "+
-		              "<td>상태2</td> "+
-		            "</tr>"
-				$('hr').append(tagHtml);
+				if($('.TabReview').is(':hidden')){
+					$('.TabReview').show();			
+					$('.TabMenu').hide();					
+				} else{
+					$('.TabReview').hide();	
+					$('.TabMenu').show();						
+				}			
 			},
 			error : function(){ 
 				alert('실패');
 			}				
 		} );
+			
+	})
+	
+	//04_store.jsp모달창 띄우기
+	$('.containerBtn').on('click','.ddip',function(){
+		alert("1")
+		$('#testModal').modal("show");
 		
 	})
 	
-	
-	
+	$('#testBtn').click(function(){
+
+		$('#testModal').modal();
+	});
 	
 	
 });
