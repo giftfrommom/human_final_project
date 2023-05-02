@@ -20,14 +20,10 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 	
-	@RequestMapping("{url}.do")
-
-	public String userViewPage(@PathVariable String url) {
-	System.out.println("## user Controller 진입 ##" + url);
+//	@RequestMapping("/board/getBoardList.do")
 	 
-	return "/board/" + url;
-	}
 }
+
 
 
 

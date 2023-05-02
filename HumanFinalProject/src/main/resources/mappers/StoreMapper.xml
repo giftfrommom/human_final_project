@@ -5,7 +5,11 @@
 
 <mapper namespace="storeDAO">
 
-	
+	<select id="getStoreList" resultType="store">
+		SELECT *
+		  FROM STORE
+	  ORDER BY STORE_ID ASC
+	</select>
 	
 </mapper>
 
