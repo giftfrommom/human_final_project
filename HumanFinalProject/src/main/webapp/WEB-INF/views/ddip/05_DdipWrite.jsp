@@ -18,11 +18,14 @@
 <style>
 	@font-face {
 	    font-family: 'gwangyangbold';
-	    src: url('/resources/fonts/GwangyangSunshineBold.ttf') format('truetype');
+	    src: url('../resources/fonts/GwangyangSunshineBold.ttf') format('truetype');
 	}
 	@font-face {
 	    font-family: 'gwangyangregular';
-	    src: url('/resources/fonts/GwangyangSunshineRegular.ttf') format('truetype');
+	    src: url('../resources/fonts/GwangyangSunshineRegular.ttf') format('truetype');
+	}
+	.navbar_detail,.nav-link{
+		font-family: 'gwangyangbold'; 	
 	}
 	*{ 
 		font-family: 'gwangyangregular'; 

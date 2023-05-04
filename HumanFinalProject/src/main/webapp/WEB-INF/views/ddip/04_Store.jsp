@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- c:foreach -->
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,11 +27,14 @@
 <style>
 	@font-face {
 	    font-family: 'gwangyangbold';
-	    src: url('/resources/fonts/GwangyangSunshineBold.ttf') format('truetype');
+	    src: url('../resources/fonts/GwangyangSunshineBold.ttf') format('truetype');
 	}
 	@font-face {
 	    font-family: 'gwangyangregular';
-	    src: url('/resources/fonts/GwangyangSunshineRegular.ttf') format('truetype');
+	    src: url('../resources/fonts/GwangyangSunshineRegular.ttf') format('truetype');
+	}
+	.navbar_detail,.nav-link{
+		font-family: 'gwangyangbold'; 	
 	}
 	*{ 
 		font-family: 'gwangyangregular'; 
@@ -104,8 +109,14 @@
 		font-family: 'gwangyangbold';
 		font-size:20px;
 	}
-	
-	
+	#carouselExampleControls{
+		text-align:center;
+		width:400px;
+		height:400px;
+	}
+	.menuname:hover{
+		color: #0AC290;
+	}
 </style>	 
 </head>		 
     <body>    
@@ -119,14 +130,22 @@
                         <!-- Post header-->
                         <header class="mb-4">
                             <!-- Post title-->
-                            <h1 class="fw-bolder mb-1 title">굽네치킨</h1>
+                            <div id="hidden_store_id" class="${storeInfo[0].store_id}" style="display:none"></div>
+                            <h1 class="fw-bolder mb-1 title">${storeInfo[0].store_name}</h1>
                             <!-- Post meta content-->
                             <div class="text-muted fst-italic mb-2">Posted on January 1, 2023 by Start Bootstrap</div>
                           
                         </header>
                         <!-- Preview image figure-->
-                        <figure class="mb-4 menupiccontainer"><img class="img-fluid rounded menupic" src="/resources/assets/치킨_굽네_가게1.PNG" alt="..." /></figure>
-                                             
+                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+						  <div class="carousel-inner">
+						  <c:forEach items="${storeInfo}" var="storeInfo">
+						    <div class="carousel-item active ${storeInfo.menu_id}">
+						      <img src="../resources/img/${storeInfo.menu_name}.png" class="d-block w-100" alt="...">
+						    </div>
+						  </c:forEach>						   
+						  </div>
+						</div>                        
                     </article>
                 </div>              
                               
@@ -147,7 +166,7 @@
 					</div>
 					<hr class="hrline">      
 					<div class="container TabMenu" style="display:block">
-						<table class="table table-striped">
+						<table class="table">
 						  <thead>
 						    <tr>
 						      <th scope="col"></th>
@@ -157,110 +176,20 @@
 						    </tr>
 						  </thead>
 						  <tbody>
-						    <tr>
-						      <th scope="row">1</th>
-						      <td>후라이드치킨</td>
-						      <td>18000원</td>
-						      <td>수량</td>
-						    </tr>
-						    <tr>
-						      <th scope="row">2</th>
-						      <td>양념치킨</td>
-						      <td>19000원</td>
-						      <td>수량</td>
-						    </tr>
-						    <tr>
-						      <th scope="row">3</th>
-						      <td>간장치킨</td>
-						      <td>20000원</td>
-						      <td>수량</td>
-						    </tr>
+						  <c:forEach items="${storeInfo}" var="storeInfo">
+							  <tr>
+							  <th scope="row">${storeInfo.menu_id}</th>
+							  <td id="${storeInfo.menu_id}"class="menuname ${storeInfo.menu_id}">${storeInfo.menu_name}</td>
+							  <td>${storeInfo.menu_price}</td>
+							  <td>수량</td>
+							  </tr>
+						  </c:forEach>				   
 						  </tbody>
 						</table>
 					</div>             
-	                <div class="container TabReview" style="display:none">
+					<!-- style="display:none" -->
+	                <div class="container TabReview" style="display:none"> 
 		                <div style="overflow:auto; width:500px; height:445px;">
-							<div class="review card-1">
-								<div class="hstack gap-3">
-									<div class="me-auto">
-										아이디
-									</div>
-							  		<div>
-							  			<a href="#">수정</a>
-							  		</div>
-							  		<div>
-							  			<a href="#">삭제</a>
-							  		</div>
-								</div>
-								<div class="hstack gap-3">
-									<div class="me-auto">
-										맛★5 양★5 상태★5
-									</div>
-							  		<div>
-							  			<a href="#">좋아요 1</a>
-							  		</div>
-								</div>
-								<div class="hstack gap-3">
-									<div class="me-auto">
-										너무 너무 맛있어요 맛돌이
-									</div>
-								</div>
-								<div class="imagecontainer">
-									<img src="https://static.hubzum.zumst.com/hubzum/2017/11/13/14/0f1816ea66a74b999b3ae10b0b11e1b8.jpg" class="d-block w-100" alt="...">		
-								</div>
-							</div>
-							<div class="review card-1">
-								<div class="hstack gap-3">
-									<div class="me-auto">
-										아이디
-									</div>
-							  		<div>
-							  			<a href="#">수정</a>
-							  		</div>
-							  		<div>
-							  			<a href="#">삭제</a>
-							  		</div>
-								</div>
-								<div class="hstack gap-3">
-									<div class="me-auto">
-										맛★5 양★5 상태★5
-									</div>
-							  		<div>
-							  			<a href="#">좋아요 1</a>
-							  		</div>
-								</div>
-								<div class="hstack gap-3">
-									<div class="me-auto">
-										너무 너무 맛있어요 맛돌이
-									</div>
-								</div>
-							</div>
-							<div class="review card-1">
-								<div class="hstack gap-3">
-									<div class="me-auto">
-										아이디
-									</div>
-							  		<div>
-							  			<a href="#">수정</a>
-							  		</div>
-							  		<div>
-							  			<a href="#">삭제</a>
-							  		</div>
-								</div>
-								<div class="hstack gap-3">
-									<div class="me-auto">
-										맛★5 양★5 상태★5
-									</div>
-							  		<div>
-							  			<a href="#">좋아요 1</a>
-							  		</div>
-								</div>
-								<div class="hstack gap-3">
-									<div class="me-auto">
-										너무 너무 맛있어요 맛돌이
-									</div>
-								</div>
-							</div>
 							<div class="review card-1">
 								<div class="hstack gap-3">
 									<div class="me-auto">

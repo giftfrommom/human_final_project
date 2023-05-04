@@ -9,23 +9,29 @@
 	<meta name="author" content="" />
 	<title>공구 리스트</title>
 	<!-- ajax -->
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.js"></script>
-	<script src="/resources/js/scripts_junsang.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.js"></script>
+	<script src="../resources/js/scripts_junsang.js"></script>
+	
 	<!-- Favicon-->
 	<link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
-	<!-- Bootstrap icons-->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+
 	<!-- Core theme CSS (includes Bootstrap)-->
 	<link href="/resources/css/styles.css" rel="stylesheet" />
 <style>
-		@font-face {
-	    font-family: 'gwangyang';
-	    src: url('/resources/fonts/GwangyangSunshineBold.ttf') format('truetype');
+	@font-face {
+	    font-family: 'gwangyangbold';
+	    src: url('../resources/fonts/GwangyangSunshineBold.ttf') format('truetype');
 	}
-	*{
-		font-family: 'gwangyang';
+	@font-face {
+	    font-family: 'gwangyangregular';
+	    src: url('../resources/fonts/GwangyangSunshineRegular.ttf') format('truetype');
 	}
-	/* 카드 버튼 */
+	.navbar_detail,.nav-link{
+		font-family: 'gwangyangbold'; 	
+	}
+	*{ 
+		font-family: 'gwangyangregular'; 
+	} 
 	.btn {
 	  color: #60646A;
 	  background-color: #DFDFDF;
@@ -53,23 +59,13 @@
 	  border-color: white;
 	}
 	
-	
-	.progress-bar{
-		background-color: #0AC290;
-	}
-	
    	.card-img-top{
    		height: 250px;
    	}
    	.card-body{
-   		height: 100px;
+   		height: 120px;
    	}
-   	.progress{
-   		width: 260px;
-   	}
-   	.title{
-   		font-size: 15px;
-   	}
+   
     .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
@@ -138,92 +134,56 @@
 	  text-align: center;
 	}
 	
-	@keyframes tonext {
-	  75% {
-	    left: 0;
-	  }
-	  95% {
-	    left: 100%;
-	  }
-	  98% {
-	    left: 100%;
-	  }
-	  99% {
-	    left: 0;
-	  }
+	.card-3 {
+	  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 	}
-	
-	@keyframes tostart {
-	  75% {
-	    left: 0;
-	  }
-	  95% {
-	    left: -300%;
-	  }
-	  98% {
-	    left: -300%;
-	  }
-	  99% {
-	    left: 0;
-	  }
+	.imagecontainer{
+		width: 220px;
+ 		height: 150px; 
+		display: flex;
+		justify-content: center;
+        align-items: center;
+      
 	}
-	
-	@keyframes snap {
-	  96% {
-	    scroll-snap-align: center;
-	  }
-	  97% {
-	    scroll-snap-align: none;
-	  }
-	  99% {
-	    scroll-snap-align: none;
-	  }
-	  100% {
-	    scroll-snap-align: center;
-	  }
+	.imagecontainer .card-img-top{
+		width:80%;
+		height:80%;
 	}
+	.progress{ 
+    	width: 210px; 
+    } 
 </style>
 </head>
 <body>
 <%@ include file="/header.jsp" %>
-<div class="container">
+<div class="container TabMenu">
     <header class="d-flex justify-content-center py-3">
-      <ul class="nav nav-pills">
-        <li class="nav-item">
-        	<a href="#" class="nav-link selected">전체</a>
-        </li>
-        <li class="nav-item">
-        	<a href="#" class="nav-link">치킨</a>
-        </li>
-        <li class="nav-item">
-        	<a href="#" class="nav-link">피자</a>
-        </li>
-        <li class="nav-item">
-        	<a href="#" class="nav-link">중식</a>
-        </li>
-        <li class="nav-item">
-        	<a href="#" class="nav-link">페스트푸드</a>
-        </li>
+       <ul class="nav nav-pills">
+        <li class="nav-item"><a href="#" class="nav-link selected" id="all">전체</a></li>
+        <li class="nav-item"><a href="#" class="nav-link" id="chicken">치킨</a></li>
+        <li class="nav-item"><a href="#" class="nav-link" id="pizza">피자</a></li>
+        <li class="nav-item"><a href="#" class="nav-link" id="hambuger">햄버거</a></li>
+        <li class="nav-item"><a href="#" class="nav-link" id="snack">분식</a></li>
       </ul>
     </header>
 </div>
-
+<p> <a href='05_DdipWrite.do'>05_DdipWrite </a> </p>
 	<section>
             <div class="container px-lg-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     <div class="col mb-5">
-                        <div class="card h-100">
+                        <div class="card h-100 card-3">
                          	<!-- Sale badge-->
                             <div class="badge bg-dark text-white position-absolute" style="bottom: 10.8rem; right: 0.5rem"><div id="countdown"></div></div>
                             <!-- Product image-->
-                            <img class="card-img-top" src="https://www.bhc.co.kr/images/menu/newNbest/img_best_210713_2.jpg" alt="..." />
+                            <div class="imagecontainer">
+                            	<img class="card-img-top" src="https://www.bhc.co.kr/images/menu/newNbest/img_best_210713_2.jpg" alt="..." />
+                            </div>
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <div class="title fw-bolder">BHC 10시 휴먼교육센터</div>
-                                    
-									
+                                    <div class="title fw-bolder">BHC 10시 휴먼교육센터</div>                       							
                                 </div>
                             </div>
                             <!-- Product actions-->
@@ -236,18 +196,19 @@
 							</div>
                         </div>                   
                     </div>
-                   <div class="col mb-5">
-                        <div class="card h-100">
+                    <div class="col mb-5">
+                        <div class="card h-100 card-3">
                          	<!-- Sale badge-->
                             <div class="badge bg-dark text-white position-absolute" style="bottom: 10.8rem; right: 0.5rem"><div id="countdown"></div></div>
                             <!-- Product image-->
-                            <img class="card-img-top" src="http://www.kyochon.com/uploadFiles/TB_ITEM/%EB%B8%94%EB%9E%99%EC%8B%9C%ED%81%AC%EB%A6%BF-%EC%98%A4%EB%A6%AC%EC%A7%80%EB%82%A0_list(1).png" alt="..." />
+                            <div class="imagecontainer">
+                            	<img class="card-img-top" src="https://www.bhc.co.kr/images/menu/newNbest/img_best_210713_2.jpg" alt="..." />
+                            </div>
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <h5 class="title fw-bolder">교촌치킨 20시 성빈센트병원</h5>
-									
+                                    <div class="title fw-bolder">BHC 10시 휴먼교육센터</div>                       							
                                 </div>
                             </div>
                             <!-- Product actions-->
@@ -255,164 +216,14 @@
                                 <div class="text-center">
                                 <a class="btn btn-outline-dark mt-auto position-absolute start-50 translate-middle-x" style="bottom:2rem;" href="#">띱 버튼</a></div>
                             </div>
-							 <div class="progress position-absolute" style="bottom: -1.5rem; left: 0.3rem">
-								<div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">2/4</div>
+							<div class="progress position-absolute" style="bottom: -1.5rem; left: 0.3rem">
+								<div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: 25%; background-color: #0AC290;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">1/4</div>
 							</div>
                         </div>                   
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Sale Item</h5>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">$50.00</span>
-                                    $25.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Popular Item</h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    $40.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Sale Item</h5>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">$50.00</span>
-                                    $25.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Fancy Product</h5>
-                                    <!-- Product price-->
-                                    $120.00 - $280.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                <a class="btn btn-outline-dark mt-auto" href="#">View options</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Special Item</h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    <span class="text-muted text-decoration-line-through">$20.00</span>
-                                    $18.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">Popular Item</h5>
-                                    <!-- Product reviews-->
-                                    <div class="d-flex justify-content-center small text-warning mb-2">
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                        <div class="bi-star-fill"></div>
-                                    </div>
-                                    <!-- Product price-->
-                                    $40.00
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a></div>
-                            </div>
-                        </div>
-                    </div>
+                    </div>                
                 </div>
             </div>
-        </section>
-        
+        </section> 
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>

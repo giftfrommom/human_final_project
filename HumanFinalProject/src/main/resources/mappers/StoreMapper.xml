@@ -11,6 +11,34 @@
 	  ORDER BY STORE_ID ASC
 	</select>
 	
+	<select id="getStoreTypeList" parameterType="String" resultType="store">
+		SELECT *
+		  FROM STORE 
+		 <if test='_parameter != "all"'>
+			WHERE STORE_TYPE=#{value}
+		 </if>
+	     ORDER BY STORE_ID ASC
+	</select>
+	
+	<select id="getStore" parameterType="Integer" resultType="store">
+		SELECT S.STORE_ID, STORE_TYPE, STORE_NAME, MENU_ID, MENU_NAME, MENU_PRICE
+	      FROM STORE S, MENU M
+		 WHERE S.STORE_ID = M.STORE_ID AND S.STORE_ID=#{value}
+	</select>
+	
+	<select id="getReviewList" parameterType="Integer" resultType="store">
+		 SELECT REVIEW_ID, 
+				STORE_ID, 
+				CUSTOMER_ID,
+				REVIEW_CONTENT, 
+				REVIEW_RATING_TASTE,
+				REVIEW_RATING_AMOUNT,
+				REVIEW_RATING_STATE,
+				REVIEW_LIKE
+		   FROM REVIEW
+		  WHERE STORE_ID =#{value}
+	</select>
+	
 </mapper>
 
 

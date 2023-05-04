@@ -10,4 +10,10 @@ public interface StoreDAO {
 
 	List<StoreVO> getStoreList();
 
+	List<StoreVO> getStoreList(String inputdata);
+
+	List<StoreVO> getStore(int store_id);
+
+	List<StoreVO> getReviewList(int store_id);
+
 }

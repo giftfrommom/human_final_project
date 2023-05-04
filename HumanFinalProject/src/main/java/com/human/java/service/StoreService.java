@@ -10,4 +10,10 @@ public interface StoreService {
 
 	List<StoreVO> getStoreList();
 
+	List<StoreVO> getStoreList(String inputData);
+
+	List<StoreVO> getStore(int store_id);
+
+	List<StoreVO> getReviewList(int store_id);
+
 }

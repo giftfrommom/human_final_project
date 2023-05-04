@@ -16,22 +16,23 @@
 	
 	<!-- Favicon-->
 	<link rel="icon" type="image/x-icon" href="/resources/assets/favicon.ico" />
-	<!-- Bootstrap icons-->
-<!-- 	<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" /> -->
 	<!-- Core theme CSS (includes Bootstrap)-->
 	<link href="/resources/css/styles.css" rel="stylesheet" />
 <style>
 	@font-face {
 	    font-family: 'gwangyangbold';
-	    src: url('/resources/fonts/GwangyangSunshineBold.ttf') format('truetype');
+	    src: url('../resources/fonts/GwangyangSunshineBold.ttf') format('truetype');
 	}
 	@font-face {
 	    font-family: 'gwangyangregular';
-	    src: url('/resources/fonts/GwangyangSunshineBold.ttf') format('truetype');
+	    src: url('../resources/fonts/GwangyangSunshineRegular.ttf') format('truetype');
 	}
-	*{
-		font-family: 'gwangyangbold';
+	.navbar_detail,.nav-link{
+		font-family: 'gwangyangbold'; 	
 	}
+	*{ 
+		font-family: 'gwangyangregular'; 
+	} 
 	.btn {
 	  color: #60646A;
 	  background-color: #DFDFDF;
@@ -60,14 +61,14 @@
 	}
 	
    	.card-img-top{
-   		height: 250px;
+   	  height: 250px;
    	}
    	.card-body{
-   		height: 120px;
+   	  height: 120px;
+	  text-align: center;
+	  padding-top:5px;
    	}
-   	.progress{
-   		width: 260px;
-   	}
+   
     .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
@@ -142,14 +143,50 @@
 	.imagecontainer{
 		width: 220px;
  		height: 150px; 
-		display: flex;
-		justify-content: center;
-        align-items: center;
-      
+		display: flex; 
+ 		justify-content: center; 
+        align-items: center; 
+      text-align:center;
 	}
 	.imagecontainer .card-img-top{
 		width:80%;
 		height:auto;
+	}
+	.bi-star-fill{
+		width:20px;
+		height:20px;
+	}
+	/*별점 */
+	.star-ratings {
+	  color: #aaa9a9; 
+	  position: relative;
+	  unicode-bidi: bidi-override;
+	  width: max-content;
+	  -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
+	  -webkit-text-stroke-width: 1.3px;
+	  -webkit-text-stroke-color: #2b2a29;
+	}
+	 
+	.star-ratings-fill {
+	  color: #fff58c;
+	  padding: 0;
+	  position: absolute;
+	  z-index: 1;
+	  display: flex;
+	  top: 0;
+	  left: 0;
+	  overflow: hidden;
+	  -webkit-text-fill-color: gold;
+	}
+	 
+	.star-ratings-base {
+	  z-index: 0;
+	  padding: 0;
+	}
+	.star-ratings-container{
+		display: flex;
+		justify-content: center;
+        align-items: center;
 	}
 </style>
 </head>
@@ -158,43 +195,47 @@
 <div class="container TabMenu">
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
-        <li class="nav-item"><a href="#" class="nav-link selected">전체</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">치킨</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">피자</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">중식</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">분식</a></li>
+        <li class="nav-item"><a href="#" class="nav-link selected" id="all">전체</a></li>
+        <li class="nav-item"><a href="#" class="nav-link" id="chicken">치킨</a></li>
+        <li class="nav-item"><a href="#" class="nav-link" id="pizza">피자</a></li>
+        <li class="nav-item"><a href="#" class="nav-link" id="hambuger">햄버거</a></li>
+        <li class="nav-item"><a href="#" class="nav-link" id="snack">분식</a></li>
       </ul>
     </header>
 </div>
 
 <section>
 	<div class="container px-lg-5">
-		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-			<c:forEach items="${storeList }" var="store">
+		<div class="storeListcontainer row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+			<c:forEach items="${storeList}" var="store">
 				<div class="col mb-5">
 					<div class="card h-100 card-3">                      
 						<!-- Product image-->
 						<div class="imagecontainer">
-							<img class="card-img-top" src="../resources/img/chickenlogo/${store.store_name}.png" alt="..." />
+							<img class="card-img-top" src="../resources/img/${store.store_type}logo/${store.store_name}.png" alt="..." />
 						</div>   
 						<div class="card-body">
-							<div class="text-center">
-								<!-- Product name-->
-								<h5 class="fw-bolder">${store.store_name}</h5>						
-							</div>
+							
+							<!-- Product name-->
+							<h5 class="fw-bolder">${store.store_name}</h5>						
+							
 							<!-- Product reviews-->
-							<div class="d-flex justify-content-center small text-warning mb-2">
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
-								<div class="bi-star-fill"></div>
+							<div class="star-ratings-container">
+								<div class="star-ratings">
+									<!-- 별점  db에서 가져와야함 -->
+									<div class="star-ratings-fill space-x-2 text-lg" style=" width: 0% ">
+										<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+									</div>
+									<div class="star-ratings-base space-x-2 text-lg">
+										<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+									</div>
+								</div>
 							</div>
 						</div>				
 						<!-- Product actions-->
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center">
-								<a class="btn btn-outline-dark mt-auto position-absolute start-50 translate-middle-x" style="bottom:2rem;" href="#">띱 버튼</a>
+								<a class="btn btn-outline-dark mt-auto position-absolute start-50 translate-middle-x" style="bottom:2rem;" href="04_Store.do?id=${store.store_id}">띱 버튼</a>
 							</div>
 						</div>
 					</div>                   
@@ -212,7 +253,7 @@
 <!-- Bootstrap core JS-->
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> -->
 
-<!-- <!-- Core theme JS--> -->
+<!-- <!-- Core theme JS--> 
 <!-- <script src="/resources/js/scripts.js"></script> -->
 
 
