@@ -53,6 +53,9 @@ input[type=submit] {
 input[type=submit]:hover {
 	background-color: #45a049;
 }
+/**********************/
+/*09_Orderdetails1.jsp*/
+/**********************/
 
     </style>
     

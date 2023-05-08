@@ -222,7 +222,7 @@
 
 <body>
         <ul class="navbar__icons" style="padding-left: 200px;">
-            </label>
+            
             <div class="sidebar">
                 <div class="sidebar-header">
                     <h3 class="sidebar-title" style="margin-left: 20px; font-size: 30px"><a href="01_Main.do" style="color: white">띱</a></h3>
@@ -230,17 +230,17 @@
                 </div>
                 <div class="sidebar-body" style="margin-top: 30px;">
 				<ul>
-					<li class="sidebar-item"><a class="tab_move" href="02_info.do">회원정보</a></li>
-					<li class="sidebar-item"><a class="tab_move" href="09_Orderdetails1.do">주문내역</a></li>
-					<li class="sidebar-item"><a class="tab_move" href="10_coupone.do">쿠폰함</a></li>
-					<li class="sidebar-item"><a class="tab_move" href="08_Payment.do">띱머니충전</a></li>
-					<li class="sidebar-item"><a class="tab_move" href="/">채팅</a></li>
-					<li class="sidebar-item"><a class="tab_move" href="/">회원관리</a></li>
+					<li class="sidebar-item"><a class="tab_move 02_info" href="#">회원정보</a></li>
+					<li class="sidebar-item"><a class="tab_move 09_Orderdetails1" href="#">주문내역</a></li>
+					<li class="sidebar-item"><a class="tab_move 10_coupone" href="#">쿠폰함</a></li>
+					<li class="sidebar-item"><a class="tab_move 08_Payment" href="#">띱머니충전</a></li>
+					<li class="sidebar-item"><a class="tab_move" href="#">채팅</a></li>
+					<li class="sidebar-item"><a class="tab_move" href="#">회원관리</a></li>
                 </ul>
                 </div>
             </div>
         </ul>
-    </nav>
+    
 </body>
 <script>
 const sidebarItems = document.querySelectorAll('.sidebar-item');
