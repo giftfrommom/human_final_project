@@ -7,6 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>메인</title>
+    <!-- ajax -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-3.6.4.js"></script>
+	<script src="../resources/js/scripts_junsang.js"></script>
+	
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <style>
         input[id="menuicon"] {
@@ -132,19 +136,17 @@
             list-style: none;
             padding-left: 0px;
             justify-content: center;
-            /* ê°ë¡ ì¤ì ì ë ¬ */
+            
         }
 
         .navbar__menu li {
             padding: 8px 13px;
             text-align: center;
-            /* ì¸ë¡ ì¤ì ì ë ¬ */
             color: black;
         }
 
         .navbar__menu :hover {
-            color: aqua;
-            border-radius: 5px;
+            color: #0AC290;
         }
 
         .navbar__icons li {
@@ -158,6 +160,7 @@
         .sidebar-item:hover {
             color: aqua;
         }
+        
 
         @media screen and (max-width: 768px) {
             .navbar {
@@ -204,6 +207,14 @@
                 transition: 1s ease-out;
             }
         }
+        .navbar_detail.selected{
+		  color: #0AC290;
+		  background-color: white;
+		  border-color: white;
+		}
+		li.selected{
+ 		  border-bottom: 1px solid #0AC290;
+		}
     </style>
 </head>
 
@@ -214,10 +225,10 @@
             <a href="">띱</a>
         </div>
         <ul class="navbar__menu" style="padding-left: 350px; margin-top: 13px;">
-            <li><a href="">가게리스트</a></li>
-            <li><a href="">공구페이지</a></li>
-            <li><a href="">커뮤니티</a></li>
-            <li><a href="">고객센터</a></li>
+            <li><a id="StoreList" class="navbar_detail" href="03_StoreList.do">가게리스트</a></li>
+            <li><a id="DdipList" class="navbar_detail" href="06_DdipList.do">띱리스트</a></li>
+            <li><a id="" class="navbar_detail" href="">커뮤니티</a></li>
+            <li><a id="" class="navbar_detail" href="">고객센터</a></li>
         </ul>
         <ul class="navbar__icons" style="padding-left: 200px; margin-top: 13px">
             <li style="cursor: pointer; color: black;">로그인</li>
@@ -251,6 +262,12 @@
     const toggleBtn = document.querySelector(".navbar__toggleBtn");
     const menu = document.querySelector(".navbar__menu");
     const icons = document.querySelector(".navbar__icons");
+    
+//  0504추가
+    let url = location.href;
+	let word = url.substring( url.indexOf("_")+1 ,url.indexOf(".") );
+	$('#'+word).addClass('selected');
+	$('#'+word).parent('li').addClass('selected');
 </script>
 
 </html>
