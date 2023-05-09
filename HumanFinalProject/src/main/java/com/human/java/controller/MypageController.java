@@ -24,17 +24,6 @@ public class MypageController {
 	public String userViewPage(@PathVariable String url) {		
 		return "/mypage/" + url;
 	}
-	
-	@RequestMapping("09_Orderdetails1")
-	@ResponseBody
-	public String test(String inputData) {
-
-//		List<StoreVO> storeList = storeService.getStoreList(inputData);
-//		Map<String, List<StoreVO>> storeMap = new HashMap<String,List<StoreVO>>();
-//		storeMap.put("storeList1", storeList);
-		
-		return "1";		
-	}
 	 
 }
 
