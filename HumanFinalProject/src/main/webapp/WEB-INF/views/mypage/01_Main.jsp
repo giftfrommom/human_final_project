@@ -3,10 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>쿠폰함</title>
-	<style>
-	
-		input[id="menuicon"] {
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인</title>
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <style>
+        input[id="menuicon"] {
             display: none;
         }
 
@@ -47,7 +50,7 @@
 
         input[id="menuicon"]:checked+label {
             z-index: 2;
-            left: 300px;
+            right: 300px;
         }
 
         input[id="menuicon"]:checked+label span {
@@ -71,16 +74,16 @@
         div[class="sidebar"] {
             width: 300px;
             height: 100%;
-            background: #60646A;
+            background: #222;
             position: fixed;
             top: 0;
-            left: 00px;
+            right: -300px;
             z-index: 1;
             transition: all .35s;
         }
 
         input[id="menuicon"]:checked+label+div {
-            left: 0;
+            right: 0;
         }
 
         :root {
@@ -129,13 +132,14 @@
             list-style: none;
             padding-left: 0px;
             justify-content: center;
-            /* 가로 중앙 정렬 */
+            /* ê°ë¡ ì¤ì ì ë ¬ */
         }
 
         .navbar__menu li {
             padding: 8px 13px;
             text-align: center;
-            /* 세로 중앙 정렬 */
+            /* ì¸ë¡ ì¤ì ì ë ¬ */
+            color: black;
         }
 
         .navbar__menu :hover {
@@ -151,6 +155,10 @@
             display: none;
         }
 
+        .sidebar-item:hover {
+            color: aqua;
+        }
+
         @media screen and (max-width: 768px) {
             .navbar {
                 flex-direction: column;
@@ -163,6 +171,7 @@
                 flex-direction: column;
                 align-items: center;
                 width: 100%;
+                color: black;
             }
 
             .navbar__menu li {
@@ -174,7 +183,7 @@
                 list-style: none;
                 display: flex;
                 justify-content: flex-end;
-                /* 오른쪽 정렬 */
+                /* ì¤ë¥¸ìª½ ì ë ¬ */
                 color: white;
                 padding-left: 0px;
                 padding-right: 80px;
@@ -194,116 +203,19 @@
                 display: flex;
                 transition: 1s ease-out;
             }
-		}
-		
-		body {
-			font-family: Arial, sans-serif;
-			margin: 0;
-			padding: 0;
-			background-color: #f5f5f5;
-		}
-		h1 {
-			text-align: center;
-			margin-top: 20px;
-			margin-bottom: 30px;
-		}
-		.container {
-			display: flex;
-			justify-content: center;
-			margin: 0 auto;
-			max-width: 1000px;
-            height: 230px;
-            flex-wrap: wrap;
-		}
-		.card {
-			background-color: #ffffff;
-			border-radius: 8px;
-			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-			margin:20px;
-			padding: 20px;
-			width: 300px;
-			position: relative;
-		}
-		.card h2 {
-			font-size: 20px;
-			margin-top: 0;
-		}
-        .card p {
-	    font-weight: bold;
         }
-
-        .card p span {
-	    font-weight: normal;
-        color: #848484;
-        }
-        .card .cancel-btn {
-        padding: 10px 20px;
-        background-color: #4CAF50;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        margin-top: 30px;
-        margin-left: 100px;
-        }
-
-        .card .cancel-btn:hover {
-        background-color: #e53935;
-        }
-	</style>
+    </style>
 </head>
+
 <body>
-<ul class="navbar__icons" style="padding-left: 200px;">
-            </label>
-            <div class="sidebar">
-                <div class="sidebar-header">
-                    <h3 class="sidebar-title" style="margin-left: 20px; font-size: 30px"><a href="01_Main.do" style="color: white">띱</a></h3>
-                    <div style="border: 1px solid white;"></div>
-                </div>
-                <div class="sidebar-body" style="margin-top: 30px;">
-					<a href="02_info.do" style="color: white"><li class="sidebar-item">회원정보</li></a>
-					<a href="09_Orderdetails1.do" style="color: white"><li class="sidebar-item">주문내역</li></a>
-					<a href="10_coupone.do"><li class="sidebar-item" style="background-color: white; color: black;"><strong>쿠폰함</strong></li></a>
-					<a href="08_Payment.do" style="color: white"><li class="sidebar-item">띱머니충전</li></a>
-					<a href="/" style="color: white"><li class="sidebar-item">채팅</li></a>
-					<a href="/" style="color: white"><li class="sidebar-item">회원관리</li></a>
-                </div>
-            </div>
-        </ul>
-    </nav>
-    
-	<h1 style="margin-left: 250px">쿠폰함</h1>
-	<div class="container" style="margin-left: 300px">
-		<div class="card">
-            <h3>1000원 할인 쿠폰</h3>
-            <p>최소 주문 금액: 20,000원</p>
-                <button class="cancel-btn">쿠폰 사용</button>
-			</div>
-		<div class="card">
-			<h3>2000원 할인 쿠폰</h3>
-			<p>최소 주문 금액: 20,000원</p>
-                <button class="cancel-btn">쿠폰 사용</button>
-			</div>
-        <div class="card">
-			<h3>교촌치킨 3000원 할인 쿠폰</h3>
-			<p>최소 주문 금액: 20,000원</p>
-                <button class="cancel-btn">쿠폰 사용</button>
-			</div>
-        <div class="card">
-			<h3>도미노피자 2000원 할인 쿠폰</h3>
-			<p>최소 주문 금액: 20,000원</p>
-                <button class="cancel-btn">쿠폰 사용</button>
-			</div>
-        <div class="card">
-			<p>10% 할인 쿠폰</p>
-			<p>최소 주문 금액: 20,000원</p>
-                <button class="cancel-btn">쿠폰 사용</button>
-			</div>
-        <div class="card">
-			<h3>20% 할인 쿠폰</h3>
-			<p>최소 주문 금액: 20,000원</p>
-                <button class="cancel-btn">쿠폰 사용</button>
-			</div>
-	</div>
+<%@ include file="/header.jsp" %>
+   
+    <!-- <div style="margin-top: 400px;">  <iframe width="600" height="315" src="https://www.youtube.com/embed/KnXQrL39cAQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="margin-bottom: 100px; margin-left: 350px;"></iframe></div> -->
 </body>
+<script>
+    const toggleBtn = document.querySelector(".navbar__toggleBtn");
+    const menu = document.querySelector(".navbar__menu");
+    const icons = document.querySelector(".navbar__icons");
+</script>
+
 </html>
