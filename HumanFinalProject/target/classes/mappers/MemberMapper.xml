@@ -5,6 +5,9 @@
 
 <mapper namespace="memberDAO">
 
+	<select id="info" parameterType="customer" resultType="customer">
+		select * from CUSTOMER where CUSTOMER_LOGINID = #{CUSTOMER_LOGINID}
+	</select>
 	
 	
 </mapper>
