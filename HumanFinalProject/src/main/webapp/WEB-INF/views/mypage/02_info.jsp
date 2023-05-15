@@ -274,10 +274,10 @@ input[type=submit]:hover {
 	<div class="container">
 		<h1>회원정보 수정</h1>
 		<form>
-			<label for="username">사용자 이름:</label>
+			<label for="username">사용자 이름:${vo3.CUSTOMER_ID}</label>
 			<input type="text" id="username" name="username"><br>
 
-			<label for="email">이메일:</label>
+			<label for="email">이메일:${vo3.CUSTOMER_EMAIL}</label>
 			<input type="email" id="email" name="email"><br>
 
 			<label for="password">현재 비밀번호:</label>

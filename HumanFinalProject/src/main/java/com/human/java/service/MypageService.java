@@ -12,4 +12,8 @@ public interface MypageService {
 
 	public CustomerVO info(CustomerVO vo);
 
+	public CustomerVO ChargeMoney(CustomerVO vo);
+
+	CustomerVO Payment(CustomerVO vo);
+
 }

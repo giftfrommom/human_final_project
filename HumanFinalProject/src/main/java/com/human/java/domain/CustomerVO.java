@@ -10,7 +10,7 @@ public class CustomerVO {
 	String CUSTOMER_LOGINID;
 	String CUSTOMER_PASSWORD;
 	String CUSTOMER_EMAIL;
-	int CUSTOMER_MONEY;
+	int customer_money;
 	String CUSTOMER_PREFERMENU;
 	String CUSTOMER_PREFERSTORE;
 	String CUSTOMER_BIRTHDAY;
