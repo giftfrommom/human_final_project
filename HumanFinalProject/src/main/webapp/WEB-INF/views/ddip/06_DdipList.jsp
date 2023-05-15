@@ -138,27 +138,35 @@
 	
 	.card-3 {
 	  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	  display: flex;
+		justify-content: center;
+        align-items: center;
 	}
 	.imagecontainer{
-		width: 220px;
- 		height: 150px; 
+		width: 100%;
+ 		height: 100%; 
 		display: flex;
 		justify-content: center;
         align-items: center;
-      
 	}
 	.imagecontainer .card-img-top{
-		width:80%;
-		height:80%;
+		width:90%;
+		height:90%;
 	}
 	.progress{ 
     	width: 210px; 
     } 
-    .div-with-content-length {
+   .countdownContainer {
+	  background-color: gray;
+	  border-radius: 5px;
 	  display: inline-block;
-	  font-size: 16px; /* 필요에 따라 폰트 크기를 조정하세요 */
-	  line-height: 1.2; /* 필요에 따라 줄 간격을 조정하세요 */
-/* 	  visibility: hidden; /* 요소를 화면에서 보이지 않도록 설정합니다 */ */
+	  padding: 2px 5px;
+	  width: fit-content;
+	}
+	
+	.countdown {
+	  color: white;
+	  font-size: 9px;
 	}
 </style>
 </head>
@@ -188,7 +196,7 @@
                             	<img class="card-img-top" src="../resources/upload/${ddip.ddip_picture_enname}${ddip.fileExtension}" alt="..." />
                             </div>       
                             <!-- Product details-->
-                            <div class="div-with-content-length "><div class="countdown" data-deadline="${ddip.ddip_deadline}"></div></div>
+                            <div class="countdownContainer"><div class="countdown" data-deadline="${ddip.ddip_deadline}"></div></div>
                             
                             <div class="card-body p-4">
                                 <div class="text-center">

@@ -25,6 +25,11 @@ $(function() {
 		      var currentTime = new Date();
 		      var remainingTime = deadlineDate - currentTime;
 
+		      if (remainingTime <= 0) { // 시간이 마감되었을 경우
+		        countdownElement.text("마감되었습니다.");
+		        return;
+		      }
+
 		      // 남은 시간을 시간, 분, 초로 변환
 		      var hours = Math.floor(remainingTime / (1000 * 60 * 60));
 		      var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
@@ -49,6 +54,56 @@ $(function() {
 		    setInterval(updateCountdown, 1000); // 1초마다 업데이트
 		  });
 		});
+	
+//	$(document).ready(function() {
+//		  // .countdown 요소에 대해 각각 처리
+//		  $('.countdown').each(function() {
+//		    var countdownElement = $(this);
+//		    var deadlineString = countdownElement.data('deadline'); // 예시: "오후 3:24"
+//
+//		    // 시간과 분을 추출
+//		    var timeParts = deadlineString.split(" ")[1].split(":");
+//		    var hours = parseInt(timeParts[0]);
+//		    var minutes = parseInt(timeParts[1]);
+//
+//		    // 오후인 경우 시간에 12를 더해줌
+//		    if (deadlineString.includes("오후") && hours < 12) {
+//		      hours += 12;
+//		    }
+//
+//		    // 데드라인 시간을 설정
+//		    var deadlineDate = new Date();
+//		    deadlineDate.setHours(hours, minutes, 0, 0);
+//
+//		    // 남은 시간 계산 및 업데이트
+//		    function updateCountdown() {
+//		      var currentTime = new Date();
+//		      var remainingTime = deadlineDate - currentTime;
+//
+//		      // 남은 시간을 시간, 분, 초로 변환
+//		      var hours = Math.floor(remainingTime / (1000 * 60 * 60));
+//		      var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+//		      var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+//
+//		      // 시간, 분, 초를 2자리 숫자로 포맷팅
+//		      var formattedHours = padNumber(hours);
+//		      var formattedMinutes = padNumber(minutes);
+//		      var formattedSeconds = padNumber(seconds);
+//
+//		      // 남은 시간을 문자열로 포맷팅
+//		      var countdownText = formattedHours + "시간 " + formattedMinutes + "분 " + formattedSeconds + "초";
+//
+//		      countdownElement.text(countdownText);
+//		    }
+//
+//		    function padNumber(number) {
+//		      return String(number).padStart(2, '0');
+//		    }
+//
+//		    updateCountdown();
+//		    setInterval(updateCountdown, 1000); // 1초마다 업데이트
+//		  });
+//		});
 
 	
 	

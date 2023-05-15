@@ -4,18 +4,18 @@ import lombok.Data;
 
 @Data
 public class StoreVO {
-	//store테이블
+	//store�뀒�씠釉�
 	int store_id;
 	String store_type;
 	String store_name;
 	String store_picture;
 	
-	//menu테이블
+	//menu�뀒�씠釉�
 	int menu_id;
 	String menu_name;
 	int menu_price;
 	
-	//review테이블
+	//review�뀒�씠釉�
 	int review_id;
 	String review_content;
 	int review_rating_taste;
