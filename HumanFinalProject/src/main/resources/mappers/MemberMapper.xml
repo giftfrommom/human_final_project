@@ -9,6 +9,35 @@
 		select * from CUSTOMER where CUSTOMER_LOGINID = #{CUSTOMER_LOGINID}
 	</select>
 	
+	<select id="memberLogin" parameterType="customer" resultType="customer">
+	
+	
+	select * from CUSTOMER where CUSTOMER_LOGINID = #{CUSTOMER_LOGINID}
+	
+	<if test = "CUSTOMER_PASSWORD != null">
+		AND CUSTOMER_PASSWORD = #{CUSTOMER_PASSWORD}
+	</if>
+	
+	
+	</select> 
+	
+	<insert id="memberInsert" parameterType="customer">
+
+	INSERT INTO CUSTOMER 
+		 VALUES ( SEQ_CUSTOMER_CUSTOMER_ID.nextval,#{CUSTOMER_NAME},#{CUSTOMER_LOGINID},#{CUSTOMER_PASSWORD},#{CUSTOMER_EMAIL},#{CUSTOMER_PREFERMENU},#{CUSTOMER_PREFERSTORE},#{CUSTOMER_BIRTHDAY},#{CUSTOMER_NICKNAME},#{CUSTOMER_ADDRESS1},#{CUSTOMER_ADDRESS2},#{CUSTOMER_ADDRESS3},#{CUSTOMER_ADDRESS4})
+	
+	</insert>
+	
+	<select id="memberEmail" parameterType="customer" resultType="customer">
+	
+	
+	select * from CUSTOMER where CUSTOMER_EMAIL = #{CUSTOMER_EMAIL}
+	
+	<if test = "CUSTOMER_PASSWORD != null">
+		AND CUSTOMER_PASSWORD = #{CUSTOMER_PASSWORD}
+	</if>
+	
+	</select>
 	
 </mapper>
 

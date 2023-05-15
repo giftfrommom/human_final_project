@@ -102,31 +102,54 @@
 <!-- Custom styles for this template -->
 <link href="signin.css" rel="stylesheet">
 </head>
+<script>
+	window.onload = function(){
+		document.getElementById('Submit').onclick = check;	
+	}
+	
+	function check(){
+		if(document.form.CUSTOMER_LOGINID.value==""){
+			alert("ID를 입력하세요.")
+			document.form.userId.focus();
+			return false;
+		}
+		
+		if(document.form.CUSTOMER_PASSWORD.value==""){
+			alert("패스워드를 입력하세요.")
+			document.form.userPass.focus();
+			return false;
+		}
+		
+		document.form.submit();//전송
+		
+	}
+	
+	
+</script>
 <body>
 	<%@ include file="/header.jsp"%>
 	<div class="text-center">
 
 
 		<main class="form-signin w-100 m-auto">
-			<form style="margin-top: 200px;" action="">
-				<img class="mb-4" src="/docs/5.2/assets/brand/bootstrap-logo.svg"
-					alt="" width="72" height="57">
+			<form style="margin-top: 200px;" action="login.do" name="form">
+				
 
 				<div class="form-floating">
-					<input type="email" class="form-control" id="floatingInput"
+					<input type="text" class="form-control" id="CUSTOMER_LOGINID" name="CUSTOMER_LOGINID"
 						placeholder="name@example.com"> <label for="floatingInput">아이디</label>
 				</div>
 				<div class="form-floating">
-					<input type="password" class="form-control" id="floatingPassword"
+					<input type="password" class="form-control" id="CUSTOMER_PASSWORD" name="CUSTOMER_PASSWORD"
 						placeholder="Password"> <label for="floatingPassword">패스워드</label>
 				</div>
 
 				<div class="checkbox mb-3">
-					<label> <input type="checkbox" value="remember-me">
+					<label> <input type="checkbox" value="remember-me" id="IdMemory">
 						아이디 저장
 					</label>
 				</div>
-				<button class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
+				<button class="w-100 btn btn-lg btn-primary" type="submit" id="Submit">로그인</button>
 			</form>
 		</main>
 

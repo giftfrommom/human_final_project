@@ -18,4 +18,10 @@ public class CustomerVO {
 	int CUSTOMER_ADDRESSX;
 	int CUSTOMER_ADDRESSY;
 	
+	//일상
+	String CUSTOMER_ADDRESS1;
+	String CUSTOMER_ADDRESS2;
+	String CUSTOMER_ADDRESS3;
+	String CUSTOMER_ADDRESS4;
+	
 }
