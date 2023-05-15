@@ -39,6 +39,14 @@
 		  WHERE STORE_ID =#{value}
 	</select>
 	
+	<select id="getBestPlace" parameterType="Integer" resultType="bestplace">
+		 SELECT *
+		   FROM BESTPLACE
+<!-- 		  WHERE STORE_ID =#{value} -->
+	</select>
+	
+	
+	
 </mapper>
 
 

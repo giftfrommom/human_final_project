@@ -1,12 +1,12 @@
 package com.human.java.dao;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.human.java.domain.BestplaceVO;
 import com.human.java.domain.StoreVO;
 
 @Repository("storeDAO")
@@ -36,9 +36,14 @@ public class StoreDAOImpl implements StoreDAO{
 
 	@Override
 	public List<StoreVO> getReviewList(int store_id) {
-		List<StoreVO> aa = mybatis.selectList("storeDAO.getReviewList",store_id);
-		System.out.println(aa);
-		return aa;
+		
+		return mybatis.selectList("storeDAO.getReviewList",store_id);
+	}
+
+	@Override
+	public List<BestplaceVO> getBestPlace(int store_id) {
+		
+		return mybatis.selectList("storeDAO.getBestPlace",store_id);
 	}
 	
 

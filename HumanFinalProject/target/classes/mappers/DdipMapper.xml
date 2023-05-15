@@ -5,7 +5,65 @@
 
 <mapper namespace="ddipDAO">
 
+	<insert id="setDdip" parameterType="java.util.Map">
+		INSERT INTO DDIP
+		(DDIP_ID, 
+		DDIP_CURRENTCNT,
+		CUSTOMER_ID, 
+		DDIP_TOTALCNT, 
+		DDIP_MESSAGE, 
+		DDIP_PICKUPPLACE, 
+		DDIP_DEADLINE, 
+		DDIP_PICKUPTIME, 
+		DDIP_PICTURE_NAME, 
+		DDIP_PICTURE_ENNAME,
+		DDIP_STORE_TYPE,
+		FILEEXTENSION,
+		STORE_ID)
+		VALUES
+		(DDIP_TEST_SEQ.NEXTVAL, 
+			(SELECT COUNT(*)+1
+			   FROM DDIP
+			  WHERE DDIP_ID =(SELECT LAST_NUMBER
+								FROM USER_SEQUENCES 
+		   					   WHERE SEQUENCE_NAME = 'DDIP_TEST_SEQ')),
+			#{ddipList[0].customer_id}, 
+			#{ddipList[0].ddip_totalcnt}, 
+			#{ddipList[0].ddip_message}, 
+			#{ddipList[0].ddip_pickupplace}, 
+			#{ddipList[0].ddip_deadline}, 
+			#{ddipList[0].ddip_pickuptime}, 
+			#{ddipList[0].ddip_picture_name}, 
+			#{ddipList[0].ddip_picture_enname}, 
+			(SELECT STORE_TYPE
+			FROM STORE
+			WHERE STORE_ID=#{store_id}),
+			#{ddipList[0].fileExtension},
+			#{store_id})
+	</insert>
 	
+	<insert id="setOrder_tbl" parameterType="ddip">
+	    INSERT INTO ORDER_TBL
+	    (ORDER_TBL_ID,
+	    DDIP_ID,
+	    CUSTOMER_ID,
+	    ORDER_TIME)
+	    VALUES
+	    (
+	    ORDER_TBL_TEST_SEQ.NEXTVAL
+	    ,(SELECT LAST_NUMBER-1 
+			FROM USER_SEQUENCES 
+		   WHERE SEQUENCE_NAME = 'DDIP_TEST_SEQ')
+	    ,#{customer_id}
+	    ,#{order_time}
+	    )
+	</insert>
+
+	<select id="getDdipList" resultType="ddip">
+		SELECT FILEEXTENSION, ddip_picture_enname, ddip_currentcnt, ddip_id, customer_id, ddip_totalcnt, ddip_deadline, ddip_pickupplace, ddip_store_type,s.store_name
+		from ddip d,store s
+		where d.store_id=s.store_id
+	</select>
 	
 </mapper>
 
