@@ -228,7 +228,7 @@
             <li><a id="StoreList" class="navbar_detail" href="03_StoreList.do">가게리스트</a></li>
             <li><a id="DdipList" class="navbar_detail" href="06_DdipList.do">띱리스트</a></li>
             <li><a id="" class="navbar_detail" href="">커뮤니티</a></li>
-            <li><a id="" class="navbar_detail" href="">고객센터</a></li>
+            <li><a id="" class="navbar_detail" href="/center/Userservice.do">고객센터</a></li>
         </ul>
         <ul class="navbar__icons" style="padding-left: 200px; margin-top: 13px">
             <li style="cursor: pointer; color: black;">로그인</li>
