@@ -14,5 +14,6 @@
 		<typeAlias alias="order_tbl" type="com.human.java.domain.Order_tblVO"/>
 		<typeAlias alias="review" type="com.human.java.domain.ReviewVO"/>
 		<typeAlias alias="store" type="com.human.java.domain.StoreVO"/>
+		<typeAlias alias="customer" type="com.human.java.domain.CustomerVO"/>
 	</typeAliases>
 </configuration>
