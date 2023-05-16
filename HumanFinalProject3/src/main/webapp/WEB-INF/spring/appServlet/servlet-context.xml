@@ -25,6 +25,11 @@
 	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	
-	
+	<!-- 경로 잘 찾을 것 -->
+<!-- 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"> -->
+<!-- 	    <beans:property name="uploadTempDir"> -->
+<!-- 	        <beans:value>file:${workspace_loc}/.metadata/.plugins/org.eclipse.wst.server.core</beans:value> -->
+<!-- 	    </beans:property> -->
+<!-- 	</beans:bean> -->
 	
 </beans:beans>

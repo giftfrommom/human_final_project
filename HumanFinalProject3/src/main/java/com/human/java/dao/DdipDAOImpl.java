@@ -40,6 +40,13 @@ public class DdipDAOImpl implements DdipDAO{
 		return mybatis.selectList("ddipDAO.getDdipList");
 		
 	}
+
+
+	@Override
+	public DdipVO getDdip(DdipVO vo) {
+		
+		return mybatis.selectOne("ddipDAO.getDdip",vo);
+	}
 	
 
 }

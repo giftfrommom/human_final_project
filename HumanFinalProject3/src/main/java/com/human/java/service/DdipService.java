@@ -12,5 +12,7 @@ public interface DdipService {
 
 	List<DdipVO> getDdipList();
 
+	DdipVO getDdip(DdipVO vo);
+
 
 }

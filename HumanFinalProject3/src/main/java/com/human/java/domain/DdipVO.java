@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class DdipVO {
 	
-	int ddip_id;	
+	int ddip_id;
 	int customer_id;
 	int ddip_currentcnt;
 	int ddip_totalcnt;
@@ -71,7 +71,8 @@ public class DdipVO {
 			// b_fname_en : 랜덤문자열32자리 이므로 중복없이 저장이 가능합니다.
 			// 랜덤문자(b_fname_en) 와 실제파일명(b_fname)은 서로 매칭해야하기 때문에 DB에서 둘 다 저장해야합니다.		
 //			File f = new File("C:\\Users\\human\\Desktop\\sts\\HumanFinalProject2\\src\\main\\webapp\\resources\\upload\\"+ddip_picture_enname+fileExtension);
-			File f = new File("C:\\Users\\ejs11\\git\\human_final_project2\\HumanFinalProject\\src\\main\\webapp\\resources\\upload\\"+ddip_picture_enname+fileExtension);
+//			File f = new File("C:\\Users\\ejs11\\git\\human_final_project2\\HumanFinalProject\\src\\main\\webapp\\resources\\upload\\"+ddip_picture_enname+fileExtension);
+			File f = new File("C:\\1.develop\\spring\\HumanFinalProject4\\src\\main\\webapp\\resources\\upload\\"+ddip_picture_enname+fileExtension);
 			
 			
 			try {

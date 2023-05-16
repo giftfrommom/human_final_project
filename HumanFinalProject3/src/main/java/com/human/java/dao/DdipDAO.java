@@ -12,4 +12,6 @@ public interface DdipDAO {
 
 	List<DdipVO> getDdipList();
 
+	DdipVO getDdip(DdipVO vo);
+
 }

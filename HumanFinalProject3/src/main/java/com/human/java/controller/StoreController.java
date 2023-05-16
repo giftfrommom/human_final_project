@@ -156,13 +156,13 @@ public class StoreController {
 		
 		model.addAttribute("ddipList", ddipService.getDdipList());
 		
-		return "/ddip/06_DdipList";
+		return "redirect:/store/06_DdipList";
 	}
 	
 	@RequestMapping("/06_DdipList")
 	public String ddip( Model model,  HttpSession session) {
 		
-		List<DdipVO> ddipList = ddipService.getDdipList();
+		model.addAttribute("ddipList", ddipService.getDdipList());
 		
 		return "/ddip/06_DdipList";
 	}
@@ -186,6 +186,15 @@ public class StoreController {
 	 	mapInfoMap.put("mapInfo",mapInfo);
 	 	
 	 	return mapInfoMap;
+	}
+	
+	@RequestMapping("07_Ddip")
+	public String getDdip(DdipVO vo, Model model) {
+		
+		DdipVO ddipvo = ddipService.getDdip(vo);
+		System.out.println(ddipvo);
+		model.addAttribute("ddipvo", ddipvo);
+		return "/ddip/07_Ddip";
 	}
 	
 }	

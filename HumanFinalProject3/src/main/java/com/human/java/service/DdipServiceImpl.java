@@ -28,6 +28,13 @@ public class DdipServiceImpl implements DdipService{
 		
 		return ddipDAO.getDdipList();
 	}
+
+
+	@Override
+	public DdipVO getDdip(DdipVO vo) {
+		
+		return ddipDAO.getDdip(vo);
+	}
 	
 	
 

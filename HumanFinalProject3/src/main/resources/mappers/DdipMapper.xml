@@ -65,6 +65,13 @@
 		where d.store_id=s.store_id
 	</select>
 	
+	<select id="getDdip" parameterType="ddip" resultType="ddip">
+		SELECT *
+		FROM DDIP dd, store ss
+		WHERE dd.store_id = ss.store_id
+		AND DDIP_ID =#{ddip_id} 
+	</select>
+	
 </mapper>
 
 
