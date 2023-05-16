@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mypageDAO">
+
+	<select id="ChargeMoney" parameterType="customer" resultType="customer"> 
+		SELECT customer_money + #{customer_money} as CUSTOMER_MONEY
+		FROM CUSTOMER
+		WHERE CUSTOMER_ID='3000'
+	</select>
+	
+	<select id="Payment" parameterType="customer" resultType="customer">
+		SELECT customer_money
+		FROM CUSTOMER
+		WHERE CUSTOMER_ID='3000'
+	</select>
+	
+	<update id="updatemoney" parameterType="customer">
+		UPDATE CUSTOMER
+    	SET customer_money = #{customer_money} 
+    	WHERE CUSTOMER_ID = '3000'
+	</update>
+	
+	<update id="edit" parameterType="customer">
+		UPDATE CUSTOMER
+		SET CUSTOMER_LOGINID = #{CUSTOMER_LOGINID},
+		CUSTOMER_EMAIL = #{CUSTOMER_EMAIL}
+		WHERE CUSTOMER_ID = '3000'
+	</update>
+	
+	<select id="editcome" parameterType="customer" resultType="customer">
+		SELECT *
+		FROM CUSTOMER
+		WHERE CUSTOMER_ID = '3000'
+	</select>
+	
+	<select id="getCouponList" resultType="coupon">
+		SELECT *
+		FROM COUPON
+		WHERE CUSTOMER_ID = '3000'
+	</select>
+	
+	<select id="getOrderList" parameterType="ddip" resultType="ddip">
+		SELECT *
+		FROM ORDER_TBL_DETAIL DD, ORDER_TBL OO
+		WHERE DD.ORDER_TBL_ID = OO.ORDER_TBL_ID
+	</select>
+
+
+	
+</mapper>
+
+

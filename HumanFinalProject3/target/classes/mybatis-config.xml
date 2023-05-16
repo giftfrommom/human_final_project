@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<configuration>
+	<typeAliases>
+		<typeAlias alias="bestplace" type="com.human.java.domain.BestplaceVO"/>
+		<typeAlias alias="board" type="com.human.java.domain.BoardVO"/>
+		<typeAlias alias="coupon" type="com.human.java.domain.CouponVO"/>
+		<typeAlias alias="ddip" type="com.human.java.domain.DdipVO"/>
+		<typeAlias alias="menu" type="com.human.java.domain.MenuVO"/>
+		<typeAlias alias="order_menu" type="com.human.java.domain.Order_menuVO"/>
+		<typeAlias alias="order_tbl" type="com.human.java.domain.Order_tblVO"/>
+		<typeAlias alias="review" type="com.human.java.domain.ReviewVO"/>
+		<typeAlias alias="store" type="com.human.java.domain.StoreVO"/>
+		<typeAlias alias="customer" type="com.human.java.domain.CustomerVO"/>
+	</typeAliases>
+</configuration>
