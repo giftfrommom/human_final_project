@@ -1,10 +1,14 @@
 package com.human.java.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.human.java.dao.MypageDAO;
+import com.human.java.domain.CouponVO;
 import com.human.java.domain.CustomerVO;
+import com.human.java.domain.DdipVO;
 
 @Service("mypageService")
 public class MypageServiceImpl implements MypageService{
@@ -34,4 +38,26 @@ public class MypageServiceImpl implements MypageService{
 
 		return mypageDAO.ChargeMoney(vo);
 	}
+
+	@Override
+	public CustomerVO edit(CustomerVO vo) {
+		
+		return mypageDAO.edit(vo);
+	}
+
+
+	@Override
+	public List<CouponVO> getCouponList(CouponVO vo) {
+		
+		return mypageDAO.getCouponList(vo);
+	}
+
+	@Override
+	public List<DdipVO> getOrderList(DdipVO vo) {
+		
+		return mypageDAO.getOrderList(vo);
+	}
+	
+	
+
 }

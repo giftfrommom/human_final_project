@@ -3,6 +3,7 @@ package com.human.java.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.human.java.domain.CouponVO;
 import com.human.java.domain.CustomerVO;
+import com.human.java.domain.DdipVO;
 import com.human.java.service.MypageService;
 
 import oracle.jdbc.proxy.annotation.Post;
@@ -41,13 +44,11 @@ public class MypageController {
       return "/mypage/01_Main";
    }
    
-   
-   
    @RequestMapping("02_info.do")
-    public String info(Model model,HttpSession session) {
+   public String info(Model model,HttpSession session) {
 	   
 	   Object sessionChk = session.getAttribute("customer_id");
-      
+     
 	   if(sessionChk != null) {
 		   
 		   String userId = "userid";
@@ -68,8 +69,22 @@ public class MypageController {
 		   return "/member/13_Login";
 	   }
 	   
-     
-    }
+    
+   }
+   
+   @RequestMapping("02_edit")
+   public String edit(CustomerVO vo, Model model) {
+	   System.out.println(vo);
+	   CustomerVO vo2 = mypageService.edit(vo);
+	   
+	   
+	   
+	   model.addAttribute("vo2", vo2);
+	   return "/mypage/02_info";
+   }
+   
+   
+   
    
    @RequestMapping("08_Payment.do")
    public String Payment(HttpSession session) {
@@ -94,20 +109,64 @@ public class MypageController {
    
    @RequestMapping("08_ChargeMoney")
    public String ChargeMoney(int chargeAmount, Model model){
- 
+	   System.out.println(chargeAmount);
+	   
 	   CustomerVO vo = new CustomerVO();
 	   vo.setCustomer_money(chargeAmount);
-	   CustomerVO vo3 = mypageService.ChargeMoney(vo);
 	   
-	   model.addAttribute(vo3);
+	   CustomerVO vo3 = mypageService.ChargeMoney(vo);
+	   System.out.println(vo3);
+	   
+	   model.addAttribute("vo3",vo3);
 	   
 	   return "/mypage/08_Payment";
    }
    
    @RequestMapping("09_Orderdetails1.do")
-   public String Orderdetails() {
+   public String Orderdetails(Model model,HttpSession session) {
 	   
+	   Object sessionChk = session.getAttribute("customer_id");
+	      
+	   if(sessionChk != null) {
+	   System.out.println("09_Orderdetails1.do 호출 완료");
+	   
+	   int userId = 3000;
+	   DdipVO vo = new DdipVO();
+	   vo.setCustomer_id(Integer.parseInt(sessionChk.toString()));
+	   
+	   List<DdipVO> OrderList = mypageService.getOrderList(vo);
+	   
+	   model.addAttribute("OrderList", OrderList);
+	   
+	  
 	   return "/mypage/09_Orderdetails1";
+	   
+	   } else {
+		   
+		   return "/member/13_Login";
+	   }
+   }
+   
+   @RequestMapping("10_coupon.do")
+   public String coupon(Model model, HttpSession session) {
+	   
+	   Object sessionChk = session.getAttribute("customer_id");
+	      
+	   if(sessionChk != null) {
+	   int userId = 3000;
+	   CouponVO vo = new CouponVO();
+	   vo.setCUSTOMER_ID(3000);
+	   
+	   List<CouponVO> CouponList = mypageService.getCouponList(vo);
+	   
+	   model.addAttribute("CouponList", CouponList);
+	   
+	   return "/mypage/10_coupon";
+   
+		} else {
+			   
+			   return "/member/13_Login";
+		}
    }
 }
 

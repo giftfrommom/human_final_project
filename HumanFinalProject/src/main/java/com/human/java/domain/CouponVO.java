@@ -9,6 +9,10 @@ import lombok.Data;
 
 @Data
 public class CouponVO {
-
+	
+	int COUPON_ID;
+	int CUSTOMER_ID;
+	int COUPON_DISCOUNT;
+	int COUPON_MINIMUM;
 	
 }

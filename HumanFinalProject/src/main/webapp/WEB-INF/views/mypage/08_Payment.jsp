@@ -10,7 +10,7 @@
     <title>띱포인트충전</title>
     <!-- ajax -->
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.js"></script>
-	<script src="/resources/js/scripts_junhyeok.js"></script>
+	<script src="../resources/js/scripts_junhyeok.js"></script>
     <!-- <link rel="stylesheet" href="style.css"> -->
     <!-- <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet"> -->
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
@@ -282,7 +282,7 @@
                 <div class="sidebar-body" style="margin-top: 30px;">
 					<a href="02_info.do" style="color: white"><li class="sidebar-item">회원정보</li></a>
 					<a href="09_Orderdetails1.do" style="color: white"><li class="sidebar-item">주문내역</li></a>
-					<a href="10_coupone.do" style="color: white"><li class="sidebar-item">쿠폰함</li></a>
+					<a href="10_coupon.do" style="color: white"><li class="sidebar-item">쿠폰함</li></a>
 					<a href="08_Payment.do"><li class="sidebar-item" style="cursor: pointer; background-color: white; color: black;"><strong>띱머니충전</strong></li></a>
 					<a href="/" style="color: white"><li class="sidebar-item">채팅</li></a>
 					<a href="/" style="color: white"><li class="sidebar-item">회원관리</li></a>
@@ -329,7 +329,7 @@
   paymentMethods = paymentWidget.renderPaymentMethods('#payment-method', amount)
 
   /*할인 쿠폰 적용*/
-  document.querySelector("#coupon").addEventListener("click", applyDiscount)
+//   document.querySelector("#coupon").addEventListener("click", applyDiscount)
 	
   function applyDiscount(e) {
     if (e.target.checked) {

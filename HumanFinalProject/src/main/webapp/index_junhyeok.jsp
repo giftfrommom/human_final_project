@@ -14,7 +14,7 @@
 <p> <a href='mypage/02_info.do'>02_info </a> </p>
 <p> <a href='mypage/08_Payment.do'>08_Payment </a> </p>
 <p> <a href='mypage/09_Orderdetails1.do'>09_Orderdetails1 </a> </p>
-<p> <a href='mypage/10_coupone.do'>10_coupone </a> </p>
+<p> <a href='mypage/10_coupon.do'>10_coupone </a> </p>
 
 <p>
 <h1>로그인</h1>
