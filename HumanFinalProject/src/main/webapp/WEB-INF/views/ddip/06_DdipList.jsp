@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- c:foreach -->
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -136,22 +138,36 @@
 	
 	.card-3 {
 	  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	  display: flex;
+		justify-content: center;
+        align-items: center;
 	}
 	.imagecontainer{
-		width: 220px;
- 		height: 150px; 
+		width: 100%;
+ 		height: 100%; 
 		display: flex;
 		justify-content: center;
         align-items: center;
-      
 	}
 	.imagecontainer .card-img-top{
-		width:80%;
-		height:80%;
+		width:90%;
+		height:90%;
 	}
 	.progress{ 
     	width: 210px; 
     } 
+   .countdownContainer {
+	  background-color: gray;
+	  border-radius: 5px;
+	  display: inline-block;
+	  padding: 2px 5px;
+	  width: fit-content;
+	}
+	
+	.countdown {
+	  color: white;
+	  font-size: 9px;
+	}
 </style>
 </head>
 <body>
@@ -171,59 +187,38 @@
 	<section>
             <div class="container px-lg-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                   <c:forEach items="${ddipList}" var="ddip">
                     <div class="col mb-5">
                         <div class="card h-100 card-3">
                          	<!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="bottom: 10.8rem; right: 0.5rem"><div id="countdown"></div></div>
                             <!-- Product image-->
                             <div class="imagecontainer">
-                            	<img class="card-img-top" src="https://www.bhc.co.kr/images/menu/newNbest/img_best_210713_2.jpg" alt="..." />
-                            </div>
+                            	<img class="card-img-top" src="../resources/upload/${ddip.ddip_picture_enname}${ddip.fileExtension}" alt="..." />
+                            </div>       
                             <!-- Product details-->
+                            <div class="countdownContainer"><div class="countdown" data-deadline="${ddip.ddip_deadline}"></div></div>
+                            
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <!-- Product name-->
-                                    <div class="title fw-bolder">BHC 10시 휴먼교육센터</div>                       							
+                                    <div class="title fw-bolder">${ddip.store_name}</div>                       							
+                                    <div class="title address">${ddip.ddip_pickupplace}</div>                       							
                                 </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                <a class="btn btn-outline-dark mt-auto position-absolute start-50 translate-middle-x" style="bottom:2rem;" href="#">띱 버튼</a></div>
-                            </div>
+                            </div>          
 							<div class="progress position-absolute" style="bottom: -1.5rem; left: 0.3rem">
-								<div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: 25%; background-color: #0AC290;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">1/4</div>
+								<div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: ${ddip.ddip_currentcnt/ddip.ddip_totalcnt*100}%;
+								 background-color: #0AC290;" aria-valuenow="${ddip.ddip_currentcnt/ddip.ddip_totalcnt*100}" aria-valuemin="0" aria-valuemax="100">
+								 ${ddip.ddip_currentcnt}/${ddip.ddip_totalcnt}</div>
 							</div>
                         </div>                   
-                    </div>
-                    <div class="col mb-5">
-                        <div class="card h-100 card-3">
-                         	<!-- Sale badge-->
-                            <div class="badge bg-dark text-white position-absolute" style="bottom: 10.8rem; right: 0.5rem"><div id="countdown"></div></div>
-                            <!-- Product image-->
-                            <div class="imagecontainer">
-                            	<img class="card-img-top" src="https://www.bhc.co.kr/images/menu/newNbest/img_best_210713_2.jpg" alt="..." />
-                            </div>
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <div class="title fw-bolder">BHC 10시 휴먼교육센터</div>                       							
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center">
-                                <a class="btn btn-outline-dark mt-auto position-absolute start-50 translate-middle-x" style="bottom:2rem;" href="#">띱 버튼</a></div>
-                            </div>
-							<div class="progress position-absolute" style="bottom: -1.5rem; left: 0.3rem">
-								<div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: 25%; background-color: #0AC290;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">1/4</div>
-							</div>
-                        </div>                   
-                    </div>                
+                    </div> 
+                   </c:forEach>                 
                 </div>
             </div>
         </section> 
+        
+        
+        
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>

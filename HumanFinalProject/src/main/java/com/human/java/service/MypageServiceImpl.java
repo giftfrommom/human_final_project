@@ -20,7 +20,18 @@ public class MypageServiceImpl implements MypageService{
 		
 		return mypageDAO.info(vo);
 	}
-	
-	
 
+	@Override
+	public CustomerVO Payment(CustomerVO vo) {
+		System.out.println("MypageServiceImpl :" + vo.getCustomer_money());
+		
+		return mypageDAO.Payment(vo);
+	}
+	
+	@Override
+	public CustomerVO ChargeMoney(CustomerVO vo) {
+		System.out.println(" MypageServiceImpl :" + vo.getCustomer_money());
+
+		return mypageDAO.ChargeMoney(vo);
+	}
 }

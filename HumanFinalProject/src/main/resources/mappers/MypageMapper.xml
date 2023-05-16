@@ -5,7 +5,11 @@
 
 <mapper namespace="mypageDAO">
 
-	
+	<select id="ChargeMoney" parameterType="customer" resultType="customer"> 
+		SELECT customer_money + #{customer_money} as CUSTOMER_MONEY
+		FROM CUSTOMER
+		WHERE CUSTOMER_ID='3000'
+	</select>
 	
 </mapper>
 

@@ -8,6 +8,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>띱포인트충전</title>
+    <!-- ajax -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.js"></script>
+	<script src="/resources/js/scripts_junhyeok.js"></script>
     <!-- <link rel="stylesheet" href="style.css"> -->
     <!-- <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet"> -->
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
@@ -290,7 +293,8 @@
     
     <div class="charge" style="margin-left: 350px;">
         <h1>띱머니 충전</h1>
-        <form action="결제 처리 페이지 URL" method="POST">
+        <form id="08_ChargeMoney" action="08_ChargeMoney" method="GET">
+        	<label>현재금액:${vo3.customer_money}</label>
             <label for="chargeAmount">충전할 금액:</label>
             <input type="number" id="chargeAmount" name="chargeAmount" required>
             <button type="button" style="float: right; margin-right: 30px;" onclick="setChargeAmount('')">직접입력</button><br><br>
@@ -301,45 +305,28 @@
             <button type="button" onclick="setChargeAmount(50000)">5만원</button>
             <button type="button" onclick="setChargeAmount(100000)">10만원</button>
             <button type="button" onclick="setChargeAmount(500000)">50만원</button>
-        </form>
-	</form>
+            
+            <!-- <button id=payment-button>결제</button> -->
+  		</form>
+    
     </div>
 
     <!-- 결제 방법 영역-->
   <div id="payment-method" style="margin-left: 300px; margin-top: 50px;"></div> 
   <div id="agreement"></div> 
-  <button id="payment-button">결제하기</button>
-    
+  <button id="payment-button" type="submit">결제하기</button>
 </body>
 
 <script>
     const clientKey = 'test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq' // 상점을 특정하는 키
     const customerKey = 'YbX2HuSlsC9uVJW6NMRMj' // 결제 고객을 특정하는 키
     const amount = 15_000; // 결제 금액
-    const couponAmount = 5_000 // 할인 쿠폰 금액
+    const couponAmount = 5_000; // 할인 쿠폰 금액
 
   /*결제위젯 영역 렌더링*/
   const paymentWidget = PaymentWidget(clientKey, customerKey) // 회원 결제
   // const paymentWidget = PaymentWidget(clientKey, PaymentWidget.ANONYMOUS) // 비회원 결제
   paymentMethods = paymentWidget.renderPaymentMethods('#payment-method', amount)
-  
-  /*결제창 열기*/
-  document.querySelector("#payment-button").addEventListener("click",()=>{
-    paymentWidget.requestPayment({
-      orderId: 'AD8aZDpbzXs4EQa-UkIX6',
-      orderName: '토스 티셔츠',
-      successUrl: 'http://localhost:8080/success',
-      failUrl: 'http://localhost:8080/fail',
-      customerEmail: 'customer123@gmail.com', 
-      customerName: '김토스'
-      }).catch(function (error) {
-          if (error.code === 'USER_CANCEL') {
-          // 결제 고객이 결제창을 닫았을 때 에러 처리
-          } if (error.code === 'INVALID_CARD_COMPANY') {
-            // 유효하지 않은 카드 코드에 대한 에러 처리
-          }
-      })  
-  })
 
   /*할인 쿠폰 적용*/
   document.querySelector("#coupon").addEventListener("click", applyDiscount)

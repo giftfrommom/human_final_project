@@ -9,6 +9,88 @@
     <title>메인</title>
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <style>
+    
+    .main-header {
+  text-align: center;
+}
+
+.main-header img {
+  max-width: 100%;
+  height: auto;
+}
+
+    .main-content {
+        background-color: #f5f5f5;
+        padding: 50px 0;
+        text-align: center;
+    }
+
+    .main-content h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .main-content p {
+        font-size: 18px;
+    }
+
+    .btn-primary {
+        display: inline-block;
+        background-color: #008CBA;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #005a87;
+    }
+
+    .features {
+        padding: 50px 0;
+        text-align: center;
+    }
+
+    .features h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .feature {
+        margin-bottom: 30px;
+    }
+
+    .feature i {
+        font-size: 48px;
+        margin-bottom: 20px;
+        color: #008CBA;
+    }
+
+    .feature h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .feature p {
+        font-size: 14px;
+        color: #555;
+    }
+
+    .footer {
+        background-color: #222;
+        color: #fff;
+        padding: 20px 0;
+        text-align: center;
+    }
+
+    .footer p {
+        font-size: 14px;
+        margin: 0;
+    }
+    
         input[id="menuicon"] {
             display: none;
         }
@@ -209,8 +291,46 @@
 
 <body>
 <%@ include file="/header.jsp" %>
+
+<section class="main-header">
+        <img src="/resources/img/ddipheaderlogo122.png">
+    </section>
+    <section class="main-content">
+        <div class="container">
+            <img src="/resources/img/asdg.jpg">
+            <div style="display: flex; justify-content: center; margin-bottom: 50px;">
+                <a href="#features" class="btn-primary">바로가기</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="features">
+        <div class="container">
+            <h2>Features</h2>
+            <div class="feature">
+                <i class="fas fa-shopping-cart"></i>
+                <h3>Online Shopping</h3>
+                <p>Shop for your favorite products online with ease.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-truck"></i>
+                <h3>Fast Delivery</h3>
+                <p>Get your orders delivered to your doorstep quickly.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-customer-service"></i>
+                <h3>Customer Support</h3>
+                <p>24/7 customer support to assist you with any inquiries.</p>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 Ddip. All rights reserved.</p>
+        </div>
+    </footer>
    
-    <!-- <div style="margin-top: 400px;">  <iframe width="600" height="315" src="https://www.youtube.com/embed/KnXQrL39cAQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="margin-bottom: 100px; margin-left: 350px;"></iframe></div> -->
 </body>
 <script>
     const toggleBtn = document.querySelector(".navbar__toggleBtn");
