@@ -44,69 +44,60 @@ public class MypageController {
    
    
    @RequestMapping("02_info.do")
-    public String info(Model model) {
-       System.out.println("02_info.do 호출 완료");
-       
-       System.out.println("데이터 필요 : id");
-       // 가상으로 테스트
-       
-//       String userId = (String)session.getAttribute("CUSTOMER_LOGINID");
-       String userId = "userid";
-       CustomerVO vo = new CustomerVO();
-       vo.setCUSTOMER_LOGINID(userId);
+    public String info(Model model,HttpSession session) {
+	   
+	   Object sessionChk = session.getAttribute("customer_id");
+      
+	   if(sessionChk != null) {
+		   
+		   String userId = "userid";
+	       CustomerVO vo = new CustomerVO();
+	       System.out.println("rr:"+Integer.parseInt(sessionChk.toString()));
+	       vo.setCUSTOMER_ID(Integer.parseInt(sessionChk.toString()));
 
-       CustomerVO vo2 = mypageService.info(vo);
-       System.out.println(vo2);
-       // 결과 변수 하나로 만드는거 : VO
-       System.out.println("결과 데이터 출력 필요 : 이름, 이메일, 현재비밀번호, 주소, 상세주소");
-       System.out.println(" 02_info.do : " + vo2.getCUSTOMER_LOGINID());
-       System.out.println(" 02_info.do : " + vo2.getCUSTOMER_PASSWORD());
-       System.out.println(" 02_info.do : " + vo2.getCUSTOMER_EMAIL());
-       model.addAttribute("vo3", vo2);
-       
-       model.addAttribute("str", "안녕");
-       
-//       List<CustomerVO> cList = new ArrayList<CustomerVO>();
-       
-//       cList.add(vo2);
-//       cList.add(vo2);
-//       cList.add(vo2);
-       
-       
-//       model.addAttribute("cList", cList);
-       
-       
-       
-       return "/mypage/02_info";
+	       CustomerVO vo2 = mypageService.info(vo);
+	      
+	       model.addAttribute("vo3", vo2);
+	       
+	       model.addAttribute("str", "안녕");
+	         
+	       
+	       return "/mypage/02_info";
+		   
+	   }else {
+		   return "/member/13_Login";
+	   }
+	   
+     
     }
    
    @RequestMapping("08_Payment.do")
-   public String Payment() {
-	   System.out.println("08_Payment.do 호출 완료");
-	   System.out.println("충전할 금액: ");
-	   
-		
+   public String Payment(HttpSession session) {
+	  		
+	   Object sessionChk = session.getAttribute("customer_id");
+	      
+	   if(sessionChk != null) {
+		   
 		CustomerVO vo = new CustomerVO();
 		vo.getCustomer_money();
-		 
-       
+		       
 		CustomerVO vo3 = mypageService.Payment(vo);
 		System.out.println(vo3);
-       
-		/* model.addAttribute("chargeAmount", chargeAmount); */
-	   
-	   
+        
 	   return "/mypage/08_Payment";
+	   
+	   } else {
+		   
+		   return "/member/13_Login";
+	   }
    }
    
    @RequestMapping("08_ChargeMoney")
    public String ChargeMoney(int chargeAmount, Model model){
-	   System.out.println(chargeAmount);
-	   
+ 
 	   CustomerVO vo = new CustomerVO();
 	   vo.setCustomer_money(chargeAmount);
 	   CustomerVO vo3 = mypageService.ChargeMoney(vo);
-	   System.out.println(vo3);
 	   
 	   model.addAttribute(vo3);
 	   
@@ -115,8 +106,6 @@ public class MypageController {
    
    @RequestMapping("09_Orderdetails1.do")
    public String Orderdetails() {
-	   System.out.println("09_Orderdetails1.do 호출 완료");
-	   
 	   
 	   return "/mypage/09_Orderdetails1";
    }

@@ -13,6 +13,21 @@
 	
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <style>
+	    @font-face {
+		    font-family: 'gwangyangbold';
+		    src: url('../resources/fonts/GwangyangSunshineBold.ttf') format('truetype');
+		}
+		@font-face {
+		    font-family: 'gwangyangregular';
+		    src: url('../resources/fonts/GwangyangSunshineRegular.ttf') format('truetype');
+		}
+		.navbar_detail,.nav-link{
+			font-family: 'gwangyangbold'; 	
+		}
+		*{ 
+			font-family: 'gwangyangregular'; 
+		} 
+	
         input[id="menuicon"] {
             display: none;
         }
@@ -215,6 +230,9 @@
 		li.selected{
  		  border-bottom: 1px solid #0AC290;
 		}
+		.beforeLogin, .afterLogin{
+			font-size:13.3px;
+		}
     </style>
 </head>
 
@@ -225,14 +243,16 @@
             <a href="">띱</a>
         </div>
         <ul class="navbar__menu" style="padding-left: 350px; margin-top: 13px;">
-            <li><a id="StoreList" class="navbar_detail" href="03_StoreList.do">가게리스트</a></li>
-            <li><a id="DdipList" class="navbar_detail" href="06_DdipList.do">띱리스트</a></li>
+            <li><a id="StoreList" class="navbar_detail" href="../store/03_StoreList.do">가게리스트</a></li>
+            <li><a id="DdipList" class="navbar_detail" href="../ddip/06_DdipList.do">띱리스트</a></li>
             <li><a id="" class="navbar_detail" href="">커뮤니티</a></li>
-            <li><a id="" class="navbar_detail" href="/center/Userservice.do">고객센터</a></li>
+            <li><a id="" class="navbar_detail" href="">고객센터</a></li>
         </ul>
         <ul class="navbar__icons" style="padding-left: 200px; margin-top: 13px">
-            <li style="cursor: pointer; color: black;">로그인</li>
-            <li style="cursor: pointer; color: black;">회원가입</li>
+            <li class="beforeLogin" style="cursor: pointer; color: black;"><a href='../member/13_Login.do'>로그인</a></li>
+            <li class="beforeLogin" style="cursor: pointer; color: black;"><a href='../member/14_join.do'>회원가입</a></li>
+            <li class="afterLogin holdingMoney" style="color: black; display : none;" >보유 띱머니:14000</li>
+            <li class="afterLogin logout" style="cursor: pointer; color: black; display : none;"><a href='../member/logout.do'>로그아웃</a></li>
             <input type="checkbox" id="menuicon">
             <label for="menuicon" style="margin-left: 35px;">
                 <span style="background-color: black;"></span>
@@ -245,11 +265,11 @@
                     <div style="border: 1px solid white;"></div>
                 </div>
                 <div class="sidebar-body" style="margin-top: 30px;">
-                    <a href="info.html"><li class="sidebar-item" style="cursor: pointer; color: white;">회원정보</li></a>
-                    <a href="Orderdetails.html"><li class="sidebar-item" style="cursor: pointer; color: white;">주문내역</li></a>
-                    <a href="Coupone.html"><li class="sidebar-item" style="cursor: pointer; color: white;">쿠폰함</li></a>
-                    <a href="Payment.html"><li class="sidebar-item" style="cursor: pointer; color: white;">띱머니충전</li></a>
-                    <a href="Chat.html"><li class="sidebar-item" style="cursor: pointer; color: white;">채팅</li></a>
+                    <a href='../mypage/02_info.do'><li class="sidebar-item" style="cursor: pointer; color: white;">회원정보</li></a>
+                    <a href='../mypage/09_Orderdetails1.do'><li class="sidebar-item" style="cursor: pointer; color: white;">주문내역</li></a>
+                    <a href='../mypage/10_coupone.do'><li class="sidebar-item" style="cursor: pointer; color: white;">쿠폰함</li></a>
+                    <a href='../mypage/08_Payment.do'><li class="sidebar-item" style="cursor: pointer; color: white;">띱머니충전</li></a>
+<!--                     <a href="Chat.html"><li class="sidebar-item" style="cursor: pointer; color: white;">채팅</li></a> -->
                     <a><li class="sidebar-item" style="cursor: pointer; color: white;">회원관리</li></a>
                 </div>
             </div>

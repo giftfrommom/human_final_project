@@ -1,5 +1,33 @@
 $(function() {
 	
+	// header.jsp
+	$(document).ready(function() {
+		
+		$.ajax({
+			  url: "/store/get_session_id",
+			  type : "post",
+			  datatype : "json",
+			  success: function(sessionMap) {			  
+			    
+				  var customer_id = sessionMap.customer_id;
+				  if(customer_id != null){
+					  $('.beforeLogin').hide();			
+					  $('.afterLogin').show();	
+				  } else {
+					  $('.beforeLogin').show();			
+					  $('.afterLogin').hide();	
+				  }
+				  
+				  
+			  },
+			  error: function(xhr, status, error) {
+				alert("AJAX Error:", error);
+			  }
+			});
+		
+	});
+	
+	// 06_DdipList 
 	$(document).ready(function() {
 		  // .countdown 요소에 대해 각각 처리
 		  $('.countdown').each(function() {
@@ -365,28 +393,62 @@ $(function() {
 	})
 	
 	//04_Store.jsp 모달 확인 버튼 클릭
-	$('.m_footer').on('click','#save_btn_04',function(){
-		
-		var menuList = [];
-		
-		const currentDate = new Date();
-		const kstOffset = 9 * 60; // KST는 UTC+9
-		const kstDate = new Date(currentDate.getTime() + (kstOffset * 60 * 1000));	
-		
-		$('.modal_table_content').each(function(index){
-			var menu = {
-					"order_time":kstDate,
-					"menu_id":$(this).find(".modal_menuid").text(),
-					"menu_name":$(this).find(".modal_menuname").text(),
-					"menu_price":$(this).find(".modal_menuprice").text(),
-					"menu_quantity":$(this).find(".modal_quantity").text()
-			};
-			menuList.push(menu);
-		})
+	$('.m_footer').off().on('click','#save_btn_04',function(){
 
+		$.ajax({
+			  url: "get_session_id",
+			  type : "post",
+			  datatype : "json",
+			  success: function(sessionMap) {
+				  
+			    var customer_id = sessionMap.customer_id;
+			    if(customer_id != null){
+			    	
+			    	var menuList = [];
+					
+					const currentDate = new Date();
+					const kstOffset = 9 * 60; // KST는 UTC+9
+					const kstDate = new Date(currentDate.getTime() + (kstOffset * 60 * 1000));	
+					
+					$('.modal_table_content').each(function(index){
+						var menu = {
+								"order_time":kstDate,
+								"menu_id":$(this).find(".modal_menuid").text(),
+								"menu_name":$(this).find(".modal_menuname").text(),
+								"menu_price":$(this).find(".modal_menuprice").text(),
+								"menu_quantity":$(this).find(".modal_quantity").text()
+						};
+						menuList.push(menu);
+					})
+
+					
+					$('#menuList').val(JSON.stringify(menuList));
+					$("#menuForm").submit();
+			    	
+			    }else{
+			    	
+			    	$('#modal_04').removeClass('show');			
+			    	
+			    	Swal.fire({
+					  title: '로그인',
+					  text: "로그인해야 이용 가능한 페이지입니다.",
+					  icon: 'warning',
+					  showCancelButton: true,
+					  showConfirmButton: false,
+					  cancelButtonColor: '#0AC290',
+					  cancelButtonText: '확인'
+					})	
+			    	
+			    }
+			    
+			  },
+			  error: function(xhr, status, error) {
+				alert("AJAX Error:", error);
+			  }
+			});
 		
-		$('#menuList').val(JSON.stringify(menuList));
-		$("#menuForm").submit();
+	
+		
 	})
 	
 	//05_DdipWrite.jsp 시간 선택
