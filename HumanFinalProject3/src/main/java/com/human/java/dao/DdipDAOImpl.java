@@ -46,10 +46,9 @@ public class DdipDAOImpl implements DdipDAO{
 	    paramMap.put("ddipList", ddipList);
 	    paramMap.put("store_id", store_id);
 	    mybatis.insert("ddipDAO.setDdip", paramMap);
-	    
-	    for(int i=0; i<ddipList.size(); i++) {
-	    	mybatis.insert("ddipDAO.setOrder_tbl", ddipList.get(i));	    	
-	    }
+	        
+	    mybatis.insert("ddipDAO.setOrder_tbl", paramMap);	    	
+	  
 	    for(int i=0; i<ddipList.size(); i++) {
 	    	mybatis.insert("ddipDAO.setOrder_tbl_detail", ddipList.get(i));	    	
 	    }
@@ -60,17 +59,16 @@ public class DdipDAOImpl implements DdipDAO{
 	public void setDdip2(List<DdipVO> ddipList) {
 		
 		Map<String, Object> paramMap = new HashMap<>();
-		 
-		 
+	 
 	    paramMap.put("ddipList", ddipList);
-	    mybatis.insert("ddipDAO.setDdip2", paramMap);
 	    
+	    mybatis.insert("ddipDAO.setOrder_tbl2", paramMap);	    	
+	  
 	    for(int i=0; i<ddipList.size(); i++) {
-	    	mybatis.insert("ddipDAO.setOrder_tbl", ddipList.get(i));	    	
+	    	mybatis.insert("ddipDAO.setOrder_tbl_detail2", ddipList.get(i));	    	
 	    }
-	    for(int i=0; i<ddipList.size(); i++) {
-	    	mybatis.insert("ddipDAO.setOrder_tbl_detail", ddipList.get(i));	    	
-	    }
+	    
+	    mybatis.update("ddipDAO.setCurcnt",paramMap);
 	}
 	
 

@@ -244,7 +244,7 @@
         </div>
         <ul class="navbar__menu" style="padding-left: 350px; margin-top: 13px;">
             <li><a id="StoreList" class="navbar_detail" href="../store/03_StoreList.do">가게리스트</a></li>
-            <li><a id="DdipList" class="navbar_detail" href="../ddip/06_DdipList.do">띱리스트</a></li>
+            <li><a id="DdipList" class="navbar_detail" href="../store/06_DdipList.do">띱리스트</a></li>
             <li><a id="" class="navbar_detail" href="">커뮤니티</a></li>
             <li><a id="" class="navbar_detail" href="">고객센터</a></li>
         </ul>

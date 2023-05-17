@@ -42,8 +42,36 @@
 			#{store_id})
 	</insert>
 	
-	<insert id="setDdip2">
-		
+	<insert id="setDdip2" parameterType="java.util.Map">
+		INSERT INTO DDIP
+		(DDIP_ID, 
+		CUSTOMER_ID, 
+		DDIP_CURRENTCNT, 
+		DDIP_TOTALCNT, 
+		DDIP_DEADLINE, 
+		DDIP_PICKUPTIME, 
+		DDIP_MESSAGE, 
+		DDIP_PICKUPPLACE, 
+		DDIP_STORE_TYPE, 
+		DDIP_PICTURE_NAME, 
+		DDIP_PICTURE_ENNAME, 
+		STORE_ID,
+		FILEEXTENSION)
+		VALUES
+		(#{ddipList[0].ddip_id}, 
+		#{ddipList[0].customer_id}, 
+		(SELECT DDIP_CURRENTCNT FROM DDIP WHERE DDIP_ID = #{ddipList[0].ddip_id}),
+		(SELECT DDIP_TOTALCNT FROM DDIP WHERE DDIP_ID = #{ddipList[0].ddip_id}),
+		(SELECT DDIP_DEADLINE FROM DDIP WHERE DDIP_ID = #{ddipList[0].ddip_id}),
+		(SELECT DDIP_PICKUPTIME FROM DDIP WHERE DDIP_ID = #{ddipList[0].ddip_id}),
+		(SELECT DDIP_MESSAGE FROM DDIP WHERE DDIP_ID = #{ddipList[0].ddip_id}),
+		(SELECT DDIP_PICKUPPLACE FROM DDIP WHERE DDIP_ID = #{ddipList[0].ddip_id}),
+		(SELECT DDIP_STORE_TYPE FROM DDIP WHERE DDIP_ID = #{ddipList[0].ddip_id}),
+		(SELECT DDIP_PICTURE_NAME FROM DDIP WHERE DDIP_ID = #{ddipList[0].ddip_id}),
+		(SELECT DDIP_PICTURE_ENNAME FROM DDIP WHERE DDIP_ID = #{ddipList[0].ddip_id}),
+		#{ddipList[0].store_id},
+		(SELECT FILEEXTENSION FROM DDIP WHERE DDIP_ID = #{ddipList[0].ddip_id})
+		)
 	</insert>
 	
 	<insert id="setOrder_tbl" parameterType="ddip">
@@ -58,9 +86,24 @@
 	    ,(SELECT LAST_NUMBER-1 
 			FROM USER_SEQUENCES 
 		   WHERE SEQUENCE_NAME = 'DDIP_TEST_SEQ')
-	    ,#{customer_id}
-	    ,#{order_time}
+	    ,#{ddipList[0].customer_id}
+	    ,#{ddipList[0].order_time}
 	    )
+	</insert>
+	
+	<insert id="setOrder_tbl2" parameterType="ddip">
+		INSERT INTO ORDER_TBL
+		 (ORDER_TBL_ID,
+	    DDIP_ID,
+	    CUSTOMER_ID,
+	    ORDER_TIME)
+		VALUES
+		(
+		ORDER_TBL_TEST_SEQ.NEXTVAL,
+		#{ddipList[0].ddip_id},
+		#{ddipList[0].customer_id},
+		#{ddipList[0].order_time}
+		)
 	</insert>
 	
 	<insert id="setOrder_tbl_detail" parameterType="ddip">
@@ -71,6 +114,27 @@
 												FROM USER_SEQUENCES 
 												WHERE SEQUENCE_NAME = 'ORDER_TBL_TEST_SEQ')
 												,#{order_menu_id},#{order_menu_name},#{order_menu_price},#{order_menu_quantity})
+	</insert>
+	
+	<insert id="setOrder_tbl_detail2" parameterType="ddip">
+		INSERT INTO ORDER_TBL_DETAIL
+		(
+		ORDER_TBL_DETAIL_ID,
+		ORDER_TBL_ID,
+		ORDER_MENU_NAME,
+		ORDER_MENU_PRICE,
+		ORDER_MENU_QUANTITY,
+		ORDER_MENU_ID
+		)
+		VALUES
+		( ORDER_TBL_DETAIL_TEST_SEQ.NEXTVAL,
+		(SELECT LAST_NUMBER-1 FROM USER_SEQUENCES WHERE SEQUENCE_NAME = 'ORDER_TBL_TEST_SEQ'),
+		#{order_menu_name},
+		#{order_menu_price},
+		#{order_menu_quantity},
+		#{order_menu_id}
+		)
+		
 	</insert>
 
 	<select id="getDdipList" resultType="ddip">
@@ -91,6 +155,14 @@
 		FROM DDIP
 		WHERE DDIP_ID = #{ddip_id} AND CUSTOMER_ID = #{customer_id}
 	</select>
+	
+	<update id="setCurcnt" parameterType="ddip">
+		UPDATE DDIP
+		SET
+		DDIP_CURRENTCNT = (SELECT COUNT(*)FROM ORDER_TBL WHERE DDIP_ID = #{ddipList[0].ddip_id})
+		WHERE
+		DDIP_ID = #{ddipList[0].ddip_id}
+	</update>
 	
 </mapper>
 
