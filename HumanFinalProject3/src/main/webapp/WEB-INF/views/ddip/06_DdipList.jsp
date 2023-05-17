@@ -65,76 +65,8 @@
    		height: 250px;
    	}
    	.card-body{
-   		height: 120px;
+   		height: 100px;
    	}
-   
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
-    }
-
-    .b-example-divider {
-      height: 3rem;
-      background-color: rgba(0, 0, 0, .1);
-      border: solid rgba(0, 0, 0, .15);
-      border-width: 1px 0;
-      box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-    }
-
-    .b-example-vr {
-      flex-shrink: 0;
-      width: 1.5rem;
-      height: 100vh;
-    }
-
-    .bi {
-      vertical-align: -.125em;
-      fill: currentColor;
-    }
-
-    .nav-scroller {
-      position: relative;
-      z-index: 2;
-      height: 2.75rem;
-      overflow-y: hidden;
-    }
-
-    .nav-scroller .nav {
-      display: flex;
-      flex-wrap: nowrap;
-      padding-bottom: 1rem;
-      margin-top: -1px;
-      overflow-x: auto;
-      text-align: center;
-      white-space: nowrap;
-      -webkit-overflow-scrolling: touch;
-    }
-    
-    .outer {
-	  border: 6px solid royalblue;
-	  width: 300px;
-	  height: 200px;
-	  margin: 0 auto;
-	  overflow-x: hidden;
-	}
-
-	.inner-list {
-	  display: flex;
-	  transition: .3s ease-out;
-	  height: 100%;
-	}
-
-	.inner {
-	  border: 6px solid olive;
-	  padding: 0 16px;
-	}
-	
-	.button-list {
-	  text-align: center;
-	}
 	
 	.card-3 {
 	  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -144,7 +76,7 @@
 	}
 	.imagecontainer{
 		width: 100%;
- 		height: 100%; 
+ 		height: 210px; 
 		display: flex;
 		justify-content: center;
         align-items: center;
@@ -154,9 +86,10 @@
 		height:90%;
 	}
 	.progress{ 
-    	width: 210px; 
+    	width: 255px; 
     } 
    .countdownContainer {
+      margin-top:10px;
 	  background-color: gray;
 	  border-radius: 5px;
 	  display: inline-block;
@@ -165,8 +98,14 @@
 	}
 	
 	.countdown {
-	  color: white;
-	  font-size: 9px;
+		color: white;
+		font-size: 9px;
+	}
+	.address{
+	  font-size: 14px;
+	}
+	.progress{
+		margin-top:13px;
 	}
 </style>
 </head>
@@ -189,6 +128,7 @@
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                    <c:forEach items="${ddipList}" var="ddip">
                     <div class="col mb-5">
+                       <a href='../store/07_Ddip.do?ddip_id=${ddip.ddip_id }'>
                         <div class="card h-100 card-3">
                          	<!-- Sale badge-->
                             <!-- Product image-->
@@ -198,19 +138,20 @@
                             <!-- Product details-->
                             <div class="countdownContainer"><div class="countdown" data-deadline="${ddip.ddip_deadline}"></div></div>
                             
-                            <div class="card-body p-4">
+                            <div class="card-body">
                                 <div class="text-center">
                                     <!-- Product name-->
                                     <div class="title fw-bolder">${ddip.store_name}</div>                       							
-                                    <div class="title address">${ddip.ddip_pickupplace}</div>                       							
+                                    <div class="address">${ddip.ddip_pickupplace}</div>                       							
                                 </div>
+								<div class="progress">
+									<div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: ${ddip.ddip_currentcnt/ddip.ddip_totalcnt*100}%;
+									 background-color: #0AC290;" aria-valuenow="${ddip.ddip_currentcnt/ddip.ddip_totalcnt*100}" aria-valuemin="0" aria-valuemax="100">
+									 ${ddip.ddip_currentcnt}/${ddip.ddip_totalcnt}</div>
+								</div>
                             </div>          
-							<div class="progress position-absolute" style="bottom: -1.5rem; left: 0.3rem">
-								<div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: ${ddip.ddip_currentcnt/ddip.ddip_totalcnt*100}%;
-								 background-color: #0AC290;" aria-valuenow="${ddip.ddip_currentcnt/ddip.ddip_totalcnt*100}" aria-valuemin="0" aria-valuemax="100">
-								 ${ddip.ddip_currentcnt}/${ddip.ddip_totalcnt}</div>
-							</div>
-                        </div>                   
+                        </div>   
+                        </a>                
                     </div> 
                    </c:forEach>                 
                 </div>
