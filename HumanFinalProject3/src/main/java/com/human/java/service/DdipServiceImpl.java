@@ -35,6 +35,20 @@ public class DdipServiceImpl implements DdipService{
 		
 		return ddipDAO.getDdip(vo);
 	}
+
+
+	@Override
+	public int ddipChk(DdipVO ddipVO) {
+		
+		return ddipDAO.ddipChk(ddipVO);
+	}
+
+
+	@Override
+	public void setDdip2(List<DdipVO> ddipList) {
+		
+		ddipDAO.setDdip2(ddipList);
+	}
 	
 	
 

@@ -65,7 +65,8 @@
    		height: 250px;
    	}
    	.card-body{
-   		height: 100px;
+   		width:100%;
+   		height: 110px;
    	}
 	
 	.card-3 {
@@ -86,7 +87,7 @@
 		height:90%;
 	}
 	.progress{ 
-    	width: 255px; 
+    	width: 90%; 
     } 
    .countdownContainer {
       margin-top:10px;
@@ -104,9 +105,7 @@
 	.address{
 	  font-size: 14px;
 	}
-	.progress{
-		margin-top:13px;
-	}
+
 </style>
 </head>
 <body>
@@ -144,7 +143,7 @@
                                     <div class="title fw-bolder">${ddip.store_name}</div>                       							
                                     <div class="address">${ddip.ddip_pickupplace}</div>                       							
                                 </div>
-								<div class="progress">
+								<div class="progress position-absolute" style="bottom:5px;left: 11px;">
 									<div class="progress-bar" role="progressbar" aria-label="Basic example" style="width: ${ddip.ddip_currentcnt/ddip.ddip_totalcnt*100}%;
 									 background-color: #0AC290;" aria-valuenow="${ddip.ddip_currentcnt/ddip.ddip_totalcnt*100}" aria-valuemin="0" aria-valuemax="100">
 									 ${ddip.ddip_currentcnt}/${ddip.ddip_totalcnt}</div>

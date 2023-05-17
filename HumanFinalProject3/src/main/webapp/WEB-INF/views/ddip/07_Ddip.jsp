@@ -20,6 +20,8 @@
 	<!-- swal -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+	<!-- Moment.js -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <style>
 	@font-face {
 	    font-family: 'gwangyangbold';
@@ -216,7 +218,7 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		gap: 80px;		
+		gap: 45px;		
 		padding-top:47px;
 	}
 	.card-3 {
@@ -229,17 +231,29 @@
 		height:160px;		
 	}
 	.timebox{
-		height:74px;		
+		height:89px;		
 	}
 	.card-img-top{
 		width:100%;
 		height:100%;
+	}
+	.non_parti{
+		transition: transform 1s ease; 
+	}
+	.hover:hover{
+		transform: rotate(180deg);
+		cursor:pointer;
+	}
+	#map{
+		margin-top:15px;
 	}
 </style>
 </head>
     <body id="05_DdipWrite">    
     <%@ include file="/header.jsp" %>  
         <!-- Page content-->
+        <div id="hidden_ddip_id" class="ddip_id${ddipvo.ddip_id}" style="display:none"></div>
+      
         <div class="container mt-5">
             <div class="row">           
                 <div class="col-lg-8">
@@ -248,9 +262,9 @@
                         <!-- Post header-->
                         <header class="mb-4">
                             <!-- Post title-->            
-                            <h1 class="fw-bolder mb-1 title">공구 게시물 작성 페이지</h1>
+                            <h1 class="fw-bolder mb-1 title">${ddipvo.store_name}&nbsp;띱&nbsp;${ddipvo.ddip_totalcnt}명!</h1>
                             <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">Posted on January 1, 2023 by Start Bootstrap</div>
+                            <div class="text-muted fst-italic mb-2"> &nbsp;</div>
                           
                         </header>
 <!--              DdipVO(ddip_id=1183, customer_id=1004, ddip_currentcnt=1, ddip_totalcnt=5, ddip_message=~~~~~~~~~~~~,  -->
@@ -261,23 +275,23 @@
                    		
                     </article>     
 					<div class="card mb-4 card-3">
-						<div class="card-header title">장소*</div>
+						<div class="card-header title">장소</div>
 						<div class="card-body">
 							<div class="input-group">
-								<input class="place form-control" name="ddip_pickupplace" type="text" placeholder="지도를 클릭해 배달 위치를 설정하세요." readonly/>                          
+								<input class="place form-control" name="ddip_pickupplace" type="text" placeholder="${ddipvo.ddip_pickupplace }" readonly/>                          
 							</div>
 							<div id="map"class="img-fluid rounded" style="width:746px;height:280px;"></div>                                                    
 						</div>
 					</div>  
                     <div class="card mb-4 card-3">
-                        <div class="card-header title">띱 현황*</div>
+                        <div class="card-header title">띱 현황</div>
                         <div class="card-body">                      
 	                         <div class="img-fluid rounded party1 card-3" >
 		                  		<div class="party2">
-			                     	<img src="/resources/assets/참여.png" alt="..." />                
-			                     	<img src="/resources/assets/참여.png" alt="..." />
-				                  	<img src="/resources/assets/미참여.png" alt="..." />      
-				                  	<img src="/resources/assets/미참여.png" alt="..." />      
+<!-- 			                     	<img src="/resources/assets/참여.png" alt="..." />                 -->
+<!-- 			                     	<img src="/resources/assets/참여.png" alt="..." /> -->
+<!-- 				                  	<img src="/resources/assets/미참여.png" alt="..." />       -->
+<!-- 				                  	<img src="/resources/assets/미참여.png" alt="..." />       -->
 			                  	</div>                             
 		                    </div>                                               
                         </div>
@@ -288,12 +302,12 @@
                 <!-- Side widgets-->   
                 <div class="col-lg-4 left">
                     <!-- Search widget-->
-                <form id="ddipFormContent" method="post" action="/store/05to06_DdipList" enctype="multipart/form-data">    
+                <form id="ddipFormContent" method="post" action="../store/04_Store2" enctype="multipart/form-data">    
                 
                 <div class="card mb-4 card-3">
                         <div class="card-header title">메시지</div>
                         <div class="card-body message">
-							<textarea class="form-control message" name="ddip_message" placeholder="${ddipvo.ddip_message} }" style="height: 100px"></textarea>					
+							<textarea class="form-control message" placeholder="${ddipvo.ddip_message}" style="height: 100px"></textarea>					
                         </div>
                     </div>    
                     <div class="card mb-4 card-3">
@@ -305,24 +319,17 @@
                         </div>
                     </div>                  
                     <div class="card mb-4 card-3">
-                        <div class="card-header title">시간*</div>
+                        <div class="card-header title">시간</div>
                         <div class="card-body">
                             <div class="input-group timebox">
                             <div>
-                               	띱 마감까지 남은 시간 &nbsp;<input id="time_second" class="time" type="time" value="xxx" readonly/>
-                             </div>
-                             <div>
-                               	음식 수령까지 남은 시간 &nbsp;<input id="time_second" class="time" type="time" value="xxx" readonly/>
-                              </div>
+                               	띱 마감까지 남은 시간 : <span class="ddip_deadline"></span>
+                             </div>          
                             </div>
                         </div>
                     </div>                  
                     
-                    
-                  <input type="hidden" name="store_id" id="store_id" value="${store_id}"/> 
-				  <input type="hidden" name="menuList" id="menuList" value='${menuList_JSON}'/>
-				  <input type="hidden" name="ddip_pickuptime" id="ddip_pickuptime"/>
-				  <input type="hidden" name="ddip_deadline" id="ddip_deadline"/>
+                  <input type="hidden" name="ddip_id" id="ddip_id" value="${ddipvo.ddip_id}"/> 			
 				</form>            	               
                 </div> 
             </div>
@@ -371,21 +378,16 @@
 		  </div>
 		</div>
         
-        <div class="containerBtn_05" >
-			<a id="modal_btn_05" class="btn ddip" href="#">띱 버튼</a>
+        <div class="containerBtn_07" >
+			<a id="modal_btn_07" class="btn ddip" href="#">띱 버튼</a>
 			<a class="btn preview" href='04_Store.do?id=${store_id}'>이전 버튼</a>
 		</div>
-		
-		<!-- 메뉴 리스트 전달 히든 폼 -->
-<!-- 		<form id="ddipForm" method="post" action="/store/06_DdipList"> -->
-<%-- 			 --%>
-<!-- 		</form> -->
 		
         <!-- Footer-->
         <footer class="py-5 bg-dark">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
         </footer>
         
-	<script src="/resources/js/scripts_07map_junsang.js"></script>
+	<script src="/resources/js/scripts_07_junsang.js"></script>	
     </body>
 </html>

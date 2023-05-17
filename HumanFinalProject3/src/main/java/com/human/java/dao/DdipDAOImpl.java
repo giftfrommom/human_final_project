@@ -16,7 +16,27 @@ public class DdipDAOImpl implements DdipDAO{
 	@Autowired
 	private SqlSessionTemplate mybatis;
 	
+	@Override
+	public List<DdipVO> getDdipList() {
 
+		return mybatis.selectList("ddipDAO.getDdipList");
+		
+	}
+
+
+	@Override
+	public DdipVO getDdip(DdipVO vo) {
+		
+		return mybatis.selectOne("ddipDAO.getDdip",vo);
+	}
+
+
+	@Override
+	public int ddipChk(DdipVO ddipVO) {
+		
+		return mybatis.selectOne("ddipDAO.ddipChk",ddipVO);
+	}
+	
 	@Override
 	public void setDdip(List<DdipVO> ddipList, int store_id) {
 		
@@ -30,22 +50,27 @@ public class DdipDAOImpl implements DdipDAO{
 	    for(int i=0; i<ddipList.size(); i++) {
 	    	mybatis.insert("ddipDAO.setOrder_tbl", ddipList.get(i));	    	
 	    }
+	    for(int i=0; i<ddipList.size(); i++) {
+	    	mybatis.insert("ddipDAO.setOrder_tbl_detail", ddipList.get(i));	    	
+	    }
 		
 	}
 
-
 	@Override
-	public List<DdipVO> getDdipList() {
-
-		return mybatis.selectList("ddipDAO.getDdipList");
+	public void setDdip2(List<DdipVO> ddipList) {
 		
-	}
-
-
-	@Override
-	public DdipVO getDdip(DdipVO vo) {
-		
-		return mybatis.selectOne("ddipDAO.getDdip",vo);
+		Map<String, Object> paramMap = new HashMap<>();
+		 
+		 
+	    paramMap.put("ddipList", ddipList);
+	    mybatis.insert("ddipDAO.setDdip2", paramMap);
+	    
+	    for(int i=0; i<ddipList.size(); i++) {
+	    	mybatis.insert("ddipDAO.setOrder_tbl", ddipList.get(i));	    	
+	    }
+	    for(int i=0; i<ddipList.size(); i++) {
+	    	mybatis.insert("ddipDAO.setOrder_tbl_detail", ddipList.get(i));	    	
+	    }
 	}
 	
 

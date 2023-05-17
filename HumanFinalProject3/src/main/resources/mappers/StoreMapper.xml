@@ -45,6 +45,15 @@
 <!-- 		  WHERE STORE_ID =#{value} -->
 	</select>
 	
+	<select id="getStore2" parameterType="ddip" resultType="store">
+		SELECT S.STORE_ID, STORE_TYPE, STORE_NAME, MENU_ID, MENU_NAME, MENU_PRICE
+		FROM STORE S, MENU M
+		WHERE S.STORE_ID = M.STORE_ID 
+		AND S.STORE_ID=(SELECT STORE_ID
+		                FROM DDIP
+		                WHERE DDIP_ID = #{ddip_id})
+	</select>
+	
 	
 	
 </mapper>

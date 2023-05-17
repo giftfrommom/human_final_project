@@ -14,4 +14,8 @@ public interface DdipDAO {
 
 	DdipVO getDdip(DdipVO vo);
 
+	int ddipChk(DdipVO ddipVO);
+
+	void setDdip2(List<DdipVO> ddipList);
+
 }

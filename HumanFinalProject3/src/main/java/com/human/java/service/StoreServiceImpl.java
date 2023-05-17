@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.human.java.dao.StoreDAO;
 import com.human.java.domain.BestplaceVO;
+import com.human.java.domain.DdipVO;
 import com.human.java.domain.StoreVO;
 
 @Service("storeService")
@@ -43,6 +44,12 @@ public class StoreServiceImpl implements StoreService{
 	public List<BestplaceVO> getBestPlace(int store_id) {
 		
 		return storeDAO.getBestPlace(store_id);
+	}
+
+	@Override
+	public List<StoreVO> getStore2(DdipVO ddipVO) {
+		
+		return storeDAO.getStore2(ddipVO);
 	}
 
 	

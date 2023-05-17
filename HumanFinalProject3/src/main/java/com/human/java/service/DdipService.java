@@ -14,5 +14,9 @@ public interface DdipService {
 
 	DdipVO getDdip(DdipVO vo);
 
+	int ddipChk(DdipVO ddipVO);
+
+	void setDdip2(List<DdipVO> ddipList);
+
 
 }

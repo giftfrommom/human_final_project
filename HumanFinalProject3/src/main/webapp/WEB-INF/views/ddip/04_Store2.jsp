@@ -177,7 +177,7 @@
       height: 80%;
       padding: 20px;
     }
-    .m_footer{
+    .m_footer2{
       padding: 15px;
       background-color:#e7e5e5;
       border-bottom-left-radius: 10px;
@@ -318,7 +318,7 @@
 						    </tr>
 						  </thead>
 						  <tbody>
-						 <c:forEach items="${storeInfo}" var="storeInfo" varStatus="loop">
+						  <c:forEach items="${storeInfo}" var="storeInfo" varStatus="loop">
 							  <input type="hidden" class="${storeInfo.menu_name}" value="${storeInfo.menu_id}"/>
 							  <tr class="table_content">
 							  <th scope="row">${loop.index + 1}</th>
@@ -348,7 +348,7 @@
 		      <div class="close_btn" id="close_btn">X</div>
 		    </div>
 		    <div class="m_body">
-		           아래 메뉴를 선택하고 띱 방을 개설하시겠습니까?
+		           아래 메뉴를 선택하고 띱에 참여하시겠습니까?
 		      	<div class="container ModalMenu">
 						<table class="table">
 						  <thead>
@@ -371,17 +371,18 @@
 					</div> 
 		      	합계 : <span class="menuSum"></span> ₩
 		    </div>
-		    <div class="m_footer">
+		    <div class="m_footer2">
 		      <div class="hover modal_btn cancle" id="close_btn">취소</div>
-		      <div class="hover modal_btn save" id="save_btn_04">확인</div>
+		      <div class="hover modal_btn save" id="save_btn_04_2">확인</div>
 		    </div>
 		  </div>
 		</div>
 		
 		<!-- 메뉴 리스트 전달 히든 폼 -->
-		<form id="menuForm" method="post" action="/store/05_DdipWrite">
-			<input type="hidden" name="menuList" id="menuList"/>
+		<form id="menuForm2" method="post" action="/store/ddipPlus">
+			<input type="hidden" name="menuList" id="menuList2"/>
 			<input type="hidden" name="store_id" id="store_id" value="${storeInfo[0].store_id}"/>
+			<input type="hidden" name="ddip_id" id="ddip_id" value="${ddip_id}"/>
 		</form>
 	
         <div class="containerBtn_04" >

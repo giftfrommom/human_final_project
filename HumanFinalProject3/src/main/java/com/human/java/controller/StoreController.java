@@ -6,14 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.human.java.domain.BestplaceVO;
+import com.human.java.domain.CustomerVO;
 import com.human.java.domain.DdipVO;
 import com.human.java.domain.MenuVO;
 import com.human.java.domain.StoreVO;
@@ -51,7 +49,7 @@ public class StoreController {
 		System.out.println(customer_id);
 		
 		if(customer_id !=null) {
-			System.out.println("여기1");
+			
 			Map<String, Object> sessionMap = new HashMap<>();
 			sessionMap.put("customer_id", customer_id);
 			    
@@ -59,7 +57,6 @@ public class StoreController {
 			
 		} else {
 			
-			System.out.println("여기2");
 			Map<String, Object> sessionMap = new HashMap<>();
 			sessionMap.put("customer_id", null);
 			
@@ -109,6 +106,17 @@ public class StoreController {
 	 	return "/ddip/04_Store";
 	}
 	
+	@RequestMapping("04_Store2")
+	public String getStore2(DdipVO ddipVO ,Model model, HttpSession session) {
+	 	
+	 	List<StoreVO> storeInfo = storeService.getStore2(ddipVO);
+	 	System.out.println("storeInfo: "+storeInfo);
+	 	model.addAttribute("storeInfo", storeInfo);
+	 	model.addAttribute("ddip_id", ddipVO.getDdip_id());
+	 	
+	 	return "/ddip/04_Store2";
+	}
+	
 	// 메뉴 리스트 05에 전달
 	@RequestMapping("/05_DdipWrite")
 	public String menu(@RequestParam("menuList") String menuList_JSON, 
@@ -133,31 +141,92 @@ public class StoreController {
 	public String ddip( @RequestParam("menuList") String menuList_JSON, 
 			@RequestParam("store_id") int store_id, 
 			Model model, DdipVO ddipVO, HttpSession session) {
-		
-		ddipVO.setCustomer_id((int) session.getAttribute("customer_id"));
+
 
 		Gson gson = new Gson();
 		Type type = new TypeToken<List<MenuVO>>(){}.getType();
 		List<MenuVO> menuList = gson.fromJson(menuList_JSON, type);
-
 		List<DdipVO> ddipList = new ArrayList<>();
+		
 		for (MenuVO menuVO : menuList) {
 			
-		    ddipVO.setStore_id(store_id);
-			ddipVO.setOrder_time(menuVO.getOrder_time());
-		    ddipVO.setOrder_menu_name(menuVO.getMenu_name());
-		    ddipVO.setOrder_menu_price(menuVO.getMenu_price());
-		    ddipVO.setOrder_menu_quantity(menuVO.getMenu_quantity());
-		    ddipList.add(ddipVO);
+			DdipVO ddipVO2 = new DdipVO();
+			ddipVO2.setDdip_totalcnt(ddipVO.getDdip_totalcnt());
+			ddipVO2.setDdip_message(ddipVO.getDdip_message());
+			ddipVO2.setDdip_pickupplace(ddipVO.getDdip_pickupplace());
+			ddipVO2.setDdip_deadline(ddipVO.getDdip_deadline());
+			ddipVO2.setDdip_pickuptime(ddipVO.getDdip_pickuptime());
+			ddipVO2.setDdip_picture_name(ddipVO.getDdip_picture_name());
+			ddipVO2.setDdip_picture_enname(ddipVO.getDdip_picture_enname());
+			ddipVO2.setB_fsize(ddipVO.getB_fsize());
+			ddipVO2.setFileExtension(ddipVO.getFileExtension());
+			ddipVO2.setDdip_picture(ddipVO.getDdip_picture());
+			ddipVO2.setStore_id(store_id);
+		    ddipVO2.setOrder_time(menuVO.getOrder_time());
+		    ddipVO2.setOrder_menu_id(menuVO.getMenu_id());
+			ddipVO2.setOrder_menu_name(menuVO.getMenu_name());
+		    ddipVO2.setOrder_menu_price(menuVO.getMenu_price());
+		    ddipVO2.setOrder_menu_quantity(menuVO.getMenu_quantity());
+		    ddipVO2.setCustomer_id(((int) session.getAttribute("customer_id")));
+		    ddipList.add(ddipVO2);
 		    
 		}
-		
+		System.out.println("ddipList1:"+ddipList);
 		ddipService.setDdip(ddipList,store_id);
 		
 		model.addAttribute("ddipList", ddipService.getDdipList());
 		
 		return "redirect:/store/06_DdipList";
 	}
+	
+	// 04_Store2
+		@RequestMapping("ddipPlus")
+		public String ddipPlus( @RequestParam("menuList") String menuList_JSON, 
+				@RequestParam("store_id") int store_id, 
+				Model model, DdipVO ddipVO, HttpSession session) {
+			
+			
+			System.out.println("store_id : "+store_id);
+			System.out.println("ddipVO : "+ddipVO);
+			System.out.println("customer_id : "+((int) session.getAttribute("customer_id")));
+			
+			Gson gson = new Gson();
+			Type type = new TypeToken<List<MenuVO>>(){}.getType();
+			List<MenuVO> menuList = gson.fromJson(menuList_JSON, type);
+			List<DdipVO> ddipList = new ArrayList<>();
+			System.out.println("menuList : "+menuList);
+			for (MenuVO menuVO : menuList) {
+				
+				DdipVO ddipVO2 = new DdipVO();
+//				ddipVO2.setDdip_totalcnt(ddipVO.getDdip_totalcnt());
+//				ddipVO2.setDdip_message(ddipVO.getDdip_message());
+//				ddipVO2.setDdip_pickupplace(ddipVO.getDdip_pickupplace());
+//				ddipVO2.setDdip_deadline(ddipVO.getDdip_deadline());
+//				ddipVO2.setDdip_pickuptime(ddipVO.getDdip_pickuptime());
+//				ddipVO2.setDdip_picture_name(ddipVO.getDdip_picture_name());
+//				ddipVO2.setDdip_picture_enname(ddipVO.getDdip_picture_enname());
+//				ddipVO2.setB_fsize(ddipVO.getB_fsize());
+//				ddipVO2.setFileExtension(ddipVO.getFileExtension());
+//				ddipVO2.setDdip_picture(ddipVO.getDdip_picture());
+				
+				ddipVO2.setDdip_id(ddipVO.getDdip_id());
+				ddipVO2.setStore_id(store_id);
+			    ddipVO2.setOrder_time(menuVO.getOrder_time());
+			    ddipVO2.setOrder_menu_id(menuVO.getMenu_id());
+				ddipVO2.setOrder_menu_name(menuVO.getMenu_name());
+			    ddipVO2.setOrder_menu_price(menuVO.getMenu_price());
+			    ddipVO2.setOrder_menu_quantity(menuVO.getMenu_quantity());
+			    ddipVO2.setCustomer_id(((int) session.getAttribute("customer_id")));
+			    ddipList.add(ddipVO2);
+			    
+			}
+			System.out.println("ddipList : "+ddipList);
+			ddipService.setDdip2(ddipList);
+			
+			model.addAttribute("ddipList", ddipService.getDdipList());
+			
+			return "redirect:/store/06_DdipList";
+		}
 	
 	@RequestMapping("/06_DdipList")
 	public String ddip( Model model,  HttpSession session) {
@@ -167,14 +236,6 @@ public class StoreController {
 		return "/ddip/06_DdipList";
 	}
 	
-	//나중에 다시 쓸지도?
-//	@RequestMapping("05_DdipWrite")
-//	public String getStoreId(@RequestParam("id") int store_id, Model model) {
-//	 	
-//	 	model.addAttribute("store_id", store_id);
-//	 	
-//	 	return "/ddip/05_DdipWrite";
-//	}
 	
 	@RequestMapping("05_MapInfo")
 	@ResponseBody
@@ -195,6 +256,44 @@ public class StoreController {
 		System.out.println(ddipvo);
 		model.addAttribute("ddipvo", ddipvo);
 		return "/ddip/07_Ddip";
+	}
+	
+	// 07_Ddip
+	@RequestMapping("get_ddip")
+	@ResponseBody
+	public Map<String, Object> getDdipAjax(int ddip_id,HttpSession session) {
+		
+		DdipVO ddipvo = new DdipVO();
+		ddipvo.setDdip_id(ddip_id);
+		
+		Map<String, Object> sessionMap = new HashMap<>();
+		sessionMap.put("ddipvo", ddipService.getDdip(ddipvo));
+		
+		return sessionMap;
+	}
+	
+	// 07_Ddip
+	@RequestMapping("ddip_chk")
+	@ResponseBody
+	public int ddipChk(int ddip_id, HttpSession session){
+		
+			
+		Object sessionChk = session.getAttribute("customer_id"); 
+		 
+		if(sessionChk != null) {
+
+		DdipVO ddipVO = new DdipVO(); 
+		
+			ddipVO.setCustomer_id(Integer.parseInt(sessionChk.toString())); // 1104
+			ddipVO.setDdip_id(ddip_id); // 1194
+			int ddipChk = ddipService.ddipChk(ddipVO);
+			return ddipChk;
+			
+		} else {
+			
+			return -1;
+		}
+   	
 	}
 	
 }	

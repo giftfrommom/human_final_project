@@ -27,7 +27,7 @@ $(function() {
 		
 	});
 	
-	// 06_DdipList 
+	// 06_DdipList 시간
 	$(document).ready(function() {
 		  // .countdown 요소에 대해 각각 처리
 		  $('.countdown').each(function() {
@@ -82,59 +82,6 @@ $(function() {
 		    setInterval(updateCountdown, 1000); // 1초마다 업데이트
 		  });
 		});
-	
-//	$(document).ready(function() {
-//		  // .countdown 요소에 대해 각각 처리
-//		  $('.countdown').each(function() {
-//		    var countdownElement = $(this);
-//		    var deadlineString = countdownElement.data('deadline'); // 예시: "오후 3:24"
-//
-//		    // 시간과 분을 추출
-//		    var timeParts = deadlineString.split(" ")[1].split(":");
-//		    var hours = parseInt(timeParts[0]);
-//		    var minutes = parseInt(timeParts[1]);
-//
-//		    // 오후인 경우 시간에 12를 더해줌
-//		    if (deadlineString.includes("오후") && hours < 12) {
-//		      hours += 12;
-//		    }
-//
-//		    // 데드라인 시간을 설정
-//		    var deadlineDate = new Date();
-//		    deadlineDate.setHours(hours, minutes, 0, 0);
-//
-//		    // 남은 시간 계산 및 업데이트
-//		    function updateCountdown() {
-//		      var currentTime = new Date();
-//		      var remainingTime = deadlineDate - currentTime;
-//
-//		      // 남은 시간을 시간, 분, 초로 변환
-//		      var hours = Math.floor(remainingTime / (1000 * 60 * 60));
-//		      var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
-//		      var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-//
-//		      // 시간, 분, 초를 2자리 숫자로 포맷팅
-//		      var formattedHours = padNumber(hours);
-//		      var formattedMinutes = padNumber(minutes);
-//		      var formattedSeconds = padNumber(seconds);
-//
-//		      // 남은 시간을 문자열로 포맷팅
-//		      var countdownText = formattedHours + "시간 " + formattedMinutes + "분 " + formattedSeconds + "초";
-//
-//		      countdownElement.text(countdownText);
-//		    }
-//
-//		    function padNumber(number) {
-//		      return String(number).padStart(2, '0');
-//		    }
-//
-//		    updateCountdown();
-//		    setInterval(updateCountdown, 1000); // 1초마다 업데이트
-//		  });
-//		});
-
-	
-	
 	
 	//03_StoreList.jsp ajax 메뉴 탭 이동
 	$('.navbar__menu').on('click','.navbar_detail',function(){
@@ -358,7 +305,7 @@ $(function() {
 		if(html==""){
 			Swal.fire({
 				  title: '띱 오류',
-				  text: "메뉴 수량을 입력해주세요",
+				  text: "메뉴 수량을 입력해주세요.",
 				  icon: 'warning',
 				  showCancelButton: true,
 				  showConfirmButton: false,
@@ -394,6 +341,65 @@ $(function() {
 	
 	//04_Store.jsp 모달 확인 버튼 클릭
 	$('.m_footer').off().on('click','#save_btn_04',function(){
+		
+		$.ajax({
+			  url: "get_session_id",
+			  type : "post",
+			  datatype : "json",
+			  success: function(sessionMap) {
+				  
+			    var customer_id = sessionMap.customer_id;
+			    if(customer_id != null){
+			    	
+			    	var menuList = [];
+					
+					const currentDate = new Date();
+					const kstOffset = 9 * 60; // KST는 UTC+9
+					const kstDate = new Date(currentDate.getTime() + (kstOffset * 60 * 1000));	
+					
+					$('.modal_table_content').each(function(index){
+						var menu = {
+								"order_time":kstDate,
+								"menu_id": $("." + $(this).find(".modal_menuname").text()).val(),
+								"menu_name":$(this).find(".modal_menuname").text(),
+								"menu_price":$(this).find(".modal_menuprice").text(),
+								"menu_quantity":$(this).find(".modal_quantity").text()
+						};
+						menuList.push(menu);
+					})
+
+					
+					$('#menuList').val(JSON.stringify(menuList));
+					$("#menuForm").submit();
+			    	
+			    } else {
+			    	
+			    	$('#modal_04').removeClass('show');			
+			    	
+			    	Swal.fire({
+					  title: '로그인 오류',
+					  text: "로그인 후 이용해주세요.",
+					  icon: 'warning',
+					  showCancelButton: true,
+					  showConfirmButton: false,
+					  cancelButtonColor: '#0AC290',
+					  cancelButtonText: '확인'
+					})	
+			    	
+			    }
+			    
+			  },
+			  error: function(xhr, status, error) {
+				alert("AJAX Error:", error);
+			  }
+			});
+		
+	
+		
+	})
+	
+	//04_Store2.jsp 모달 확인 버튼 클릭
+	$('.m_footer2').off().on('click','#save_btn_04_2',function(){
 
 		$.ajax({
 			  url: "get_session_id",
@@ -413,7 +419,7 @@ $(function() {
 					$('.modal_table_content').each(function(index){
 						var menu = {
 								"order_time":kstDate,
-								"menu_id":$(this).find(".modal_menuid").text(),
+								"menu_id": $("." + $(this).find(".modal_menuname").text()).val(),
 								"menu_name":$(this).find(".modal_menuname").text(),
 								"menu_price":$(this).find(".modal_menuprice").text(),
 								"menu_quantity":$(this).find(".modal_quantity").text()
@@ -422,16 +428,16 @@ $(function() {
 					})
 
 					
-					$('#menuList').val(JSON.stringify(menuList));
-					$("#menuForm").submit();
+					$('#menuList2').val(JSON.stringify(menuList));
+					$("#menuForm2").submit();
 			    	
-			    }else{
+			    } else {
 			    	
 			    	$('#modal_04').removeClass('show');			
 			    	
 			    	Swal.fire({
-					  title: '로그인',
-					  text: "로그인해야 이용 가능한 페이지입니다.",
+					  title: '로그인 오류',
+					  text: "로그인 후 이용해주세요.",
 					  icon: 'warning',
 					  showCancelButton: true,
 					  showConfirmButton: false,
@@ -446,9 +452,6 @@ $(function() {
 				alert("AJAX Error:", error);
 			  }
 			});
-		
-	
-		
 	})
 	
 	//05_DdipWrite.jsp 시간 선택

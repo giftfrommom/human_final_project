@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.human.java.domain.BestplaceVO;
+import com.human.java.domain.DdipVO;
 import com.human.java.domain.StoreVO;
 
 @Repository("storeDAO")
@@ -44,6 +45,12 @@ public class StoreDAOImpl implements StoreDAO{
 	public List<BestplaceVO> getBestPlace(int store_id) {
 		
 		return mybatis.selectList("storeDAO.getBestPlace",store_id);
+	}
+
+	@Override
+	public List<StoreVO> getStore2(DdipVO ddipVO) {
+		
+		return mybatis.selectList("storeDAO.getStore2",ddipVO);
 	}
 	
 
