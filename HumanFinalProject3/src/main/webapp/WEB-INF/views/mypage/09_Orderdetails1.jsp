@@ -267,7 +267,9 @@ h1 {
 		</label>
 		<div class="sidebar">
 			<div class="sidebar-header">
-				<h3 class="sidebar-title" style="margin-left: 20px; font-size: 30px">띱</h3>
+				<h3 class="sidebar-title" style="margin-left: 20px; font-size: 30px">
+				<a href="01_Main.do" style="color: white">띱</a>
+				</h3>
 				<div style="border: 1px solid white;"></div>
 			</div>
 			<div class="sidebar-body" style="margin-top: 30px;">
