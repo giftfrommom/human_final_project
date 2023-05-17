@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- c:foreach -->
+<%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.js"></script>
 	<title>쿠폰함</title>
 	<style>
 	
@@ -274,36 +277,13 @@
     
 	<h1 style="margin-left: 250px">쿠폰함</h1>
 	<div class="container" style="margin-left: 300px">
+	  <c:forEach items="${CouponList}" var="coupon">
 		<div class="card">
-            <h3>1000원 할인 쿠폰</h3>
-            <p>최소 주문 금액: 20,000원</p>
+            <h3>${coupon.COUPON_DISCOUNT} 원 할인 쿠폰</h3>
+            <p>최소 주문 금액:${coupon.COUPON_MINIMUM}원</p>
                 <button class="cancel-btn">쿠폰 사용</button>
 			</div>
-		<div class="card">
-			<h3>2000원 할인 쿠폰</h3>
-			<p>최소 주문 금액: 20,000원</p>
-                <button class="cancel-btn">쿠폰 사용</button>
-			</div>
-        <div class="card">
-			<h3>교촌치킨 3000원 할인 쿠폰</h3>
-			<p>최소 주문 금액: 20,000원</p>
-                <button class="cancel-btn">쿠폰 사용</button>
-			</div>
-        <div class="card">
-			<h3>도미노피자 2000원 할인 쿠폰</h3>
-			<p>최소 주문 금액: 20,000원</p>
-                <button class="cancel-btn">쿠폰 사용</button>
-			</div>
-        <div class="card">
-			<p>10% 할인 쿠폰</p>
-			<p>최소 주문 금액: 20,000원</p>
-                <button class="cancel-btn">쿠폰 사용</button>
-			</div>
-        <div class="card">
-			<h3>20% 할인 쿠폰</h3>
-			<p>최소 주문 금액: 20,000원</p>
-                <button class="cancel-btn">쿠폰 사용</button>
-			</div>
+		</c:forEach>	
 	</div>
 </body>
 </html>
