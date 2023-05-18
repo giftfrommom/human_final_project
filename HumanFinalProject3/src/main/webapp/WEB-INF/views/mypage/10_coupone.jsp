@@ -3,7 +3,7 @@
 <!-- c:foreach -->
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.js"></script>
 	<title>쿠폰함</title>

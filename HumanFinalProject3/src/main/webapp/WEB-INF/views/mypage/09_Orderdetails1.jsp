@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!-- c:foreach -->
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html>
 <head>
 <title>주문 내역</title>

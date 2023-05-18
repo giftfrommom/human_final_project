@@ -29,6 +29,7 @@ public class DdipVO {
 	String order_time;
 
 	// ORDER_TBL_DETAIL
+	int order_tbl_datail_id;
 	String order_menu_name;
 	int order_menu_price;
 	int order_menu_quantity;
