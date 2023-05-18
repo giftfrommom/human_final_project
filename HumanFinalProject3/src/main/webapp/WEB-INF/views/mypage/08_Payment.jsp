@@ -310,7 +310,7 @@ select {
 					class="sidebar-item"
 					style="cursor: pointer; background-color: white; color: black;"><strong>띱머니충전</strong></li></a>
 				<a href="/" style="color: white"><li class="sidebar-item">채팅</li></a>
-				<a href="/" style="color: white"><li class="sidebar-item">회원관리</li></a>
+				<a href="11_management.do" style="color: white"><li class="sidebar-item">회원관리</li></a>
 			</div>
 		</div>
 	</ul>

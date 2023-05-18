@@ -28,7 +28,7 @@
 		}
 		
 		.board_wrap {
-		    width: 1000px;
+		    width: 800px;
 		    margin: 100px auto;
 		}
 		
@@ -161,9 +161,65 @@
 		.board_page a:first-child {
 		    border-left: 1px solid #ddd;
 		}
+		 div[class="sidebar"] {
+            width: 300px;
+            height: 100%;
+            background: #60646A;
+            position: fixed;
+            top: 0;
+            left: 00px;
+            z-index: 1;
+            transition: all .35s;
+        }
+        .navbar__icons {
+            list-style: none;
+            display: flex;
+            color: white;
+            padding-left: 0px;
+            padding-right: 80px;
+            /* margin-left: 300px; */
+        }
+        .navbar__icons li {
+            padding: 10px;
+        }
+        .navbar__icons {
+            list-style: none;
+            display: flex;
+            justify-content: flex-end;
+            /* 오른쪽 정렬 */
+            color: white;
+            padding-left: 0px;
+            padding-right: 80px;
+            /* margin-left: 300px; */
+        }
+         @media screen and (max-width: 768px) {         
+            .navbar__menu.active,
+            .navbar__icons.active {
+                display: flex;
+                transition: 1s ease-out;
+            }
+		}
     </style>
 </head>
 <body>
+<ul class="navbar__icons" style="padding-left: 200px;">
+           </label>
+           <div class="sidebar">
+               <div class="sidebar-header">
+                   <h3 class="sidebar-title" style="margin-left: 20px; font-size: 30px"><a href="01_Main.do" style="color: white">띱</a></h3>
+                   <div style="border: 1px solid white;"></div>
+               </div>
+               <div class="sidebar-body" style="margin-top: 30px;">
+				<a href="02_info.do" style="color: white"><li class="sidebar-item">회원정보</li></a>
+				<a href="09_Orderdetails1.do" style="color: white"><li class="sidebar-item">주문내역</li></a>
+				<a href="10_coupone.do"><li class="sidebar-item" style="background-color: white; color: black;"><strong>쿠폰함</strong></li></a>
+				<a href="08_Payment.do" style="color: white"><li class="sidebar-item">띱머니충전</li></a>
+				<a href="/" style="color: white"><li class="sidebar-item">채팅</li></a>
+				<a href="/" style="color: white"><li class="sidebar-item">회원관리</li></a>
+               </div>
+           </div>
+       </ul>
+       <div class="container" style="margin-left: 330px; margin-right: 30px;">
     <div class="board_wrap">
         <div class="board_title">
             <strong>공지사항</strong>
@@ -230,6 +286,7 @@
                 <!--<a href="#">수정</a>-->
             </div>
         </div>
+    </div>
     </div>
 </body>
 </html> 

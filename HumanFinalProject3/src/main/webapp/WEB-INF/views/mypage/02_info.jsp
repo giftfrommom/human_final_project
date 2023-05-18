@@ -294,7 +294,7 @@ input[type=detailed-address] {
 					<a href="10_coupone.do" style="color: white"><li class="sidebar-item">쿠폰함</li></a>
 					<a href="08_Payment.do" style="color: white"><li class="sidebar-item">띱머니충전</li></a>
 					<a href="/" style="color: white"><li class="sidebar-item">채팅</li></a>
-					<a href="/" style="color: white"><li class="sidebar-item">회원관리</li></a>
+					<a href="11_management.do" style="color: white"><li class="sidebar-item">회원관리</li></a>
                 </div>
             </div>
         </ul>
