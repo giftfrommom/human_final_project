@@ -2,7 +2,9 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<html> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="../resources/js/scripts_junhyeok2.js"></script>
+<html>
     <style>
     input[id="menuicon"] {
             display: none;
@@ -195,84 +197,52 @@
 		}
     
     
-.container {
-	margin: 50px auto;
-	padding: 20px;
-	max-width: 550px;
-	border: 2px solid #ddd;
-	box-shadow: 0 0 10px #ccc;
-	margin-right: 200px;
-}
+        .form-container {
+            width: 570px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px #ccc;
+            margin-top: 100px;
+        }
+        .form-field {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        .form-field label {
+            flex-basis: 120px;
+        }
+        .form-field input {
+            flex-grow: 1;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .form-field input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+        .form-field input[type="submit"]:hover {
+            background-color: #45a049;
+        }
 
-h1 {
-	text-align: center;
-}
+        .form-field button {
+            margin-left: 10px;
+            background-color: royalblue;
+            color: white;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+        }
 
-form {
-	display: flex;
-	flex-direction: column;
-}
-
-label {
-	margin-top: 10px;
-	font-weight: bold;
-}
-
-input[type=text],
-input[type=email],
-input[type=password],
-input[type=address],
-input[type=detailed-address] {
-	padding: 5px;
-	margin-bottom: 10px;
-	border: none;
-	border-bottom: 2px solid #ddd;
-}
-
-input[type=file] {
-	margin-top: 10px;
-}
-
-input[type=submit] {
-	margin-top: 20px;
-	background-color: #4CAF50;
-	color: white;
-	padding: 10px;
-	border: none;
-	cursor: pointer;
-}
-
-input[type=submit]:hover {
-	background-color: #45a049;
-}
-input[type=detailed-address] {
-        padding: 5px;
-        margin-bottom: 10px;
-        border: none;
-        border-bottom: 2px solid #ddd;
-        background-color: #f9f9f9; /* 배경 색상 추가 */
-    }
-    
-    .btn {
-        padding: 10px 20px;
-        margin-top: 10px;
-        background-color: #808080;
-        color: white;
-        border: none;
-        cursor: pointer;
-    }
-
-    .btn:hover {
-        background-color: #606060;
-    }
-    .address-field {
-        display: flex;
-        justify-content: space-between;
-    }
-    .address-field input[type=detailed-address] {
-        flex-grow: 1;
-        margin-right: 10px;
-    }
+        h1{
+            text-align: center;
+        }
 
     </style>
     
@@ -294,45 +264,56 @@ input[type=detailed-address] {
 					<a href="10_coupone.do" style="color: white"><li class="sidebar-item">쿠폰함</li></a>
 					<a href="08_Payment.do" style="color: white"><li class="sidebar-item">띱머니충전</li></a>
 					<a href="/" style="color: white"><li class="sidebar-item">채팅</li></a>
-					<a href="11_management.do" style="color: white"><li class="sidebar-item">회원관리</li></a>
+					<a href="/" style="color: white"><li class="sidebar-item">회원관리</li></a>
                 </div>
             </div>
         </ul>
     </nav>
     
-	<div class="container">
-		<h1>회원정보 수정</h1>
-		<form id="02_edit" action="02_edit" method="get">
-			<label for="username">아이디:${vo2.CUSTOMER_LOGINID}</label>
-			<input type="text" id="username" name="CUSTOMER_LOGINID"><br>
-
-			<label for="email">이메일:${vo2.CUSTOMER_EMAIL}</label>
-			<input type="email" id="email" name="CUSTOMER_EMAIL"><br>
-			
-			<label for="nickname">닉네임:</label>
-			<input type="text" id="nickname" name="nickname"><br>
-
-			<label for="password">현재 비밀번호</label>
-			<input type="password" id="password" name="CUSTOMER_PASSWORD"><br>
-
-			<label for="confirm-password">변경할 비밀번호</label>
-			<input type="password" id="confirm-password" name="confirm-password"><br>
-			
-			<div class="address-field1">
+ <div class="form-container" style="margin-right: 200px">
+        <h1>회원정보 수정</h1>
+        <form id="02_edit" action="02_edit" method="get">
+            <div class="form-field">
+                <label for="username">이름</label>
+                <input type="text" id="username" name="CUSTOMER_NAME" value="${vo2.CUSTOMER_NAME}">
+            </div>
+            <div class="form-field">
+                <label for="userid">아이디</label>
+                <input type="text" id="userid" name="CUSTOMER_LOGINID" value="${vo2.CUSTOMER_LOGINID}">
+                <button type="button" id="check-id">아이디 중복 체크</button>
+            </div>
+            <div class="form-field">
+                <label for="email">이메일</label>
+                <input type="email" id="email" name="CUSTOMER_EMAIL" value="${vo2.CUSTOMER_EMAIL}">
+            </div>
+            <div class="form-field">
+                <label for="nickname">닉네임</label>
+                <input type="text" id="nickname" name="CUSTOMER_NICKNAME" value="${vo2.CUSTOMER_NICKNAME}">
+            </div>
+            <div class="form-field">
+                <label for="current-password">비밀번호</label>
+                <input type="password" id="current-password" name="current-password">
+            </div>
+            <div class="form-field">
+                <label for="new-password">비밀번호 확인</label>
+                <input type="password" id="new-password" name="new-password">
+            </div>
+            <div class="form-field">
                 <label for="CUSTOMER_ADDRESS1">우편번호:</label>
                 <input type="text2" id="CUSTOMER_ADDRESS1" name="CUSTOMER_ADDRESS1" required>
                 <button type="button" class="btn" onclick="sample6_execDaumPostcode()">우편번호 찾기</button>
             </div>
 
-        <div class="address-field" style="margin-top: 20px;">
-            <input type="detailed-address" class="form-control" id="CUSTOMER_ADDRESS2" name="CUSTOMER_ADDRESS2" placeholder="도로명주소">
-            <input type="detailed-address" class="form-control" name="CUSTOMER_ADDRESS3" id="CUSTOMER_ADDRESS3" placeholder="상세주소">
-            <input type="text" class="form-control" name="CUSTOMER_ADDRESS4" id="CUSTOMER_ADDRESS4" placeholder="참고항목">
-        </div>
-	
-			<input type="submit" value="수정하기">
-		</form>
-	</div>
+            <div class="form-field" style="margin-top: 20px;">
+                <input type="detailed-address" class="form-control" id="CUSTOMER_ADDRESS2" name="CUSTOMER_ADDRESS2" placeholder="도로명주소">
+                <input type="detailed-address" class="form-control" name="CUSTOMER_ADDRESS3" id="CUSTOMER_ADDRESS3" placeholder="상세주소">
+                <input type="text" class="form-control" name="CUSTOMER_ADDRESS4" id="CUSTOMER_ADDRESS4" placeholder="참고항목">
+            </div>
+            <div class="form-field">
+                <input type="submit" value="정보 수정">
+            </div>
+        </form>
+    </div>
 </body>
 <script>
 function sample6_execDaumPostcode() {

@@ -3,7 +3,7 @@
 <!-- c:foreach -->
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <!DOCTYPE html>
-<html> 
+<html>
 <head>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.0.js"></script>
 	<title>쿠폰함</title>
@@ -257,22 +257,22 @@
 </head>
 <body>
 <ul class="navbar__icons" style="padding-left: 200px;">
-           </label>
-           <div class="sidebar">
-               <div class="sidebar-header">
-                   <h3 class="sidebar-title" style="margin-left: 20px; font-size: 30px"><a href="01_Main.do" style="color: white">띱</a></h3>
-                   <div style="border: 1px solid white;"></div>
-               </div>
-               <div class="sidebar-body" style="margin-top: 30px;">
-				<a href="02_info.do" style="color: white"><li class="sidebar-item">회원정보</li></a>
-				<a href="09_Orderdetails1.do" style="color: white"><li class="sidebar-item">주문내역</li></a>
-				<a href="10_coupone.do"><li class="sidebar-item" style="background-color: white; color: black;"><strong>쿠폰함</strong></li></a>
-				<a href="08_Payment.do" style="color: white"><li class="sidebar-item">띱머니충전</li></a>
-				<a href="/" style="color: white"><li class="sidebar-item">채팅</li></a>
-				<a href="/" style="color: white"><li class="sidebar-item">회원관리</li></a>
-               </div>
-           </div>
-       </ul>
+            </label>
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <h3 class="sidebar-title" style="margin-left: 20px; font-size: 30px"><a href="01_Main.do" style="color: white">띱</a></h3>
+                    <div style="border: 1px solid white;"></div>
+                </div>
+                <div class="sidebar-body" style="margin-top: 30px;">
+					<a href="02_info.do" style="color: white"><li class="sidebar-item">회원정보</li></a>
+					<a href="09_Orderdetails1.do" style="color: white"><li class="sidebar-item">주문내역</li></a>
+					<a href="10_coupone.do"><li class="sidebar-item" style="background-color: white; color: black;"><strong>쿠폰함</strong></li></a>
+					<a href="08_Payment.do" style="color: white"><li class="sidebar-item">띱머니충전</li></a>
+					<a href="/" style="color: white"><li class="sidebar-item">채팅</li></a>
+					<a href="/" style="color: white"><li class="sidebar-item">회원관리</li></a>
+                </div>
+            </div>
+        </ul>
     </nav>
     
 	<h1 style="margin-left: 250px">쿠폰함</h1>

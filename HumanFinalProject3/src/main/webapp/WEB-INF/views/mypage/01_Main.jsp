@@ -10,7 +10,7 @@
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
     <style>
     
-    .main-header {   
+    .main-header {
   text-align: center;
 }
 
