@@ -57,18 +57,14 @@ public class MypageController {
      
 	   if(sessionChk != null) {
 		   
-		   String userId = "userid";
 	       CustomerVO vo = new CustomerVO();
 	       System.out.println("rr:"+Integer.parseInt(sessionChk.toString()));
 	       vo.setCUSTOMER_ID(Integer.parseInt(sessionChk.toString()));
 
 	       CustomerVO vo2 = mypageService.info(vo);
 	      
-	       model.addAttribute("vo3", vo2);
-	       
-	       model.addAttribute("str", "안녕");
-	         
-	       
+	       model.addAttribute("vo2", vo2);
+
 	       return "/mypage/02_info";
 		   
 	   }else {
@@ -79,13 +75,13 @@ public class MypageController {
    }
    
    @RequestMapping("02_edit")
-   public String edit(CustomerVO vo, Model model) {
+   public String edit(CustomerVO vo, Model model, HttpSession session) {
 	   System.out.println(vo);
+	   vo.setCUSTOMER_ID(((int) session.getAttribute("customer_id")));
 	   CustomerVO vo2 = mypageService.edit(vo);
-	   
-	   
-	   
+
 	   model.addAttribute("vo2", vo2);
+	   
 	   return "/mypage/02_info";
    }
    
@@ -93,7 +89,7 @@ public class MypageController {
    
    
    @RequestMapping("08_Payment.do")
-   public String Payment(HttpSession session) {
+   public String Payment(Model model , HttpSession session) {
 	  		
 	   Object sessionChk = session.getAttribute("customer_id");
 	      
@@ -101,9 +97,11 @@ public class MypageController {
 		   
 		CustomerVO vo = new CustomerVO();
 		vo.getCustomer_money();
+		vo.setCUSTOMER_ID(((int) session.getAttribute("customer_id")));
 		       
 		CustomerVO vo3 = mypageService.Payment(vo);
 		System.out.println(vo3);
+		model.addAttribute("vo3", vo3);
         
 	   return "/mypage/08_Payment";
 	   
@@ -114,11 +112,12 @@ public class MypageController {
    }
    
    @RequestMapping("08_ChargeMoney")
-   public String ChargeMoney(int chargeAmount, Model model){
+   public String ChargeMoney(int chargeAmount, Model model,HttpSession session){
 	   System.out.println(chargeAmount);
 	   
 	   CustomerVO vo = new CustomerVO();
 	   vo.setCustomer_money(chargeAmount);
+	   vo.setCUSTOMER_ID(((int) session.getAttribute("customer_id")));
 	   
 	   CustomerVO vo3 = mypageService.ChargeMoney(vo);
 	   System.out.println(vo3);
@@ -136,9 +135,8 @@ public class MypageController {
 	   if(sessionChk != null) {
 	   System.out.println("09_Orderdetails1.do 호출 완료");
 	   
-	   int userId = 3000;
 	   DdipVO vo = new DdipVO();
-	   vo.setCustomer_id(Integer.parseInt(sessionChk.toString()));
+	   vo.setCustomer_id(((int) session.getAttribute("customer_id")));
 	   
 	   List<DdipVO> OrderList = mypageService.getOrderList(vo);
 	   

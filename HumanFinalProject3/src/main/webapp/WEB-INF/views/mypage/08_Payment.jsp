@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en"> 
+<html lang="en">
 
 <head>
 <meta charset="UTF-8">
@@ -11,7 +11,7 @@
 <!-- ajax -->
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.9.0.js"></script>
-<script src="/resources/js/scripts_junhyeok.js"></script>
+<script src="../resources/js/scripts_junhyeok.js"></script>
 <!-- <link rel="stylesheet" href="style.css"> -->
 <!-- <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet"> -->
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
@@ -307,8 +307,13 @@ select {
 				<a href="10_coupone.do" style="color: white"><li class="sidebar-item">쿠폰함</li></a>
 				<a href="08_Payment.do" style="color: white"><li class="sidebar-item" style="cursor: pointer; background-color: white; color: black;"><strong>띱머니충전</strong></li></a>
 				<a href="/" style="color: white"><li class="sidebar-item">채팅</li></a>
+<<<<<<< HEAD
 				<a href="11_management.do" style="color: white"><li class="sidebar-item">회원관리</li></a>
               </div>
+=======
+				<a href="/" style="color: white"><li class="sidebar-item">회원관리</li></a>
+			</div>
+>>>>>>> branch 'main' of https://github.com/giftfrommom/human_final_project.git
 		</div>
 	</ul>
 	</nav>

@@ -5,35 +5,41 @@
 
 <mapper namespace="mypageDAO">
 
+	<select id="info" parameterType="customer" resultType="customer">
+		select * from CUSTOMER where CUSTOMER_ID = #{CUSTOMER_ID}
+	</select>
+
 	<select id="ChargeMoney" parameterType="customer" resultType="customer"> 
 		SELECT customer_money + #{customer_money} as CUSTOMER_MONEY
 		FROM CUSTOMER
-		WHERE CUSTOMER_ID='3000'
+		WHERE CUSTOMER_ID = #{CUSTOMER_ID}
 	</select>
 	
 	<select id="Payment" parameterType="customer" resultType="customer">
 		SELECT customer_money
 		FROM CUSTOMER
-		WHERE CUSTOMER_ID='3000'
+		WHERE CUSTOMER_ID = #{CUSTOMER_ID}
 	</select>
 	
 	<update id="updatemoney" parameterType="customer">
 		UPDATE CUSTOMER
     	SET customer_money = #{customer_money} 
-    	WHERE CUSTOMER_ID = '3000'
+    	WHERE CUSTOMER_ID = #{CUSTOMER_ID}
 	</update>
 	
 	<update id="edit" parameterType="customer">
-		UPDATE CUSTOMER
-		SET CUSTOMER_LOGINID = #{CUSTOMER_LOGINID},
-		CUSTOMER_EMAIL = #{CUSTOMER_EMAIL}
-		WHERE CUSTOMER_ID = '3000'
+    	UPDATE CUSTOMER
+    	SET CUSTOMER_NAME = #{CUSTOMER_NAME},
+        CUSTOMER_LOGINID = #{CUSTOMER_LOGINID},
+        CUSTOMER_EMAIL = #{CUSTOMER_EMAIL},
+        CUSTOMER_NICKNAME = #{CUSTOMER_NICKNAME}
+    	WHERE CUSTOMER_ID = #{CUSTOMER_ID}
 	</update>
 	
 	<select id="editcome" parameterType="customer" resultType="customer">
 		SELECT *
 		FROM CUSTOMER
-		WHERE CUSTOMER_ID = '3000'
+		WHERE CUSTOMER_ID = #{CUSTOMER_ID}
 	</select>
 	
 	<select id="getCouponList" resultType="coupon">
@@ -47,6 +53,15 @@
 		FROM ORDER_TBL_DETAIL DD, ORDER_TBL OO
 		WHERE DD.ORDER_TBL_ID = OO.ORDER_TBL_ID
 	</select>
+	
+	
+<!-- 	<select id="getOrderList" parameterType="ddip" resultType="ddip">
+		SELECT *
+        FROM ORDER_TBL
+        INNER JOIN ORDER_TBL_DETAIL
+        ON ORDER_TBL.ORDER_TBL_ID = ORDER_TBL_DETAIL.ORDER_TBL_ID
+        WHERE ORDER_TBL.ORDER_TBL_ID = #{customer_id}
+	</select> -->
 
 
 	
