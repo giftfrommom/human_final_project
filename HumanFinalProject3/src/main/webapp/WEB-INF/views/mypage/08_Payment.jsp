@@ -301,17 +301,14 @@ select {
 				</h3>
 				<div style="border: 1px solid white;"></div>
 			</div>
-			<div class="sidebar-body" style="margin-top: 30px;">
-				<a href="02_info.do" style="color: white"><li
-					class="sidebar-item">회원정보</li></a> <a href="09_Orderdetails1.do"
-					style="color: white"><li class="sidebar-item">주문내역</li></a> <a
-					href="10_coupone.do" style="color: white"><li
-					class="sidebar-item">쿠폰함</li></a> <a href="08_Payment.do"><li
-					class="sidebar-item"
-					style="cursor: pointer; background-color: white; color: black;"><strong>띱머니충전</strong></li></a>
+			 <div class="sidebar-body" style="margin-top: 30px;">
+				<a href="02_info.do" style="color: white"><li class="sidebar-item" ><strong>회원정보</strong></li></a>
+				<a href="09_Orderdetails1.do" style="color: white"><li class="sidebar-item">주문내역</li></a>
+				<a href="10_coupone.do" style="color: white"><li class="sidebar-item">쿠폰함</li></a>
+				<a href="08_Payment.do" style="color: white"><li class="sidebar-item" style="cursor: pointer; background-color: white; color: black;"><strong>띱머니충전</strong></li></a>
 				<a href="/" style="color: white"><li class="sidebar-item">채팅</li></a>
 				<a href="11_management.do" style="color: white"><li class="sidebar-item">회원관리</li></a>
-			</div>
+              </div>
 		</div>
 	</ul>
 	</nav>

@@ -15,5 +15,7 @@
 <p> <a href='mypage/09_Orderdetails1.do'>09_Orderdetails1 </a> </p>
 <p> <a href='mypage/10_coupone.do'>10_coupone </a> </p>
 <p> <a href='mypage/11_management.do'>11_management </a> </p>
+<p> <a href='mypage/11_management2.do'>11_management </a> </p>
+
 </body>
 </html>

@@ -54,6 +54,39 @@
 		                WHERE DDIP_ID = #{ddip_id})
 	</select>
 	
+	<select id="getCustomerList" parameterType="condition" resultType="customer">
+		  SELECT CUSTOMER_ID, CUSTOMER_NAME, CUSTOMER_PREFERMENU, CUSTOMER_PREFERSTORE, CUSTOMER_GENDER, CUSTOMER_BIRTHDAY
+		  FROM CUSTOMER
+		  WHERE 1=1
+		   <if test="gender != null">
+			    <choose>
+			        <when test="gender == 'male'">
+			            AND CUSTOMER_GENDER = '남'
+			        </when>
+			        <when test="gender == 'female'">
+			            AND CUSTOMER_GENDER = '여'
+			        </when>
+			    </choose>
+			</if> 
+			<if test="combo1_options != null and combo1_options != 'none'"> -->
+		      AND CUSTOMER_PREFERMENU = #{combo1_options}
+		    </if>
+		    <if test="combo2_options != null and combo2_options != 'none'">
+		      AND CUSTOMER_PREFERSTORE = #{combo2_options}
+		    </if>
+		    <if test="categoryName != null and categoryName != 'none' and search != null">
+			  AND ${categoryName} LIKE '%' || #{search} || '%'
+			</if>	
+			<if test="startDate != null">
+		      AND CUSTOMER_BIRTHDAY &gt;= #{startDate}
+		    </if>
+		    <if test="endDate != null">
+		      AND CUSTOMER_BIRTHDAY &lt;= #{endDate}
+		    </if>
+	</select>
+  
+	   
+	
 	
 	
 </mapper>

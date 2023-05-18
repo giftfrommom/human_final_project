@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.human.java.dao.StoreDAO;
 import com.human.java.domain.BestplaceVO;
+import com.human.java.domain.ConditionVO;
+import com.human.java.domain.CustomerVO;
 import com.human.java.domain.DdipVO;
 import com.human.java.domain.StoreVO;
 
@@ -50,6 +52,12 @@ public class StoreServiceImpl implements StoreService{
 	public List<StoreVO> getStore2(DdipVO ddipVO) {
 		
 		return storeDAO.getStore2(ddipVO);
+	}
+
+	@Override
+	public List<CustomerVO> getCustomerList(ConditionVO conditionVO) {
+		
+		return storeDAO.getCustomerList(conditionVO);
 	}
 
 	

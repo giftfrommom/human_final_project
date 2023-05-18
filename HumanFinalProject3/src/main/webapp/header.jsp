@@ -270,7 +270,7 @@
                     <a href='../mypage/10_coupone.do'><li class="sidebar-item" style="cursor: pointer; color: white;">쿠폰함</li></a>
                     <a href='../mypage/08_Payment.do'><li class="sidebar-item" style="cursor: pointer; color: white;">띱머니충전</li></a>
 <!--                     <a href="Chat.html"><li class="sidebar-item" style="cursor: pointer; color: white;">채팅</li></a> -->
-                    <a><li class="sidebar-item" style="cursor: pointer; color: white;">회원관리</li></a>
+                    <a href='../mypage/11_management.do'><li class="sidebar-item" style="cursor: pointer; color: white;">회원관리</li></a>
                 </div>
             </div>
         </ul>

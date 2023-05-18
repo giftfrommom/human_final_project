@@ -15,5 +15,6 @@
 		<typeAlias alias="review" type="com.human.java.domain.ReviewVO"/>
 		<typeAlias alias="store" type="com.human.java.domain.StoreVO"/>
 		<typeAlias alias="customer" type="com.human.java.domain.CustomerVO"/>
+		<typeAlias alias="condition" type="com.human.java.domain.ConditionVO"/>
 	</typeAliases>
 </configuration>

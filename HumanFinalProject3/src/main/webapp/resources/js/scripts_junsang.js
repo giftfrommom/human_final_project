@@ -529,6 +529,84 @@ $(function() {
 		
 	});
 	
+	
+	//11_management 옵션 선택
+	$("#combo1").change(function() {
+		
+		  var selectedOption = $(this).val();
+		  var combo2_options;
+
+		  if (selectedOption === "chicken") {
+		    combo2_options = '<option value="none" selected>선호가게</option>' +
+		                    '<option value="교촌치킨">교촌치킨</option>' +
+		                    '<option value="굽네치킨">굽네치킨</option>' +
+		    				'<option value="네네치킨">네네치킨</option>';
+		  } else if (selectedOption === "pizza") {
+		    combo2_options = '<option value="none" selected>선호가게</option>' +
+		                    '<option value="도미노피자">도미노피자</option>' +
+						    '<option value="미스터피자">미스터피자</option>' +
+						    '<option value="파파존스">파파존스</option>';
+		  } else if (selectedOption === "snack") {
+		    combo2_options = '<option value="none" selected>선호가게</option>' +
+				            '<option value="엽기떡볶이">엽기떡볶이</option>' +
+						    '<option value="죠스떡볶이">죠스떡볶이</option>' +
+						    '<option value="청년다방">청년다방</option>';
+		  } else {
+		    combo2_options = '<option value="none" selected>선호가게</option>';
+		  }
+
+		  $("#combo2").html(combo2_options);
+		});
+	
+	//11_management.jsp 조회
+	$('.btnContainer2').on('click','.read',function(){
+		
+		var combo1_options = $('#combo1').val();
+		var combo2_options = $('#combo2').val();
+		var gender = $('.genderSpan input[type="radio"]:checked').attr('id');
+		var startDate = $("#start_date").val();
+		var endDate = $("#end_date").val();
+		var categoryName = $('#category').val();
+		var search = $('#search').val();
+		
+		console.log("combo1_options: "+combo1_options); // none
+		console.log("combo2_options: "+combo2_options); // none
+		console.log("gender: "+gender);
+		console.log("startDate: "+startDate); // null?
+		console.log("endDate:"+endDate); // null?
+		console.log("categoryName: "+categoryName); // none
+		console.log("search: "+search); //null?
+		
+		var condition = {
+			"combo1_options":combo1_options, // none
+			"combo2_options":combo2_options, // none
+			"gender":gender,
+			"startDate":startDate, // null?
+			"endDate":endDate, // null?
+			"categoryName":categoryName, // none
+			"search":search //null?
+		}
+		
+		console.log(condition);
+		
+		$.ajax({
+			anyne:true,
+			type:'POST',
+			data: JSON.stringify(condition),
+			url: "/store/get_list",
+			datatype : "text",
+			contentType:"application/json; charset=utf-8", //개애ㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐ중요
+			success: function(data) {
+				  
+			},
+			error: function(xhr, status, error) {
+			alert("AJAX Error:", error);
+			}
+			
+		});
+		
+	})
+	
 });
 
 

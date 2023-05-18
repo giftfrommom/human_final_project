@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.human.java.domain.BestplaceVO;
+import com.human.java.domain.ConditionVO;
+import com.human.java.domain.CustomerVO;
 import com.human.java.domain.DdipVO;
 import com.human.java.domain.StoreVO;
 
@@ -51,6 +53,13 @@ public class StoreDAOImpl implements StoreDAO{
 	public List<StoreVO> getStore2(DdipVO ddipVO) {
 		
 		return mybatis.selectList("storeDAO.getStore2",ddipVO);
+	}
+
+	@Override
+	public List<CustomerVO> getCustomerList(ConditionVO conditionVO) {
+		List<CustomerVO> aa = mybatis.selectList("storeDAO.getCustomerList",conditionVO);
+		System.out.println("aa"+aa);
+		return aa;
 	}
 	
 
