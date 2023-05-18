@@ -24,5 +24,7 @@ public interface StoreDAO {
 
 	List<CustomerVO> getCustomerList(ConditionVO conditionVO);
 
+	void deleteCustomer(String[] customerIdAry);
+
 
 }

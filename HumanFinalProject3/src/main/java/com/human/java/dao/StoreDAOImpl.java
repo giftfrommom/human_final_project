@@ -57,9 +57,18 @@ public class StoreDAOImpl implements StoreDAO{
 
 	@Override
 	public List<CustomerVO> getCustomerList(ConditionVO conditionVO) {
-		List<CustomerVO> aa = mybatis.selectList("storeDAO.getCustomerList",conditionVO);
-		System.out.println("aa"+aa);
-		return aa;
+	
+		return  mybatis.selectList("storeDAO.getCustomerList",conditionVO);
+		
+	}
+
+	@Override
+	public void deleteCustomer(String[] customerIdAry) {
+		
+		for(int i =0; i<customerIdAry.length; i++) {
+			mybatis.delete("storeDAO.deleteCustomer",customerIdAry[i]);
+		}
+		
 	}
 	
 

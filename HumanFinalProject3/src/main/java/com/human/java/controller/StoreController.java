@@ -295,15 +295,22 @@ public class StoreController {
 	// 11 condition
 	@RequestMapping("get_list")
 	@ResponseBody
-	public String get_list(@RequestBody ConditionVO conditionVO) {
+	public Map<String,Object> get_list(@RequestBody ConditionVO conditionVO) {
 
 		System.out.println("conditionVO:" + conditionVO);
-		// conditionVO:ConditionVO(combo1_options=none, combo2_options=none,
-		// gender=male, startDate=, endDate=, categoryName=none, search=)
-		System.out.println(conditionVO.getCombo1_options());
-		List<CustomerVO> customerList = storeService.getCustomerList(conditionVO);
 
-		return "2";
+		List<CustomerVO> customerList = storeService.getCustomerList(conditionVO);
+		Map<String,Object> customerMap = new HashMap<String, Object>();
+		customerMap.put("customerMap",customerList);
+		
+		return customerMap;
+	}
+	@RequestMapping("delete")
+	@ResponseBody
+	public void deleteCustomer(@RequestBody  String[] customerIdAry) {
+
+		storeService.deleteCustomer(customerIdAry);
+			
 	}
 
 }

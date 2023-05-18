@@ -57,7 +57,7 @@
 	<select id="getCustomerList" parameterType="condition" resultType="customer">
 		  SELECT CUSTOMER_ID, CUSTOMER_NAME, CUSTOMER_PREFERMENU, CUSTOMER_PREFERSTORE, CUSTOMER_GENDER, CUSTOMER_BIRTHDAY
 		  FROM CUSTOMER
-		  WHERE 1=1
+		  WHERE 1=1	
 		   <if test="gender != null">
 			    <choose>
 			        <when test="gender == 'male'">
@@ -77,13 +77,19 @@
 		    <if test="categoryName != null and categoryName != 'none' and search != null">
 			  AND ${categoryName} LIKE '%' || #{search} || '%'
 			</if>	
-			<if test="startDate != null">
-		      AND CUSTOMER_BIRTHDAY &gt;= #{startDate}
-		    </if>
-		    <if test="endDate != null">
-		      AND CUSTOMER_BIRTHDAY &lt;= #{endDate}
-		    </if>
+			ORDER BY CUSTOMER_ID ASC
+<!-- 			<if test="startDate != null">	 -->
+<!-- 		      AND CUSTOMER_BIRTHDAY &gt;= TO_DATE(#{startDate}) -->
+<!-- 		    </if> -->
+<!-- 		    <if test="endDate != null"> -->
+<!-- 		      AND CUSTOMER_BIRTHDAY &lt;= TO_DATE(#{endDate}) -->
+<!-- 		    </if> -->
 	</select>
+	
+	<delete id="deleteCustomer" parameterType="String">
+			DELETE FROM CUSTOMER
+			WHERE CUSTOMER_ID = #{value}
+	</delete>
   
 	   
 	

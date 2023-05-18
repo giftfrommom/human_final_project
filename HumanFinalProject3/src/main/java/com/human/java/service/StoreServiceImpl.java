@@ -60,6 +60,13 @@ public class StoreServiceImpl implements StoreService{
 		return storeDAO.getCustomerList(conditionVO);
 	}
 
+	@Override
+	public void deleteCustomer(String[] customerIdAry) {
+		
+		storeDAO.deleteCustomer(customerIdAry);
+		
+	}
+
 	
 
 }

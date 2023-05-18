@@ -568,15 +568,7 @@ $(function() {
 		var endDate = $("#end_date").val();
 		var categoryName = $('#category').val();
 		var search = $('#search').val();
-		
-		console.log("combo1_options: "+combo1_options); // none
-		console.log("combo2_options: "+combo2_options); // none
-		console.log("gender: "+gender);
-		console.log("startDate: "+startDate); // null?
-		console.log("endDate:"+endDate); // null?
-		console.log("categoryName: "+categoryName); // none
-		console.log("search: "+search); //null?
-		
+			
 		var condition = {
 			"combo1_options":combo1_options, // none
 			"combo2_options":combo2_options, // none
@@ -587,8 +579,6 @@ $(function() {
 			"search":search //null?
 		}
 		
-		console.log(condition);
-		
 		$.ajax({
 			anyne:true,
 			type:'POST',
@@ -596,8 +586,50 @@ $(function() {
 			url: "/store/get_list",
 			datatype : "text",
 			contentType:"application/json; charset=utf-8", //개애ㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐ중요
-			success: function(data) {
-				  
+			success: function(customerMap) {
+
+				var html = "";
+				var i=0;
+				
+				$.each(customerMap, function(index,customerList){
+					$.each(customerList, function(index,customerList){
+						console.log("customerList"+customerList);
+						var customer_birthday = customerList.customer_BIRTHDAY.split(" ")[0];
+						var customer_gender = customerList.customer_GENDER;
+						var customer_id = customerList.customer_ID;
+						var customer_name = customerList.customer_NAME;
+						var customer_prefermenu = customerList.customer_PREFERMENU;
+						if(customer_prefermenu ==="chicken"){
+							customer_prefermenu="치킨";
+						} else if(customer_prefermenu ==="snack"){
+							customer_prefermenu="분식";	
+						} else {
+							customer_prefermenu="피자";								
+						}
+						var customer_preferstore = customerList.customer_PREFERSTORE;
+						
+						var htmlplus =
+						'<div class="row">' +
+						    '<div class="select">' +
+						        '<div class="form-check">' +
+						            '<input class="form-check-input" type="checkbox" >' +
+						        '</div>' +
+						    '</div>' +
+						    '<div class="cell num">' + (i+1) + '</div>' +
+						    '<div class="cell customerId">'+customer_id+'</div>' +
+						    '<div class="cell name">' + customer_name + '</div>' +
+						    '<div class="cell gender">' + customer_gender + '</div>' +
+						    '<div class="cell preferFood">' + customer_prefermenu + '</div>' +
+						    '<div class="cell preferStore">' + customer_preferstore + '</div>' +
+						    '<div class="cell birth">' + customer_birthday + '</div>' +
+						'</div>';
+						i++;
+						html = html + htmlplus;
+					})
+				})  
+				
+				$('.top').nextAll().remove();
+				$('.top').after(html);
 			},
 			error: function(xhr, status, error) {
 			alert("AJAX Error:", error);
@@ -606,6 +638,118 @@ $(function() {
 		});
 		
 	})
+	
+	// checked부여
+	$('.form-check-input').on('change', function() {
+		alert("click");
+	  if ($(this).is(':checked')) {
+		  alert("checked1");
+	    $(this).prop('checked', true);
+	  } else {
+		  alert("checked2");
+	    $(this).prop('checked', false);
+	  }
+	});
+	
+	//11_management 삭제
+	$('.btnContainer2').on('click','.delete',function(){
+		var customerIdAry = [];
+		
+		$('input.form-check-input:checked').each(function() {
+			  var customerId = $(this).closest('.select').siblings('.customerId').text();
+			  customerIdAry.push(customerId);
+		});
+		
+		$.ajax({
+			anyne:true,
+			type:'POST',
+			data: JSON.stringify(customerIdAry),
+			url: "/store/delete",
+			datatype : "text",
+			contentType:"application/json; charset=utf-8",
+			success: function() {
+				
+				$('input.form-check-input:checked').each(function() {
+					  $(this).closest('.row').remove();
+				});
+				
+			},
+			error: function(xhr, status, error) {
+			alert("AJAX Error:", error);
+			}
+		})
+		
+	})
+	
+	//11_management수정/ 모달show
+	$('.btnContainer2').on('click','.update',function(){
+		
+		var checkedTags = $('.form-check-input:checked');
+		if(checkedTags.length>1){
+			alert("수정은 하나씩 가능합니다.")
+		}else{
+			$('#modal_11').show();
+		}
+	})
+	
+	//11_management모달 hide
+	$('#modal_11').on('click','.close',function(){
+		$('#modal_11').hide();
+	})
+	
+	
+	
+	//11_management 엑셀
+	$('.excel').on('click', function () {
+		
+		// 테이블 데이터 추출
+		var dataContainer = document.getElementById('dataContainer');
+		var rows = dataContainer.getElementsByClassName('row');
+
+		var data = [];
+
+		// 각 행을 반복하며 데이터 추출
+		for (var i = 0; i < rows.length; i++) {
+		  var row = rows[i];
+		  var cells = row.getElementsByClassName('cell');
+		  var rowData = [];
+
+		  // 각 셀을 반복하며 데이터 추출
+		  for (var j = 0; j < cells.length; j++) {
+		    var cell = cells[j];
+		    var cellData = cell.innerText;
+		    rowData.push(cellData);
+		  }
+
+		  data.push(rowData);
+		}
+
+		// 엑셀 워크북 생성
+		var workbook = XLSX.utils.book_new();
+		var worksheet = XLSX.utils.aoa_to_sheet(data);
+		XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+
+		// 엑셀 파일 다운로드
+		var workbookOptions = {
+		  bookType: 'xlsx',
+		  bookSST: false,
+		  type: 'binary',
+		};
+
+		var workbookData = XLSX.write(workbook, workbookOptions);
+
+		function s2ab(s) {
+		  var buf = new ArrayBuffer(s.length);
+		  var view = new Uint8Array(buf);
+		  for (var i = 0; i < s.length; i++) {
+		    view[i] = s.charCodeAt(i) & 0xff;
+		  }
+		  return buf;
+		}
+		
+	  var blob = new Blob([s2ab(workbookData)], { type: 'application/octet-stream' });
+	  saveAs(blob, 'data.xlsx');
+	});
 	
 });
 

@@ -25,5 +25,7 @@ public interface StoreService {
 
 	List<CustomerVO> getCustomerList(ConditionVO conditionVO);
 
+	void deleteCustomer(String[] customerIdAry);
+
 
 }
