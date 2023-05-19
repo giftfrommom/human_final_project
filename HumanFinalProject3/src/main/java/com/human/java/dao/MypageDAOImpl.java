@@ -18,18 +18,16 @@ public class MypageDAOImpl implements MypageDAO{
 
 	@Override
 	public CustomerVO info(CustomerVO vo) {
-		System.out.println(" MypageDAOImpl : " + vo.getCUSTOMER_LOGINID());
-		System.out.println(" MypageDAOImpl : " + vo.getCUSTOMER_PASSWORD());
-		System.out.println(" MypageDAOImpl : " + vo.getCUSTOMER_EMAIL());
+
 		
-		return mybatis.selectOne("memberDAO.info",vo);
+		return mybatis.selectOne("mypageDAO.info",vo);
 	}
 	
 	@Override
 	public CustomerVO ChargeMoney(CustomerVO vo) {
-		System.out.println("vo:         "+vo);
-		mybatis.update("mypageDAO.updatemoney", vo);
-		CustomerVO aa = mybatis.selectOne("mypageDAO.SelectMoney",vo);
+	
+		CustomerVO aa = mybatis.selectOne("mypageDAO.ChargeMoney",vo);
+		mybatis.update("mypageDAO.updatemoney", aa);
 		System.out.println("확인"+aa);
 		return aa;
 	}

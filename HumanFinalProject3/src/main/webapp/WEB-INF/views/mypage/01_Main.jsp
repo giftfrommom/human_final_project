@@ -302,7 +302,28 @@
                 <a href="#features" class="btn-primary">바로가기</a>
             </div>
         </div>
-    </section>  
+    </section>
+    
+    <section class="features">
+        <div class="container">
+            <h2>Features</h2>
+            <div class="feature">
+                <i class="fas fa-shopping-cart"></i>
+                <h3>Online Shopping</h3>
+                <p>Shop for your favorite products online with ease.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-truck"></i>
+                <h3>Fast Delivery</h3>
+                <p>Get your orders delivered to your doorstep quickly.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-customer-service"></i>
+                <h3>Customer Support</h3>
+                <p>24/7 customer support to assist you with any inquiries.</p>
+            </div>
+        </div>
+    </section>
     
     <footer class="footer">
         <div class="container">

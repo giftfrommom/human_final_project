@@ -301,14 +301,17 @@ select {
 				</h3>
 				<div style="border: 1px solid white;"></div>
 			</div>
-			 <div class="sidebar-body" style="margin-top: 30px;">
-				<a href="02_info.do" style="color: white"><li class="sidebar-item" ><strong>회원정보</strong></li></a>
-				<a href="09_Orderdetails1.do" style="color: white"><li class="sidebar-item">주문내역</li></a>
-				<a href="10_coupone.do" style="color: white"><li class="sidebar-item">쿠폰함</li></a>
-				<a href="08_Payment.do" style="color: white"><li class="sidebar-item" style="cursor: pointer; background-color: white; color: black;"><strong>띱머니충전</strong></li></a>
+			<div class="sidebar-body" style="margin-top: 30px;">
+				<a href="02_info.do" style="color: white"><li
+					class="sidebar-item">회원정보</li></a> <a href="09_Orderdetails1.do"
+					style="color: white"><li class="sidebar-item">주문내역</li></a> <a
+					href="10_coupone.do" style="color: white"><li
+					class="sidebar-item">쿠폰함</li></a> <a href="08_Payment.do"><li
+					class="sidebar-item"
+					style="cursor: pointer; background-color: white; color: black;"><strong>띱머니충전</strong></li></a>
 				<a href="/" style="color: white"><li class="sidebar-item">채팅</li></a>
-				<a href="11_management.do" style="color: white"><li class="sidebar-item">회원관리</li></a>
-              </div>
+				<a href="/" style="color: white"><li class="sidebar-item">회원관리</li></a>
+			</div>
 		</div>
 	</ul>
 	</nav>
@@ -316,10 +319,11 @@ select {
 	<div class="charge" style="margin-left: 350px;">
 		<h1>띱머니 충전</h1>
 		<form id="08_ChargeMoney" action="08_ChargeMoney" method="GET">
-			<label>현재금액:${vo3.customer_money}</label>
-			 <label for="chargeAmount">충전할 금액:</label>
-			<input type="number" id="chargeAmount" name="chargeAmount" required>
-			<button type="button" style="float: right; margin-right: 30px;" onclick="setChargeAmount('')">직접입력</button>
+			<label>현재금액:${vo3.customer_money}</label> <label for="chargeAmount">충전할
+				금액:</label> <input type="number" id="chargeAmount" name="chargeAmount"
+				required>
+			<button type="button" style="float: right; margin-right: 30px;"
+				onclick="setChargeAmount('')">직접입력</button>
 			<br> <br>
 
 			<button type="button" onclick="setChargeAmount(10000)">1만원</button>
