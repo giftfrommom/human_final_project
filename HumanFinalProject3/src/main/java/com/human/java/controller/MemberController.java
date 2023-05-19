@@ -24,7 +24,6 @@ public class MemberController {
 	
 	// 모든요청을 받아들이는 것
 	@RequestMapping("{url}.do")
-
 	public String userViewPage(@PathVariable String url) {
 	
 		return "/member/" + url; 

@@ -67,6 +67,19 @@ public class StoreServiceImpl implements StoreService{
 		
 	}
 
+	@Override
+	public List<CustomerVO> update(CustomerVO customerVO) {
+	
+		return storeDAO.update(customerVO);
+	}
+
+	@Override
+	public CustomerVO getMyMoney(int customer_id) {
+		
+		return storeDAO.getMyMoney(customer_id);
+	}
+
+	
 	
 
 }

@@ -408,6 +408,9 @@
 		th {
 		  background-color: #f2f2f2;
 		}
+		#modal_11 input {
+		  border: none;
+		}
 </style>
 </head>
 <body>
@@ -479,6 +482,7 @@
 	        		  <button type="button" class="excel btn btn-secondary" id="downloadButton">엑셀다운</button>
 		        </div>
 	        </div>
+	        
 			<!-- 모달 -->
 				<!-- Modal -->
 			<div class="modal" id="modal_11">
@@ -493,27 +497,48 @@
 							  <tbody>
 							    <tr>
 							      <th>고객ID</th>
-							      <td>1004</td>
+							      <td><input type="text" id="m_customer_id" readonly/></td>
 							    </tr>
 							    <tr>
 							      <th>이름</th>
-							      <td>엄준상</td>
+							      <td><input type="text" id="m_customer_name"/></td>
 							    </tr>
 							    <tr>
 							      <th>성별</th>
-							      <td>남</td>
+							      <td class="m_gender">
+							      	<label for="male">남</label>
+								    <input type="radio" id="m_male" name="gender" value="male" checked>
+								    <label for="female">여</label>
+								    <input type="radio" id="m_female" name="gender" value="female">
+							      </td>
 							    </tr>
 							    <tr>
 							      <th>선호음식</th>
-							      <td>치킨</td>
+							      <td>
+							      	 <select id="m_combo1" class="m_combo">
+								      <option value="none" selected>선호음식</option>
+								      <option value="chicken">치킨</option>
+								      <option value="pizza">피자</option>
+								      <option value="snack">분식</option>
+								    </select>
+							      </td>
 							    </tr>
 							    <tr>
 							      <th>선호가게</th>
-							      <td>교촌치킨</td>
+							      <td>
+							      	 <select id="m_combo2" class="m_combo">
+								      <option value="none" selected>선호가게</option>
+				<!-- 				      <option value="optionX">옵션 X</option> -->
+				<!-- 				      <option value="optionY">옵션 Y</option> -->
+				<!-- 				      <option value="optionZ">옵션 Z</option> -->
+								    </select>
+							      </td>
 							    </tr>
 							    <tr>
 							      <th>생년월일</th>
-							      <td>1996.11.27</td>
+							      <td>
+							      	<input type="date" id="birth_date">
+							      </td>
 							    </tr>
 							  </tbody>
 							</table>
@@ -525,6 +550,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- Modal -->
 
 			<div class="board_list_wrap">
 	            <div id="dataContainer" class="board_list">

@@ -342,57 +342,86 @@ $(function() {
 	//04_Store.jsp 모달 확인 버튼 클릭
 	$('.m_footer').off().on('click','#save_btn_04',function(){
 		
-		$.ajax({
-			  url: "get_session_id",
-			  type : "post",
-			  datatype : "json",
-			  success: function(sessionMap) {
-				  
-			    var customer_id = sessionMap.customer_id;
-			    if(customer_id != null){
-			    	
-			    	var menuList = [];
+		var textValue = parseInt($(".afterLogin.holdingMoney").text().split(":")[1].trim());
+		var menuSum = parseInt($('.menuSum').text().trim());
+		$('#menuSum').val(menuSum);
+		
+		console.log("textValue : "+textValue);
+		console.log("menuSum : "+menuSum);
+		
+		if(textValue>=menuSum){
 					
-					const currentDate = new Date();
-					const kstOffset = 9 * 60; // KST는 UTC+9
-					const kstDate = new Date(currentDate.getTime() + (kstOffset * 60 * 1000));	
-					
-					$('.modal_table_content').each(function(index){
-						var menu = {
-								"order_time":kstDate,
-								"menu_id": $("." + $(this).find(".modal_menuname").text()).val(),
-								"menu_name":$(this).find(".modal_menuname").text(),
-								"menu_price":$(this).find(".modal_menuprice").text(),
-								"menu_quantity":$(this).find(".modal_quantity").text()
-						};
-						menuList.push(menu);
-					})
-
-					
-					$('#menuList').val(JSON.stringify(menuList));
-					$("#menuForm").submit();
-			    	
-			    } else {
-			    	
-			    	$('#modal_04').removeClass('show');			
-			    	
-			    	Swal.fire({
-					  title: '로그인 오류',
-					  text: "로그인 후 이용해주세요.",
-					  icon: 'warning',
-					  showCancelButton: true,
-					  showConfirmButton: false,
-					  cancelButtonColor: '#0AC290',
-					  cancelButtonText: '확인'
-					})	
+			$.ajax({
+				  url: "get_session_id",
+				  type : "post",
+				  datatype : "json",
+				  success: function(sessionMap) {
+					  
+				    var customer_id = sessionMap.customer_id;
+				    if(customer_id != null){
+				    	
+				    	var menuList = [];
+						
+						const currentDate = new Date();
+						const kstOffset = 9 * 60; // KST는 UTC+9
+						const kstDate = new Date(currentDate.getTime() + (kstOffset * 60 * 1000));	
+						
+						$('.modal_table_content').each(function(index){
+							var menu = {
+									"order_time":kstDate,
+									"menu_id": $("." + $(this).find(".modal_menuname").text()).val(),
+									"menu_name":$(this).find(".modal_menuname").text(),
+									"menu_price":$(this).find(".modal_menuprice").text(),
+									"menu_quantity":$(this).find(".modal_quantity").text()
+							};
+							menuList.push(menu);
+						})
+	
+						
+						$('#menuList').val(JSON.stringify(menuList));
+						$("#menuForm").submit();
+				    	
+				    } else {
+				    	
+				    	$('#modal_04').removeClass('show');			
+				    	
+				    	Swal.fire({
+						  title: '로그인 오류',
+						  text: "로그인 후 이용해주세요.",
+						  icon: 'warning',
+						  showCancelButton: true,
+						  showConfirmButton: false,
+						  cancelButtonColor: '#0AC290',
+						  cancelButtonText: '확인'
+						})	
+				    	
+				    }
+				    
+				  },
+				  error: function(xhr, status, error) {
+					alert("AJAX Error:", error);
+				  }
+				});
+		} else {
+			$('#modal_04').removeClass('show');	
+			Swal.fire({
+			    title: '띱머니 부족',
+			    text: "띱머니를 충전하시겠습니까?",
+			    icon: 'warning',
+			    showCancelButton: true,
+			    confirmButtonColor: '#0AC290',
+			    confirmButtonText: '확인',
+			    cancelButtonColor: '#d33',
+			    cancelButtonText: '취소',
+			    showCloseButton: true,
+			}).then((result) => {
+			    if (result.isConfirmed) {
+			 
+			    	 location.href = "../mypage/08_Payment.do";
 			    	
 			    }
-			    
-			  },
-			  error: function(xhr, status, error) {
-				alert("AJAX Error:", error);
-			  }
 			});
+		}
 		
 	
 		
@@ -558,6 +587,33 @@ $(function() {
 		  $("#combo2").html(combo2_options);
 		});
 	
+	$("#m_combo1").change(function() {
+		
+		  var selectedOption = $(this).val();
+		  var combo2_options;
+
+		  if (selectedOption === "chicken") {
+		    combo2_options = '<option value="none" selected>선호가게</option>' +
+		                    '<option value="교촌치킨">교촌치킨</option>' +
+		                    '<option value="굽네치킨">굽네치킨</option>' +
+		    				'<option value="네네치킨">네네치킨</option>';
+		  } else if (selectedOption === "pizza") {
+		    combo2_options = '<option value="none" selected>선호가게</option>' +
+		                    '<option value="도미노피자">도미노피자</option>' +
+						    '<option value="미스터피자">미스터피자</option>' +
+						    '<option value="파파존스">파파존스</option>';
+		  } else if (selectedOption === "snack") {
+		    combo2_options = '<option value="none" selected>선호가게</option>' +
+				            '<option value="엽기떡볶이">엽기떡볶이</option>' +
+						    '<option value="죠스떡볶이">죠스떡볶이</option>' +
+						    '<option value="청년다방">청년다방</option>';
+		  } else {
+		    combo2_options = '<option value="none" selected>선호가게</option>';
+		  }
+
+		  $("#m_combo2").html(combo2_options);
+		});
+	
 	//11_management.jsp 조회
 	$('.btnContainer2').on('click','.read',function(){
 		
@@ -593,7 +649,7 @@ $(function() {
 				
 				$.each(customerMap, function(index,customerList){
 					$.each(customerList, function(index,customerList){
-						console.log("customerList"+customerList);
+						
 						var customer_birthday = customerList.customer_BIRTHDAY.split(" ")[0];
 						var customer_gender = customerList.customer_GENDER;
 						var customer_id = customerList.customer_ID;
@@ -685,11 +741,62 @@ $(function() {
 	$('.btnContainer2').on('click','.update',function(){
 		
 		var checkedTags = $('.form-check-input:checked');
+		console.log("checkedTags: "+checkedTags.length);
 		if(checkedTags.length>1){
 			alert("수정은 하나씩 가능합니다.")
+		}else if(checkedTags.length<1){
+			alert("수정할 컬럼을 선택해주세요.")			
 		}else{
-			$('#modal_11').show();
+			 var customerId = $('input.form-check-input:checked').closest('.select').siblings('.customerId').text();
+			 var name = $('input.form-check-input:checked').closest('.select').siblings('.name').text();
+			 var gender = $('input.form-check-input:checked').closest('.select').siblings('.gender').text();
+			 var preferFood = $('input.form-check-input:checked').closest('.select').siblings('.preferFood').text();
+			 var preferStore = $('input.form-check-input:checked').closest('.select').siblings('.preferStore').text();
+			 var birth = $('input.form-check-input:checked').closest('.select').siblings('.birth').text();
+			 $('#m_customer_id').val(customerId);
+			 $('#m_customer_name').val(name);
+//			 $('#m_customerid').val(customerId);
+			 $('#m_combo1').val(preferFood);
+			 $('#m_combo2').val(preferStore);
+			 $('#birth_date').val(birth);
+			 $('#modal_11').show();
 		}
+	})
+	
+	$('.m_footer').on('click','#save_btn_11',function(){
+		
+		var customer_id = $('#m_customer_id').val();
+		var customer_name = $('#m_customer_name').val();
+		var customer_gender = $('.m_gender input[type="radio"]:checked').attr('id');
+		var customer_prefermenu = $('#m_combo1').val();
+		var customer_preferstore = $('#m_combo2').val();
+		var customer_birthday = $('#birth_date').val();
+		
+		var customervo = {
+				"customer_id_j":customer_id,
+				"customer_name_j":customer_name,
+				"customer_gender_j":customer_gender,
+				"customer_prefermenu_j":customer_prefermenu,
+				"customer_preferstore_j":customer_preferstore,
+				"customer_birthday_j":customer_birthday
+		}
+		
+		$.ajax({
+			anyne:true,
+			type:'POST',
+			data: JSON.stringify(customervo),
+			url: "/store/update",
+			datatype : "text",
+			contentType:"application/json; charset=utf-8", //개애ㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐ중요
+			success: function(data) {
+							
+				
+			},
+			error: function(xhr, status, error) {
+			alert("AJAX Error:", error);
+			}
+		})
+
 	})
 	
 	//11_management모달 hide

@@ -227,6 +227,11 @@
 	.hover:hover{
 		cursor:pointer;
 	}
+	.fixed-footer {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
 
 </style>	 
 </head>		 
@@ -369,7 +374,18 @@
 						  </tbody>
 						</table>
 					</div> 
-		      	합계 : <span class="menuSum"></span> ₩
+					<div>
+					쿠폰사용 :  <select id="m_combo1" class="m_combo">
+								      <option value="none" selected>사용 가능 쿠폰</option>
+								      <option value="chicken">1000원 할인 쿠폰</option>
+								      <option value="pizza">2000원 할인 쿠폰</option>
+								      <option value="snack">3000원 할인 쿠폰</option>
+								    </select>
+					</div>
+					<div>
+					띱 할인 : 	
+					</div>
+		      	최종 가격 : <span class="menuSum"></span> ₩
 		    </div>
 		    <div class="m_footer">
 		      <div class="hover modal_btn cancle" id="close_btn">취소</div>
@@ -382,6 +398,7 @@
 		<form id="menuForm" method="post" action="/store/05_DdipWrite">
 			<input type="hidden" name="menuList" id="menuList"/>
 			<input type="hidden" name="store_id" id="store_id" value="${storeInfo[0].store_id}"/>
+			<input type="hidden" name="menuSum" id="menuSum"/>
 		</form>
 	
         <div class="containerBtn_04" >
@@ -389,7 +406,7 @@
 			<a class="btn preview" href='03_StoreList.do'>이전 버튼</a>
 		</div>
         <!-- Footer-->
-        <footer class="py-5 bg-dark">
+        <footer class="py-5 bg-dark fixed-footer">
             <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Your Website 2023</p></div>
         </footer>
 

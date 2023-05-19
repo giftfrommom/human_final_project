@@ -18,4 +18,6 @@ public interface DdipDAO {
 
 	void setDdip2(List<DdipVO> ddipList);
 
+	void minusMoney(int menuSum, int customer_id);
+
 }

@@ -24,8 +24,11 @@ public class MemberDAOImpl implements MemberDAO{
 	public int memberInsert(CustomerVO vo) {
 		System.out.println("vo : "+vo);
 		System.out.println("여긴 회원가입에서 DAO");
-		
-		return mybatis.insert("memberDAO.memberInsert", vo);
+		int aa = mybatis.insert("memberDAO.memberInsert", vo);
+		for(int i=1; i<5; i++) {
+			mybatis.insert("memberDAO.couponInsert"+i+"");			
+		}
+		return aa;
 	}
 
 	@Override

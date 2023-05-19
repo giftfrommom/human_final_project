@@ -48,7 +48,6 @@ public class StoreController {
 	public Map<String, Object> getSessionId(HttpSession session) {
 
 		Object customer_id = session.getAttribute("customer_id");
-		System.out.println(customer_id);
 
 		if (customer_id != null) {
 
@@ -69,7 +68,16 @@ public class StoreController {
 
 	@RequestMapping("03_StoreList.do")
 	public String getStoreList(Model model, HttpSession session) {
+		
+		Object customer_id = session.getAttribute("customer_id");
 
+		if (customer_id != null) {
+			
+			CustomerVO customerVO = storeService.getMyMoney((int) customer_id);
+			model.addAttribute("myMoney", customerVO.getCustomer_money());
+
+		} 
+		
 		List<StoreVO> storeList = storeService.getStoreList();
 		model.addAttribute("storeList", storeList);
 
@@ -100,7 +108,16 @@ public class StoreController {
 
 	@RequestMapping("04_Store")
 	public String getStore(@RequestParam("store_id") int store_id, Model model, HttpSession session) {
+		
+		Object customer_id = session.getAttribute("customer_id");
 
+		if (customer_id != null) {
+			
+			CustomerVO customerVO = storeService.getMyMoney((int) customer_id);
+			model.addAttribute("myMoney", customerVO.getCustomer_money());
+
+		} 
+		
 		List<StoreVO> storeInfo = storeService.getStore(store_id);
 		model.addAttribute("storeInfo", storeInfo);
 
@@ -110,8 +127,16 @@ public class StoreController {
 	@RequestMapping("04_Store2")
 	public String getStore2(DdipVO ddipVO, Model model, HttpSession session) {
 
+		Object customer_id = session.getAttribute("customer_id");
+
+		if (customer_id != null) {
+			
+			CustomerVO customerVO = storeService.getMyMoney((int) customer_id);
+			model.addAttribute("myMoney", customerVO.getCustomer_money());
+
+		} 
+		
 		List<StoreVO> storeInfo = storeService.getStore2(ddipVO);
-		System.out.println("storeInfo: " + storeInfo);
 		model.addAttribute("storeInfo", storeInfo);
 		model.addAttribute("ddip_id", ddipVO.getDdip_id());
 
@@ -121,10 +146,19 @@ public class StoreController {
 	// 메뉴 리스트 05에 전달
 	@RequestMapping("/05_DdipWrite")
 	public String menu(@RequestParam("menuList") String menuList_JSON, @RequestParam("store_id") int store_id,
-			Model model, HttpSession session) {
+			Model model, HttpSession session, @RequestParam String menuSum) {
+		
+		session.setAttribute("menuSum", menuSum);
+		
+		Object customer_id = session.getAttribute("customer_id");
 
-		System.out.println("customer_id:" + session.getAttribute("customer_id"));
+		if (customer_id != null) {
+			
+			CustomerVO customerVO = storeService.getMyMoney((int) customer_id);
+			model.addAttribute("myMoney", customerVO.getCustomer_money());
 
+		} 
+		
 		Gson gson = new Gson();
 		Type type = new TypeToken<List<MenuVO>>() {
 		}.getType();
@@ -140,12 +174,23 @@ public class StoreController {
 	@RequestMapping("/05to06_DdipList")
 	public String ddip(@RequestParam("menuList") String menuList_JSON, @RequestParam("store_id") int store_id,
 			Model model, DdipVO ddipVO, HttpSession session) {
+		
+		Object customer_id = session.getAttribute("customer_id");
 
+		if (customer_id != null) {
+			
+			CustomerVO customerVO = storeService.getMyMoney((int) customer_id);
+			model.addAttribute("myMoney", customerVO.getCustomer_money());
+
+		} 
+		System.out.println("1111111111111111");
 		Gson gson = new Gson();
 		Type type = new TypeToken<List<MenuVO>>() {
 		}.getType();
 		List<MenuVO> menuList = gson.fromJson(menuList_JSON, type);
 		List<DdipVO> ddipList = new ArrayList<>();
+		System.out.println("22222222222222222");
+		System.out.println("menuList:"+menuList);
 
 		for (MenuVO menuVO : menuList) {
 
@@ -159,7 +204,7 @@ public class StoreController {
 			ddipVO2.setDdip_picture_enname(ddipVO.getDdip_picture_enname());
 			ddipVO2.setB_fsize(ddipVO.getB_fsize());
 			ddipVO2.setFileExtension(ddipVO.getFileExtension());
-			ddipVO2.setDdip_picture(ddipVO.getDdip_picture());
+//			ddipVO2.setDdip_picture(ddipVO.getDdip_picture());
 			ddipVO2.setStore_id(store_id);
 			ddipVO2.setOrder_time(menuVO.getOrder_time());
 			ddipVO2.setOrder_menu_id(menuVO.getMenu_id());
@@ -168,11 +213,16 @@ public class StoreController {
 			ddipVO2.setOrder_menu_quantity(menuVO.getMenu_quantity());
 			ddipVO2.setCustomer_id(((int) session.getAttribute("customer_id")));
 			ddipList.add(ddipVO2);
-
+			
 		}
-		System.out.println("ddipList1:" + ddipList);
+		System.out.println("3333333333333333");
 		ddipService.setDdip(ddipList, store_id);
-
+		
+		int menuSum =Integer.parseInt(session.getAttribute("menuSum").toString());
+		
+		System.out.println("menuSum : "+menuSum);
+		System.out.println("customer_id : "+(int) customer_id);
+		ddipService.minusMoney(menuSum,(int) customer_id);
 		model.addAttribute("ddipList", ddipService.getDdipList());
 
 		return "redirect:/store/06_DdipList";
@@ -183,29 +233,24 @@ public class StoreController {
 	public String ddipPlus(@RequestParam("menuList") String menuList_JSON, @RequestParam("store_id") int store_id,
 			Model model, DdipVO ddipVO, HttpSession session) {
 
-		System.out.println("store_id : " + store_id);
-		System.out.println("ddipVO : " + ddipVO);
-		System.out.println("customer_id : " + ((int) session.getAttribute("customer_id")));
+		Object customer_id = session.getAttribute("customer_id");
+
+		if (customer_id != null) {
+			
+			CustomerVO customerVO = storeService.getMyMoney((int) customer_id);
+			model.addAttribute("myMoney", customerVO.getCustomer_money());
+
+		} 
 
 		Gson gson = new Gson();
 		Type type = new TypeToken<List<MenuVO>>() {
 		}.getType();
 		List<MenuVO> menuList = gson.fromJson(menuList_JSON, type);
 		List<DdipVO> ddipList = new ArrayList<>();
-		System.out.println("menuList : " + menuList);
+
 		for (MenuVO menuVO : menuList) {
 
 			DdipVO ddipVO2 = new DdipVO();
-//				ddipVO2.setDdip_totalcnt(ddipVO.getDdip_totalcnt());
-//				ddipVO2.setDdip_message(ddipVO.getDdip_message());
-//				ddipVO2.setDdip_pickupplace(ddipVO.getDdip_pickupplace());
-//				ddipVO2.setDdip_deadline(ddipVO.getDdip_deadline());
-//				ddipVO2.setDdip_pickuptime(ddipVO.getDdip_pickuptime());
-//				ddipVO2.setDdip_picture_name(ddipVO.getDdip_picture_name());
-//				ddipVO2.setDdip_picture_enname(ddipVO.getDdip_picture_enname());
-//				ddipVO2.setB_fsize(ddipVO.getB_fsize());
-//				ddipVO2.setFileExtension(ddipVO.getFileExtension());
-//				ddipVO2.setDdip_picture(ddipVO.getDdip_picture());
 
 			ddipVO2.setDdip_id(ddipVO.getDdip_id());
 			ddipVO2.setStore_id(store_id);
@@ -218,7 +263,7 @@ public class StoreController {
 			ddipList.add(ddipVO2);
 
 		}
-		System.out.println("ddipList : " + ddipList);
+	
 		ddipService.setDdip2(ddipList);
 
 		model.addAttribute("ddipList", ddipService.getDdipList());
@@ -228,7 +273,16 @@ public class StoreController {
 
 	@RequestMapping("/06_DdipList")
 	public String ddip(Model model, HttpSession session) {
+		
+		Object customer_id = session.getAttribute("customer_id");
 
+		if (customer_id != null) {
+			
+			CustomerVO customerVO = storeService.getMyMoney((int) customer_id);
+			model.addAttribute("myMoney", customerVO.getCustomer_money());
+
+		} 
+		
 		model.addAttribute("ddipList", ddipService.getDdipList());
 
 		return "/ddip/06_DdipList";
@@ -247,10 +301,19 @@ public class StoreController {
 	}
 
 	@RequestMapping("07_Ddip")
-	public String getDdip(DdipVO vo, Model model) {
+	public String getDdip(DdipVO vo, Model model, HttpSession session) {
+		
+		Object customer_id = session.getAttribute("customer_id");
 
+		if (customer_id != null) {
+			
+			CustomerVO customerVO = storeService.getMyMoney((int) customer_id);
+			model.addAttribute("myMoney", customerVO.getCustomer_money());
+
+		} 
+		
 		DdipVO ddipvo = ddipService.getDdip(vo);
-		System.out.println(ddipvo);
+		
 		model.addAttribute("ddipvo", ddipvo);
 		return "/ddip/07_Ddip";
 	}
@@ -297,14 +360,13 @@ public class StoreController {
 	@ResponseBody
 	public Map<String,Object> get_list(@RequestBody ConditionVO conditionVO) {
 
-		System.out.println("conditionVO:" + conditionVO);
-
 		List<CustomerVO> customerList = storeService.getCustomerList(conditionVO);
 		Map<String,Object> customerMap = new HashMap<String, Object>();
 		customerMap.put("customerMap",customerList);
 		
 		return customerMap;
 	}
+	// 11
 	@RequestMapping("delete")
 	@ResponseBody
 	public void deleteCustomer(@RequestBody  String[] customerIdAry) {
@@ -312,5 +374,15 @@ public class StoreController {
 		storeService.deleteCustomer(customerIdAry);
 			
 	}
-
+	// 11
+	@RequestMapping("update")
+	@ResponseBody
+	public Map<String,Object> update(@RequestBody CustomerVO customerVO) {
+	
+		List<CustomerVO> customerList = storeService.update(customerVO);
+		Map<String,Object> customerMap = new HashMap<String, Object>();
+		customerMap.put("customerMap",customerList);
+		
+		return customerMap;
+	}
 }

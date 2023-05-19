@@ -25,4 +25,11 @@ public class CustomerVO {
 	String CUSTOMER_ADDRESS3;
 	String CUSTOMER_ADDRESS4;
 	
+	int customer_id_j;
+	String customer_name_j;
+	String customer_prefermenu_j;
+	String customer_preferstore_j;
+	String customer_birthday_j;
+	String customer_gender_j;
+	
 }

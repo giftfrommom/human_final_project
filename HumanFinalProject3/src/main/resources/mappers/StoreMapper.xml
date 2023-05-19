@@ -4,6 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="storeDAO">
+	
+	<select id="getMyMoney" parameterType="Integer" resultType="customer">
+		SELECT CUSTOMER_MONEY
+		FROM CUSTOMER
+		WHERE CUSTOMER_ID = #{value}
+	</select>
 
 	<select id="getStoreList" resultType="store">
 		SELECT *
@@ -58,7 +64,7 @@
 		  SELECT CUSTOMER_ID, CUSTOMER_NAME, CUSTOMER_PREFERMENU, CUSTOMER_PREFERSTORE, CUSTOMER_GENDER, CUSTOMER_BIRTHDAY
 		  FROM CUSTOMER
 		  WHERE 1=1	
-		   <if test="gender != null">
+		   <if test="gender != ''">
 			    <choose>
 			        <when test="gender == 'male'">
 			            AND CUSTOMER_GENDER = '남'
@@ -68,28 +74,48 @@
 			        </when>
 			    </choose>
 			</if> 
-			<if test="combo1_options != null and combo1_options != 'none'"> -->
+			<if test="combo1_options != '' and combo1_options != 'none'"> -->
 		      AND CUSTOMER_PREFERMENU = #{combo1_options}
 		    </if>
-		    <if test="combo2_options != null and combo2_options != 'none'">
+		    <if test="combo2_options != '' and combo2_options != 'none'">
 		      AND CUSTOMER_PREFERSTORE = #{combo2_options}
 		    </if>
-		    <if test="categoryName != null and categoryName != 'none' and search != null">
+		    <if test="categoryName != '' and categoryName != 'none' and search != ''">
 			  AND ${categoryName} LIKE '%' || #{search} || '%'
 			</if>	
+			<if test="startDate != ''">	
+		      AND CUSTOMER_BIRTHDAY &gt;= TO_DATE(#{startDate})		
+		    </if>
+		    <if test="endDate != ''">
+		      AND CUSTOMER_BIRTHDAY &lt;= TO_DATE(#{endDate})
+		    </if>
 			ORDER BY CUSTOMER_ID ASC
-<!-- 			<if test="startDate != null">	 -->
-<!-- 		      AND CUSTOMER_BIRTHDAY &gt;= TO_DATE(#{startDate}) -->
-<!-- 		    </if> -->
-<!-- 		    <if test="endDate != null"> -->
-<!-- 		      AND CUSTOMER_BIRTHDAY &lt;= TO_DATE(#{endDate}) -->
-<!-- 		    </if> -->
 	</select>
 	
 	<delete id="deleteCustomer" parameterType="String">
 			DELETE FROM CUSTOMER
 			WHERE CUSTOMER_ID = #{value}
 	</delete>
+	
+	<update id="update" parameterType="customer">
+			UPDATE CUSTOMER
+			SET 
+			<if test="customer_name_j != ''">
+			CUSTOMER_NAME = #{customer_name_j},
+			</if>
+			CUSTOMER_PREFERMENU = #{customer_prefermenu_j},
+			CUSTOMER_PREFERSTORE = #{customer_preferstore_j},
+			 <choose>
+			        <when test="customer_gender_j == 'm_male'">
+			            CUSTOMER_GENDER = '남',
+			        </when>
+			        <when test="customer_gender_j == 'm_female'">
+			            CUSTOMER_GENDER = '여',
+			        </when>
+			    </choose>
+			CUSTOMER_BIRTHDAY = #{customer_birthday_j}
+			WHERE CUSTOMER_ID = #{customer_id_j}
+	</update>
   
 	   
 	

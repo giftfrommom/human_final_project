@@ -49,6 +49,14 @@ public class DdipServiceImpl implements DdipService{
 		
 		ddipDAO.setDdip2(ddipList);
 	}
+
+
+	@Override
+	public void minusMoney(int menuSum, int customer_id) {
+		
+		ddipDAO.minusMoney(menuSum,customer_id);
+		
+	}
 	
 	
 

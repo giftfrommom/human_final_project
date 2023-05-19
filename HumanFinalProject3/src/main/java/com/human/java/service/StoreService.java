@@ -27,5 +27,9 @@ public interface StoreService {
 
 	void deleteCustomer(String[] customerIdAry);
 
+	List<CustomerVO> update(CustomerVO customerVO);
+
+	CustomerVO getMyMoney(int customer_id);
+
 
 }

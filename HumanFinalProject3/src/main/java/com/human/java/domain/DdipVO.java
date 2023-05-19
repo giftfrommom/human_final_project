@@ -75,7 +75,7 @@ public class DdipVO {
 //			File f = new File("C:\\Users\\human\\Desktop\\sts\\HumanFinalProject2\\src\\main\\webapp\\resources\\upload\\"+ddip_picture_enname+fileExtension);
 //			File f = new File("C:\\Users\\human\\Desktop\\sts\\HumanFinalProject5\\src\\main\\webapp\\resources\\upload\\"+ddip_picture_enname+fileExtension);
 //			File f = new File("C:\\1.develop\\spring\\HumanFinalProject4\\src\\main\\webapp\\resources\\upload\\"+ddip_picture_enname+fileExtension);
-			File f = new File("C:\\Users\\ejs11\\git\\human_final_project2\\HumanFinalProject3\\src\\main\\webapp\\resources\\upload\\"+ddip_picture_enname+fileExtension);
+			File f = new File("C:\\Users\\human\\git\\human_final_project\\HumanFinalProject3\\src\\main\\webapp\\resources\\upload\\"+ddip_picture_enname+fileExtension);
 			
 			
 			try {

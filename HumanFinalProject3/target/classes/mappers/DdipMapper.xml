@@ -164,6 +164,15 @@
 		DDIP_ID = #{ddipList[0].ddip_id}
 	</update>
 	
+	<update id="minusMoney" parameterType="java.util.Map">
+		UPDATE CUSTOMER
+		SET
+		CUSTOMER_MONEY = (SELECT CUSTOMER_MONEY
+						  FROM CUSTOMER
+						  WHERE CUSTOMER_ID = #{customer_id}) - #{menuSum}
+		WHERE CUSTOMER_ID = #{customer_id}
+	</update>
+	
 </mapper>
 
 

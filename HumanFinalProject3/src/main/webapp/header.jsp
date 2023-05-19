@@ -248,10 +248,10 @@
             <li><a id="" class="navbar_detail" href="">커뮤니티</a></li>
             <li><a id="" class="navbar_detail" href="">고객센터</a></li>
         </ul>
-        <ul class="navbar__icons" style="padding-left: 200px; margin-top: 13px">
+        <ul class="navbar__icons" style="padding-left: 150px; margin-top: 13px">
             <li class="beforeLogin" style="cursor: pointer; color: black;"><a href='../member/13_Login.do'>로그인</a></li>
             <li class="beforeLogin" style="cursor: pointer; color: black;"><a href='../member/14_join.do'>회원가입</a></li>
-            <li class="afterLogin holdingMoney" style="color: black; display : none;" >보유 띱머니:14000</li>
+            <li class="afterLogin holdingMoney" style="color: black; display : none;" >보유 띱머니:${myMoney} </li>
             <li class="afterLogin logout" style="cursor: pointer; color: black; display : none;"><a href='../member/logout.do'>로그아웃</a></li>
             <input type="checkbox" id="menuicon">
             <label for="menuicon" style="margin-left: 35px;">

@@ -18,5 +18,7 @@ public interface DdipService {
 
 	void setDdip2(List<DdipVO> ddipList);
 
+	void minusMoney(int menuSum, int customer_id);
+
 
 }
