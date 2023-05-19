@@ -113,7 +113,8 @@ public class MypageController {
    
    @RequestMapping("08_ChargeMoney")
    public String ChargeMoney(int chargeAmount, Model model,HttpSession session){
-	   System.out.println(chargeAmount);
+	   System.out.println("chargeAmount:"+chargeAmount);
+	   System.out.println("세션:"+((int) session.getAttribute("customer_id")));
 	   
 	   CustomerVO vo = new CustomerVO();
 	   vo.setCustomer_money(chargeAmount);

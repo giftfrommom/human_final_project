@@ -307,13 +307,8 @@ select {
 				<a href="10_coupone.do" style="color: white"><li class="sidebar-item">쿠폰함</li></a>
 				<a href="08_Payment.do" style="color: white"><li class="sidebar-item" style="cursor: pointer; background-color: white; color: black;"><strong>띱머니충전</strong></li></a>
 				<a href="/" style="color: white"><li class="sidebar-item">채팅</li></a>
-<<<<<<< HEAD
 				<a href="11_management.do" style="color: white"><li class="sidebar-item">회원관리</li></a>
               </div>
-=======
-				<a href="/" style="color: white"><li class="sidebar-item">회원관리</li></a>
-			</div>
->>>>>>> branch 'main' of https://github.com/giftfrommom/human_final_project.git
 		</div>
 	</ul>
 	</nav>
@@ -321,11 +316,10 @@ select {
 	<div class="charge" style="margin-left: 350px;">
 		<h1>띱머니 충전</h1>
 		<form id="08_ChargeMoney" action="08_ChargeMoney" method="GET">
-			<label>현재금액:${vo3.customer_money}</label> <label for="chargeAmount">충전할
-				금액:</label> <input type="number" id="chargeAmount" name="chargeAmount"
-				required>
-			<button type="button" style="float: right; margin-right: 30px;"
-				onclick="setChargeAmount('')">직접입력</button>
+			<label>현재금액:${vo3.customer_money}</label>
+			 <label for="chargeAmount">충전할 금액:</label>
+			<input type="number" id="chargeAmount" name="chargeAmount" required>
+			<button type="button" style="float: right; margin-right: 30px;" onclick="setChargeAmount('')">직접입력</button>
 			<br> <br>
 
 			<button type="button" onclick="setChargeAmount(10000)">1만원</button>

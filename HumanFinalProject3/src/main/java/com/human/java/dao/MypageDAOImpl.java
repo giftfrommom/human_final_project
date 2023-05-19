@@ -27,9 +27,9 @@ public class MypageDAOImpl implements MypageDAO{
 	
 	@Override
 	public CustomerVO ChargeMoney(CustomerVO vo) {
-	
-		CustomerVO aa = mybatis.selectOne("mypageDAO.ChargeMoney",vo);
-		mybatis.update("mypageDAO.updatemoney", aa);
+		System.out.println("vo:         "+vo);
+		mybatis.update("mypageDAO.updatemoney", vo);
+		CustomerVO aa = mybatis.selectOne("mypageDAO.SelectMoney",vo);
 		System.out.println("확인"+aa);
 		return aa;
 	}

@@ -9,8 +9,8 @@
 		select * from CUSTOMER where CUSTOMER_ID = #{CUSTOMER_ID}
 	</select>
 
-	<select id="ChargeMoney" parameterType="customer" resultType="customer"> 
-		SELECT customer_money + #{customer_money} as CUSTOMER_MONEY
+	<select id="SelectMoney" parameterType="customer" resultType="customer"> 
+		SELECT customer_money
 		FROM CUSTOMER
 		WHERE CUSTOMER_ID = #{CUSTOMER_ID}
 	</select>
@@ -23,7 +23,9 @@
 	
 	<update id="updatemoney" parameterType="customer">
 		UPDATE CUSTOMER
-    	SET customer_money = #{customer_money} 
+    	SET customer_money = (SELECT customer_money
+    						  FROM CUSTOMER
+    						  WHERE CUSTOMER_ID = #{CUSTOMER_ID} ) + #{customer_money} 
     	WHERE CUSTOMER_ID = #{CUSTOMER_ID}
 	</update>
 	
