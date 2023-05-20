@@ -246,6 +246,7 @@
 	}
 	#map{
 		margin-top:15px;
+		width:100%;
 	}
 </style>
 </head>
@@ -280,7 +281,7 @@
 							<div class="input-group">
 								<input class="place form-control" name="ddip_pickupplace" type="text" placeholder="${ddipvo.ddip_pickupplace }" readonly/>                          
 							</div>
-							<div id="map"class="img-fluid rounded" style="width:746px;height:280px;"></div>                                                    
+							<div id="map"class="img-fluid rounded" style="width:822px;height:280px;"></div>                                                    
 						</div>
 					</div>  
                     <div class="card mb-4 card-3">

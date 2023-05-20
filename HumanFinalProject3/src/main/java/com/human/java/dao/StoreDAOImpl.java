@@ -84,6 +84,19 @@ public class StoreDAOImpl implements StoreDAO{
 		
 		return mybatis.selectOne("storeDAO.getMyMoney",customer_id);
 	}
+
+	@Override
+	public List<CustomerVO> reviewWrite(StoreVO storeVO) {
+		mybatis.insert("storeDAO.reviewWrite", storeVO);
+		return null;
+	}
+
+	@Override
+	public void reviewDelete(StoreVO storeVO) {
+		
+		mybatis.delete("storeDAO.reviewDelete", storeVO);
+		
+	}
 	
 
 }

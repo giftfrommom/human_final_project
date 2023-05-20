@@ -139,6 +139,9 @@
 	
 	.card-3 {
 	  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+	  justify-content: center; 
+        align-items: center; 
+        text-align:center;
 	}
 	.imagecontainer{
 		width: 220px;
@@ -146,7 +149,7 @@
 		display: flex; 
  		justify-content: center; 
         align-items: center; 
-      text-align:center;
+        text-align:center;
 	}
 	.imagecontainer .card-img-top{
 		width:80%;
@@ -188,7 +191,10 @@
 		justify-content: center;
         align-items: center;
 	}
-	
+	.average_rating{
+		font-size:12px;
+		font-family: 'gwangyangregular';  
+	}
 	
 </style>
 </head>
@@ -225,19 +231,20 @@
 							<div class="star-ratings-container">
 								<div class="star-ratings">
 									<!-- 별점  db에서 가져와야함 -->
-									<div class="star-ratings-fill space-x-2 text-lg" style=" width: 0% ">
+									<div class="star-ratings-fill space-x-2 text-lg" style=" width: ${store.average_rating/5.0*100.0}% ">
 										<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 									</div>
 									<div class="star-ratings-base space-x-2 text-lg">
 										<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 									</div>
+									<span class="average_rating">(${store.average_rating})</span>
 								</div>
 							</div>
 						</div>				
 						<!-- Product actions-->
 						<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 							<div class="text-center">
-								<a class="btn btn-outline-dark mt-auto position-absolute start-50 translate-middle-x" style="bottom:2rem;" href="04_Store.do?store_id=${store.store_id}">띱 버튼</a>
+								<a class="btn btn-outline-dark mt-auto position-absolute start-50 translate-middle-x" style="bottom:1rem;" href="04_Store.do?store_id=${store.store_id}">띱 버튼</a>
 							</div>
 						</div>
 					</div>                   

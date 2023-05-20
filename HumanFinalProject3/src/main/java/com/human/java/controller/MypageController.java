@@ -17,6 +17,7 @@ import com.human.java.domain.CouponVO;
 import com.human.java.domain.CustomerVO;
 import com.human.java.domain.DdipVO;
 import com.human.java.service.MypageService;
+import com.human.java.service.StoreService;
 
 import oracle.jdbc.proxy.annotation.Post;
 
@@ -25,8 +26,10 @@ import oracle.jdbc.proxy.annotation.Post;
 public class MypageController {
    
    @Autowired
-      private MypageService mypageService;
+   private MypageService mypageService;
    
+   @Autowired
+   private StoreService storeService;
    @RequestMapping("{url}.do")
    public String userViewPage(@PathVariable String url) {
       System.out.println("## user Controller 진입 ##" + url);
@@ -34,8 +37,16 @@ public class MypageController {
    }
    
    @RequestMapping("01_Main.do")
-    public String main1(String CUSTOMER_LOGINID, CustomerVO vo, HttpSession session) {
+    public String main1(String CUSTOMER_LOGINID, CustomerVO vo, HttpSession session, Model model) {
       
+	   Object customer_id = session.getAttribute("customer_id");
+
+		if (customer_id != null) {
+			
+			CustomerVO customerVO = storeService.getMyMoney((int) customer_id);
+			model.addAttribute("myMoney", customerVO.getCustomer_money());
+
+		} 
       
       System.out.println("입력한 값 " + vo.getCUSTOMER_LOGINID() );
       // session 저장

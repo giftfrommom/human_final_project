@@ -1,5 +1,9 @@
 $(function() {
 	
+	$('.message').click(function(){
+		alert("1");
+	})
+	
 	var hiddenDiv = $("#hidden_ddip_id");
 	var classValue = hiddenDiv.attr("class");
 	var ddip_id = classValue.substring(classValue.indexOf("ddip_id") + 7);
@@ -37,7 +41,7 @@ $(function() {
 			  var remainingTime = deadlineDate - currentTime;
 			
 			  if (remainingTime <= 0) { 
-				  countdownElement.text("마감되었습니다.");
+				  ddip_deadlineTarget.text("마감되었습니다.");
 				  return;
 			  }
 			

@@ -12,18 +12,22 @@
 	</select>
 
 	<select id="getStoreList" resultType="store">
-		SELECT *
-		  FROM STORE
-	  ORDER BY STORE_ID ASC
+		SELECT S.STORE_ID, S.STORE_TYPE, S.STORE_NAME, ROUND(AVG((R.REVIEW_RATING_TASTE + R.REVIEW_RATING_AMOUNT + R.REVIEW_RATING_STATE) / 3), 1) AS AVERAGE_RATING
+		FROM STORE S, REVIEW R
+		WHERE S.STORE_ID = R.STORE_ID
+		GROUP BY S.STORE_ID, S.STORE_TYPE, S.STORE_NAME
+	    ORDER BY STORE_ID ASC
 	</select>
 	
 	<select id="getStoreTypeList" parameterType="String" resultType="store">
-		SELECT *
-		  FROM STORE 
-		 <if test='_parameter != "all"'>
-			WHERE STORE_TYPE=#{value}
-		 </if>
-	     ORDER BY STORE_ID ASC
+	    SELECT S.STORE_ID, S.STORE_TYPE, S.STORE_NAME, ROUND(AVG((R.REVIEW_RATING_TASTE + R.REVIEW_RATING_AMOUNT + R.REVIEW_RATING_STATE) / 3), 1) AS AVERAGE_RATING
+		FROM STORE S, REVIEW R
+		WHERE S.STORE_ID = R.STORE_ID 
+		<if test='_parameter != "all"'>
+		AND STORE_TYPE=#{value}
+		</if> 
+		GROUP BY S.STORE_ID, S.STORE_TYPE, S.STORE_NAME
+	    ORDER BY STORE_ID ASC
 	</select>
 	
 	<select id="getStore" parameterType="Integer" resultType="store">
@@ -33,16 +37,18 @@
 	</select>
 	
 	<select id="getReviewList" parameterType="Integer" resultType="store">
-		 SELECT REVIEW_ID, 
-				STORE_ID, 
-				CUSTOMER_ID,
-				REVIEW_CONTENT, 
-				REVIEW_RATING_TASTE,
-				REVIEW_RATING_AMOUNT,
-				REVIEW_RATING_STATE,
-				REVIEW_LIKE
-		   FROM REVIEW
-		  WHERE STORE_ID =#{value}
+		   SELECT R.REVIEW_ID, 
+				R.STORE_ID, 
+				R.CUSTOMER_ID,
+				R.REVIEW_CONTENT, 
+				R.REVIEW_RATING_TASTE,
+				R.REVIEW_RATING_AMOUNT,
+				R.REVIEW_RATING_STATE,
+				R.REVIEW_LIKE,
+                C.CUSTOMER_NAME             
+			   FROM REVIEW R , CUSTOMER C
+	           WHERE R.CUSTOMER_ID = C.CUSTOMER_ID
+	           AND STORE_ID = #{value}
 	</select>
 	
 	<select id="getBestPlace" parameterType="Integer" resultType="bestplace">
@@ -116,7 +122,30 @@
 			CUSTOMER_BIRTHDAY = #{customer_birthday_j}
 			WHERE CUSTOMER_ID = #{customer_id_j}
 	</update>
-  
+  	
+  	<update id="reviewWrite" parameterType="store">
+  		INSERT INTO REVIEW
+  		(REVIEW_ID, 
+  		STORE_ID, 
+  		CUSTOMER_ID, 
+  		REVIEW_CONTENT, 
+  		REVIEW_RATING_TASTE, 
+  		REVIEW_RATING_AMOUNT, 
+  		REVIEW_RATING_STATE)
+  		VALUES
+  		(review_test_seq.NEXTVAL, 
+  		#{store_id},
+  		#{customer_id},
+  		#{review_content},
+  		#{review_rating_taste},
+  		#{review_rating_amount},
+  		#{review_rating_state}) 
+  	</update>
+  	
+  	<delete id="reviewDelete" parameterType="store">
+  		DELETE FROM REVIEW
+  		WHERE REVIEW_ID = #{review_id}
+  	</delete>
 	   
 	
 	

@@ -564,50 +564,37 @@
 	                    <div class="cell preferStore">선호가게</div>
 	                    <div class="cell birth">생년월일</div>
 	                </div>
-	                <div class="row">
-	                    <div class="select">
-	                    	<div class="form-check">
-							  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-							</div>
-	                    </div>
-	                    <div class="cell num">1</div>
-	                    <div class="cell customerId">1004</div>
-	                    <div class="cell name">엄준상</div>
-	                    <div class="cell gender">남</div>
-	                    <div class="cell preferFood">치킨</div>
-	                    <div class="cell preferStore">교촌치킨</div>
-	                    <div class="cell birth">1996.11.27</div>
-	                </div>  
-	                <div class="row">
-	                    <div class="select">
-	                    	<div class="form-check">
-							  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-							</div>
-	                    </div>
-	                    <div class="cell num">2</div>
-	                    <div class="cell customerId">2004</div>
-	                    <div class="cell name">김김김</div>
-	                    <div class="cell gender">남</div>
-	                    <div class="cell preferFood">치킨</div>
-	                    <div class="cell preferStore">교촌치킨</div>
-	                    <div class="cell birth">1996.11.27</div>
-	                </div>             
+<!-- 	                <div class="row"> -->
+<!-- 	                    <div class="select"> -->
+<!-- 	                    	<div class="form-check"> -->
+<!-- 							  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> -->
+<!-- 							</div> -->
+<!-- 	                    </div> -->
+<!-- 	                    <div class="cell num">1</div> -->
+<!-- 	                    <div class="cell customerId">1004</div> -->
+<!-- 	                    <div class="cell name">엄준상</div> -->
+<!-- 	                    <div class="cell gender">남</div> -->
+<!-- 	                    <div class="cell preferFood">치킨</div> -->
+<!-- 	                    <div class="cell preferStore">교촌치킨</div> -->
+<!-- 	                    <div class="cell birth">1996.11.27</div> -->
+<!-- 	                </div>   -->
+<!-- 	                <div class="row"> -->
+<!-- 	                    <div class="select"> -->
+<!-- 	                    	<div class="form-check"> -->
+<!-- 							  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault"> -->
+<!-- 							</div> -->
+<!-- 	                    </div> -->
+<!-- 	                    <div class="cell num">2</div> -->
+<!-- 	                    <div class="cell customerId">2004</div> -->
+<!-- 	                    <div class="cell name">김김김</div> -->
+<!-- 	                    <div class="cell gender">남</div> -->
+<!-- 	                    <div class="cell preferFood">치킨</div> -->
+<!-- 	                    <div class="cell preferStore">교촌치킨</div> -->
+<!-- 	                    <div class="cell birth">1996.11.27</div> -->
+<!-- 	                </div>              -->
 	            </div>
-	            <div class="board_page">
-	                <a href="#" class="bt first"><<</a>
-	                <a href="#" class="bt prev"><</a>
-	                <a href="#" class="num on">1</a>
-	                <a href="#" class="num">2</a>
-	                <a href="#" class="num">3</a>
-	                <a href="#" class="num">4</a>
-	                <a href="#" class="num">5</a>
-	                <a href="#" class="bt next">></a>
-	                <a href="#" class="bt last">>></a>
-	            </div>
-	            <div class="bt_wrap">
-	                <a href="write.html" class="on">등록</a>
-	                <!--<a href="#">수정</a>-->
-	            </div>
+	           
+	        
 	        </div>
 	    </div>
     </div>

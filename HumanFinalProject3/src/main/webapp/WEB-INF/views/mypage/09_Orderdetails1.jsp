@@ -273,17 +273,12 @@ h1 {
 				<div style="border: 1px solid white;"></div>
 			</div>
 			<div class="sidebar-body" style="margin-top: 30px;">
-				<a href="02_info.do" style="color: white"><li
-					class="sidebar-item" style="cursor: pointer;">회원정보</li></a> <a
-					href="09_Orderdetails1.do"><li class="sidebar-item"
-					style="cursor: pointer; background-color: white; color: black;"><strong>주문내역</strong></li></a>
-				<a href="10_coupone.do" style="color: white"><li
-					class="sidebar-item" style="cursor: pointer;">쿠폰함</li></a> <a
-					href="08_Payment.do" style="color: white"><li
-					class="sidebar-item" style="cursor: pointer;">띱머니충전</li></a> <a
-					style="color: white"><li class="sidebar-item"
-					style="cursor: pointer;">채팅</li></a> <a style="color: white"><li
-					class="sidebar-item" style="cursor: pointer;">회원관리</li></a>
+				<a href="02_info.do" style="color: white"><li class="sidebar-item" style="cursor: pointer;">회원정보</li></a> 
+				<a href="09_Orderdetails1.do"><li class="sidebar-item" style="cursor: pointer; background-color: white; color: black;"><strong>주문내역</strong></li></a>
+				<a href="10_coupone.do" style="color: white"><li class="sidebar-item" style="cursor: pointer;">쿠폰함</li></a>
+				<a href="08_Payment.do" style="color: white"><li class="sidebar-item" style="cursor: pointer;">띱머니충전</li></a> 
+				<a style="color: white"><li class="sidebar-item" style="cursor: pointer;">채팅</li></a>
+				<a href="11_management2.do" style="color: white"><li class="sidebar-item" style="cursor: pointer;">회원관리</li></a>
 			</div>
 		</div>
 	</ul>

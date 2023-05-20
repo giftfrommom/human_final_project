@@ -21,7 +21,12 @@ public class StoreVO {
 	int review_rating_taste;
 	int review_rating_amount;
 	int review_rating_state;
+	float average_rating;
 	int review_like;
+	
+	//
+	String customer_name;
+	int customer_id;
 	
 	
 }

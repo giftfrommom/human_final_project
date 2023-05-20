@@ -111,11 +111,8 @@ $(function() {
 						var store_name = storeList.store_name;
 						var store_type = storeList.store_type;
 						var store_id = storeList.store_id;
-						//평점을 나타내는 변수
-						var DBrating = 3.2;
-						  
-						//평점을 백분율 값으로 변환
-						var DBratingToPercent = (DBrating / 5) * 100;
+						var average_rating = storeList.average_rating;
+						
 						  
 						var htmlplus = 
 							'<div class="col mb-5">'+
@@ -132,19 +129,20 @@ $(function() {
 							'<!-- Product reviews-->'+
 							'<div class="star-ratings-container">'+
 							'<div class="star-ratings">'+
-							'<div class="star-ratings-fill space-x-2 text-lg" style=" width: '+DBratingToPercent+'% ">'+
+							'<div class="star-ratings-fill space-x-2 text-lg" style=" width: '+average_rating/5.0*100.0+'% ">'+
 							'<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>'+
 							'</div>'+
 							'<div class="star-ratings-base space-x-2 text-lg">'+
 							'<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>'+
 							'</div>'+
+							'<span class="average_rating">('+average_rating+')</span>'+
 							'</div>'+
 							'</div>'+
 							'</div>'+			
 							'<!-- Product actions-->'+
 							'<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">'+
 							'<div class="text-center">'+
-							'<a class="btn btn-outline-dark mt-auto position-absolute start-50 translate-middle-x" style="bottom:2rem;" href="04_Store.do04_Store.do?id='+store_id+'">띱 버튼</a>'+
+							'<a class="btn btn-outline-dark mt-auto position-absolute start-50 translate-middle-x" style="bottom:1rem;" href="04_Store.do04_Store.do?store_id='+store_id+'">띱 버튼</a>'+
 							'</div>'+
 							'</div>'+
 							'</div>'+               
@@ -164,7 +162,7 @@ $(function() {
 	})		
 			
 	// 04_Store ajax탭 이동	
-	$('.TabMenuReview').off().on('click','.nav-link',function(){
+	$('.left').off().on('click','.nav-link',function(){
 		
 		var store_id = $('#hidden_store_id').attr('class').slice(-1);
 		
@@ -182,7 +180,7 @@ $(function() {
 			datatype : "json",
 			success : function(reviewMap){ 
 			
-				var html="";
+				var html='<div class="reviewWrite" style="cursor:pointer;">리뷰쓰기</div>';
 					
 				$.each(reviewMap, function(index, reviewList) { 
 					$.each(reviewList, function(index, reviewList) {
@@ -192,26 +190,27 @@ $(function() {
 						var review_rating_amount = reviewList.review_rating_amount;
 						var review_rating_state = reviewList.review_rating_state;
 						var review_like = reviewList.review_like;
-				var htmlplus = 
-					'        <div class="review card-1">' +
+						var customer_name = reviewList.customer_name;
+						var customer_id = reviewList.customer_id;
+						
+				var htmlplus = 					
+					'        <div class="review card-1 review_id'+review_id+'" style=" width: 490px;">' +
 					'            <div class="hstack gap-3">' +
-					'                <div class="me-auto">' +
-					'                    아이디' +
+					'                <div class="me-auto">'+customer_name+'</div>' +
+					'                <div>' +
+					'                    <div class="edit customer_id'+customer_id+'" style="cursor:pointer;">수정</div>' +
 					'                </div>' +
 					'                <div>' +
-					'                    <a href="#">수정</a>' +
-					'                </div>' +
-					'                <div>' +
-					'                    <a href="#">삭제</a>' +
+					'                    <div id=review_id'+review_id+' class="delete customer_id'+customer_id+'" style="cursor:pointer;">삭제</div>' +
 					'                </div>' +
 					'            </div>' +
 					'            <div class="hstack gap-3">' +
 					'                <div class="me-auto">' +
 					'                    맛★'+review_rating_taste+' 양★'+review_rating_amount+' 상태★'+review_rating_state+'' +
 					'                </div>' +
-					'                <div>' +
-					'                    <a href="#">좋아요 '+review_like+'</a>' +
-					'                </div>' +
+//					'                <div>' +
+//					'                    <div class="review_like" style="cursor:pointer;">좋아요 '+review_like+'</div>' +
+//					'                </div>' +
 					'            </div>' +
 					'            <div class="hstack gap-3">' +
 					'                <div class="me-auto">' +
@@ -241,6 +240,116 @@ $(function() {
 			
 	})	
 	
+	//04_Store review edit
+	$('.container').off().on('click', '.edit', function() {
+		alert("수정");
+	});
+	
+	//04_Stroe review write
+	$('.TabReview').off().on('click', '.reviewWrite', function() {
+		$('#modal_04_write').addClass('show');
+	});
+	//04_Stroe review write 확인 버튼
+	$('#save_btn_04_write').off().click(function(){
+		var stateRating = $(".m_combo_write:eq(0)").val();
+	    var tasteRating = $(".m_combo_write:eq(1)").val();
+	    var amountRating = $(".m_combo_write:eq(2)").val();
+	    var store_id = $("#hidden_store_id").attr("class").split("store_id")[1];
+	    var customer_id = $("#hidden_customer_id").attr("class").split("customer_id")[1];
+	    var reviewText = $(".area_review_write").val();
+
+	    var review = {
+	    	"customer_id":customer_id,
+	    	"store_id":store_id,
+		    "review_rating_state": stateRating,
+		    "review_rating_taste": tasteRating,
+		    "review_rating_amount": amountRating,
+		    "review_content": reviewText
+	    };
+		$.ajax({
+			anyne:true,
+			type:'POST',
+			data: JSON.stringify(review),
+			url: "/store/reviewWrite",
+			datatype : "text",
+			contentType:"application/json; charset=utf-8", //개애ㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐㅐ중요
+			success: function(customerMap) {
+				$('#modal_04_write').removeClass('show');		
+				Swal.fire({
+					  title: '리뷰 작성',
+					  text: "리뷰 작성 성공",
+					  icon: 'success',
+					  showCancelButton: true,
+					  showConfirmButton: false,
+					  cancelButtonColor: '#0AC290',
+					  cancelButtonText: '확인'
+				})		
+			},
+			error: function(xhr, status, error) {
+			alert("AJAX Error:", error);
+			}
+			
+		});
+	})
+	////04_Store.jsp모달창 닫기
+	$('#modal_04_write').on('click', '.close_btn', function () {
+	 
+		$('#modal_04_write').removeClass('show');			
+
+	});
+	
+	//04_Store review delete
+	$('.TabReviewdepth1').off().on('click', '.review .delete', function() {
+		var otherClass = $(this).attr('class').split(" ")[1];
+		var customerId = $('#hidden_customer_id').attr('class');
+		if (customerId !== otherClass){
+			Swal.fire({
+				  title: '삭제 오류',
+				  text: "작성한 리뷰만 삭제할 수 있습니다.",
+				  icon: 'warning',
+				  showCancelButton: true,
+				  showConfirmButton: false,
+				  cancelButtonColor: '#0AC290',
+				  cancelButtonText: '확인'
+				})		
+		} else {
+			
+			var review_id = $(this).attr('id').split('review_id')[1];
+			var review = {
+					"review_id":review_id
+					};
+			$.ajax({
+				anyne:true,
+				type:'POST',
+				data: JSON.stringify(review),
+				url: "/store/reviewDelete",
+//				datatype : "text",
+				contentType:"application/json; charset=utf-8", 
+				success: function() {
+					
+					  $('.review_id'+review_id).remove(); 
+					  Swal.fire({
+						  title: '리뷰 삭제',
+						  text: "리뷰 삭제 성공",
+						  icon: 'success',
+						  showCancelButton: true,
+						  showConfirmButton: false,
+						  cancelButtonColor: '#0AC290',
+						  cancelButtonText: '확인'
+						})		
+				},
+				error: function(xhr, status, error) {
+				alert("AJAX Error:", error);
+				}
+				
+			});
+			
+		}
+
+	});
+	
+	
+	
 	//04_Store 수량 옵션
 	$('._count :button').off().on({'click' : function(){
 	        
@@ -268,6 +377,8 @@ $(function() {
 	        }
 	    }
 	});
+	
+
 			
 	//04_Store.jsp모달창 띄우기
 	// click on 라벨 추가 모달 열기

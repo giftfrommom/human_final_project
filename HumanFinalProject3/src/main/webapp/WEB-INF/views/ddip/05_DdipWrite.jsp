@@ -219,13 +219,6 @@
                         <!-- Post header-->
                         <header class="mb-4">
                             <!-- Post title-->
-                            <c:forEach items="${menuList}" var="menu">
-							  <tr>
-							    <td>${menu.menu_name}</td>
-							    <td>${menu.menu_price}</td>
-							    <td>${menu.menu_quantity}</td>
-							  </tr>
-							</c:forEach>
                             <div id="hidden_store_id" class="store_id${store_id}" style="display:none"></div>
                             <h1 class="fw-bolder mb-1 title">공구 게시물 작성 페이지</h1>
                             <!-- Post meta content-->

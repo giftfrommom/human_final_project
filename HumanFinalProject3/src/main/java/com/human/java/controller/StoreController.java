@@ -79,6 +79,7 @@ public class StoreController {
 		} 
 		
 		List<StoreVO> storeList = storeService.getStoreList();
+		System.out.println("storeList : "+storeList);
 		model.addAttribute("storeList", storeList);
 
 		return "/ddip/03_StoreList";
@@ -100,6 +101,7 @@ public class StoreController {
 	public Map<String, List<StoreVO>> getReviewList(int store_id) {
 
 		List<StoreVO> reviewList = storeService.getReviewList(store_id);
+		System.out.println("reviewList : " +reviewList);
 		Map<String, List<StoreVO>> reviewMap = new HashMap<String, List<StoreVO>>();
 		reviewMap.put("reviewMap", reviewList);
 
@@ -120,6 +122,7 @@ public class StoreController {
 		
 		List<StoreVO> storeInfo = storeService.getStore(store_id);
 		model.addAttribute("storeInfo", storeInfo);
+		model.addAttribute("customer_id", ((int) session.getAttribute("customer_id")));
 
 		return "/ddip/04_Store";
 	}
@@ -354,7 +357,29 @@ public class StoreController {
 		}
 
 	}
-
+	
+	// 04_reviewWrite
+	@RequestMapping("reviewWrite")
+	@ResponseBody
+	public Map<String,Object> reviewWrite(@RequestBody StoreVO storeVO) {
+		
+		List<CustomerVO> customerList = storeService.reviewWrite(storeVO);
+		Map<String,Object> customerMap = new HashMap<String, Object>();
+		customerMap.put("customerMap",customerList);
+		
+		return customerMap;
+	}
+	
+	// 04_reviewDelete
+	@RequestMapping("reviewDelete")
+	@ResponseBody
+	public void reviewDelete(@RequestBody StoreVO storeVO) {
+		
+		
+		storeService.reviewDelete(storeVO);
+	}
+		
+	
 	// 11 condition
 	@RequestMapping("get_list")
 	@ResponseBody

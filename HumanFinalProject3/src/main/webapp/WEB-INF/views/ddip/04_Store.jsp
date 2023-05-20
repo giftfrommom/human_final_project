@@ -73,7 +73,8 @@
 		margin-bottom:20px;
 	}
 	.card-1 {
-	  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+	  width:85%;
+	  box-shadow: 1px 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 	  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 	}
 	.review {
@@ -157,13 +158,31 @@
       left: 50%;
 
       width: 600px;
-      height: 400px;
+      height: 450px;
 
       background-color: rgb(255, 255, 255);
       border-radius: 10px;
       box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
 
       transform: translateX(-50%) translateY(-50%);
+    }
+    .modal_body_write {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+
+      width: 400px;
+      height: 200px;
+
+      background-color: rgb(255, 255, 255);
+      border-radius: 10px;
+      box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
+
+      transform: translateX(-50%) translateY(-50%);
+    }
+    .m_body_write{
+      height: 70%;
+      padding: 20px;
     }
     .m_head{
       padding: 10px 20px;
@@ -227,10 +246,13 @@
 	.hover:hover{
 		cursor:pointer;
 	}
-	.fixed-footer {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
+	.m_combo_write {
+        border: none;
+        outline: none;
+    }
+    .area_review_write{
+    	width: 100%;
+    	height: 90%;
     }
 
 </style>	 
@@ -246,10 +268,11 @@
                         <!-- Post header-->
                         <header class="mb-4"> 
                             <!-- Post title-->
-                            <div id="hidden_store_id" class="store_id${storeInfo[0].store_id}" style="display:none"></div>
+                            <div id="hidden_store_id" class="store_id${storeInfo[0].store_id}" style="display:none"></div>          
+							<div id="hidden_customer_id" class="customer_id${customer_id}" style="display:none;"></div>
                             <h1 class="fw-bolder mb-1 title">${storeInfo[0].store_name}</h1>
                             <!-- Post meta content-->
-                            <div class="text-muted fst-italic mb-2">Posted on January 1, 2023 by Start Bootstrap</div>
+                            <div class="text-muted fst-italic mb-2">Posted on May 2023 by ddip</div>
                         </header>
                         <!-- Preview image figure-->
                         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -282,8 +305,8 @@
 					<hr class="hrline">
 					
 					<div class="container TabReview" style="display:none"> 
-		                <div class="TabReviewdepth1" style="overflow:auto; width:500px;">
-<!-- 							<div class="review card-1"> -->
+		                <div class="TabReviewdepth1" style="overflow:scroll; height:300px;width:570px;">
+<!-- 							<div class="review card-1" > -->
 <!-- 								<div class="hstack gap-3"> -->
 <!-- 									<div class="me-auto"> -->
 <!-- 										아이디 -->
@@ -345,7 +368,7 @@
             </div>
         </div>
         
-		<!-- Modal -->		
+		<!-- Modal Order Table-->		
 		<div class="modal" id="modal_04">
 		  <div class="modal_body">
 		    <div class="m_head">
@@ -394,7 +417,60 @@
 		  </div>
 		</div>
 		
-		<!-- 메뉴 리스트 전달 히든 폼 -->
+	<!-- Modal Review Write-->
+	<div class="modal" id="modal_04_write">
+		<div class="modal_body_write">
+			<div class="m_head">
+				<div class="modal_title">리뷰 작성</div>
+				<div class="close_btn" ="close_btn">X</div>
+			</div>
+			<div class="m_body_write">
+				<div class="container ModalMenu"></div>
+				<span>
+					맛 : &nbsp;<select class="m_combo_write">
+					   <option value="none" selected>별점</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+				</span>
+				<span>
+					상태 : &nbsp;<select class="m_combo_write">
+					   <option value="none" selected>별점</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+				</span>
+				<span>
+					양 : &nbsp;<select class="m_combo_write">
+					   <option value="none" selected>별점</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+				</span>
+				<div>
+					리뷰
+					<div> 
+						<textArea class="area_review_write"></textArea>
+					</div>
+				</div>
+			</div>
+			<div class="m_footer">
+				<div class="hover modal_btn cancle close_btn" >취소</div>
+				<div class="hover modal_btn save" id="save_btn_04_write">확인</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 메뉴 리스트 전달 히든 폼 -->
 		<form id="menuForm" method="post" action="/store/05_DdipWrite">
 			<input type="hidden" name="menuList" id="menuList"/>
 			<input type="hidden" name="store_id" id="store_id" value="${storeInfo[0].store_id}"/>

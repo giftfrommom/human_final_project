@@ -31,5 +31,9 @@ public interface StoreService {
 
 	CustomerVO getMyMoney(int customer_id);
 
+	List<CustomerVO> reviewWrite(StoreVO storeVO);
+
+	void reviewDelete(StoreVO storeVO);
+
 
 }

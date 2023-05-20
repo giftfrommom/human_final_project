@@ -9,7 +9,7 @@
 <meta name="author"
 	content="Mark Otto, Jacob Thornton, 그리고 Bootstrap 기여자들">
 <meta name="generator" content="Hugo 0.104.2">
-<title>Checkout example · Bootstrap v5.2</title>
+<title>회원가입</title>
 <!-- ajax -->
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-1.9.0.js"></script>
@@ -166,16 +166,16 @@
 <!-- Custom styles for this template -->
 <link href="form-validation.css" rel="stylesheet">
 </head>
-<h2>로고</h2>
 <body class="bg-light">
 
-	<div class="container">
-
+	<div class="container" >
+		<div style="display: flex;justify-content: center;align-items: center;margin-left: 350px;">
 		<div class="py-5 text-center"></div>
 		<main>
 
 			<div class="row g-12">
 
+<!-- 				<h2>로고</h2> -->
 				<form method="post" class="needs-validation" name="userinput" action="userInsert.do"
 					onsubmit="return false;" novalidate>
 					<div class="col-md-7 col-lg-8">
@@ -261,18 +261,18 @@
 							</div>
 							
 							
-
+							<div class="col-6">
+								<input type="text" style="margin-top: 32px;"
+									class="form-control" id="CUSTOMER_PREFERMENU" placeholder="메뉴" name="CUSTOMER_PREFERMENU"
+									required>
+							<div class="invalid-feedback">음식</div>
 							<div class="col-6">
 								<label for="address" class="form-label">선호가게메뉴</label> <input
 									type="text" class="form-control" id="CUSTOMER_PREFERSTORE" name="CUSTOMER_PREFERSTORE"
 									placeholder="가게" required>
 								<div class="invalid-feedback">메뉴</div>
 							</div>
-							<div class="col-6">
-								<input type="text" style="margin-top: 32px;"
-									class="form-control" id="CUSTOMER_PREFERMENU" placeholder="메뉴" name="CUSTOMER_PREFERMENU"
-									required>
-								<div class="invalid-feedback">음식</div>
+							
 
 
 							</div>
@@ -303,6 +303,7 @@
 				</form>
 			</div>
 		</main>
+		</div>
 	</div>
 
 	<footer class="my-5 pt-5 text-muted text-center text-small"> </footer>

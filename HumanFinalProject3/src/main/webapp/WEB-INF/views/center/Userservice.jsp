@@ -190,7 +190,7 @@ li{
                 <div class="center"></div>
                 <div class="layout-container-top">
                     <div class="top-visual">
-                        <img src="/resources/img/Userservicelogo.png" style="width: 1263px; height: 300px;">
+                        <img src="/resources/img/Userservicelogo.png" style="width: 100%; height: 300px;">
                     </div>
                 </div>
                 <div class="layout-content" >

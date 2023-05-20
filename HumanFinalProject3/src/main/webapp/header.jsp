@@ -239,19 +239,21 @@
 <body>
     <nav class="navbar">
         <div class="navbar__logo">
-            <img src="../resources/img/ddiplogo2.png" style="width: 70px" height="70px">
+	        <a href="../mypage/01_Main.do">
+	            <img src="../resources/img/ddiplogo2.png" style="width: 70px" height="70px">
+	         </a>
         </div>
         <ul class="navbar__menu" style="padding-left: 300px; margin-top: 13px;">
             <li><a id="StoreList" class="navbar_detail" href="../store/03_StoreList.do">가게리스트</a></li>
             <li><a id="DdipList" class="navbar_detail" href="../store/06_DdipList.do">띱리스트</a></li>
             <li><a id="" class="navbar_detail" href="">커뮤니티</a></li>
-            <li><a id="" class="navbar_detail" href="">고객센터</a></li>
+            <li><a id="" class="navbar_detail" href="../center/Userservice.do">고객센터</a></li>
         </ul>
         <ul class="navbar__icons" style="padding-left: 150px; margin-top: 13px">
-            <li class="beforeLogin" style="cursor: pointer; color: black;"><a href='../member/13_Login.do'>로그인</a></li>
-            <li class="beforeLogin" style="cursor: pointer; color: black;"><a href='../member/14_join.do'>회원가입</a></li>
-            <li class="afterLogin holdingMoney" style="color: black; display : none;" >보유 띱머니:${myMoney} </li>
-            <li class="afterLogin logout" style="cursor: pointer; color: black; display : none;"><a href='../member/logout.do'>로그아웃</a></li>
+            <li class="beforeLogin" style="cursor: pointer; color: black;"><a href='../member/13_Login.do' style="color:black;">로그인</a></li>
+            <li class="beforeLogin" style="cursor: pointer; color: black;"><a href='../member/14_join.do' style="color:black;">회원가입</a></li>
+            <li class="afterLogin holdingMoney" style="color: black; display : none;" style="color:black;">보유 띱머니:${myMoney} </li>
+            <li class="afterLogin logout" style="cursor: pointer; color: black; display : none;"><a href='../member/logout.do' style="color:black;">로그아웃</a></li>
             <input type="checkbox" id="menuicon">
             <label for="menuicon" style="margin-left: 35px;">
                 <span style="background-color: black;"></span>
@@ -269,7 +271,7 @@
                     <a href='../mypage/10_coupone.do'><li class="sidebar-item" style="cursor: pointer; color: white;">쿠폰함</li></a>
                     <a href='../mypage/08_Payment.do'><li class="sidebar-item" style="cursor: pointer; color: white;">띱머니충전</li></a>
 <!--                     <a href="Chat.html"><li class="sidebar-item" style="cursor: pointer; color: white;">채팅</li></a> -->
-                    <a href='../mypage/11_management.do'><li class="sidebar-item" style="cursor: pointer; color: white;">회원관리</li></a>
+                    <a href='../mypage/11_management2.do'><li class="sidebar-item" style="cursor: pointer; color: white;">회원관리</li></a>
                 </div>
             </div>
         </ul>

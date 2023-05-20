@@ -79,6 +79,19 @@ public class StoreServiceImpl implements StoreService{
 		return storeDAO.getMyMoney(customer_id);
 	}
 
+	@Override
+	public List<CustomerVO> reviewWrite(StoreVO storeVO) {
+		
+		return storeDAO.reviewWrite(storeVO);
+	}
+
+	@Override
+	public void reviewDelete(StoreVO storeVO) {
+		
+		storeDAO.reviewDelete(storeVO);
+		
+	}
+
 	
 	
 
