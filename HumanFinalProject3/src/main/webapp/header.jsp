@@ -277,7 +277,25 @@
         </ul>
     </nav>
     <hr style="margin: 0px;">
-    <!-- <div style="margin-top: 400px;">  <iframe width="600" height="315" src="https://www.youtube.com/embed/KnXQrL39cAQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="margin-bottom: 100px; margin-left: 350px;"></iframe></div> -->
+    <div id="frogue-container" class="position-right-bottom"
+data-chatbot="cac7d81b-cacd-46ab-a064-c1d835b5238a"
+data-service-type=""
+data-user="사용자ID"
+data-init-key="value"
+data-close-use="Y" data-close-bgcolor="#ffffff" data-close-linecolor="#000000"
+data-move-use="Y" data-move-bgcolor="#ffffff" data-move-linecolor="#000000"
+></div>
+<!-- data-init-식별키=값 으로 셋팅하면 챗플로우에 파라미터와 연동가능. 식별키는 소문자만 가능 -->
+<!-- data 속성 매뉴얼 https://doc.danbee.ai/channel_frogu.html -->
+<script>
+(function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "https://frogue.danbee.ai/js/embed/v20220906/frogue-embed.min.js";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'frogue-embed'));
+</script>
 </body>
 <script>
     const toggleBtn = document.querySelector(".navbar__toggleBtn");
