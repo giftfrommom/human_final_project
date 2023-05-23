@@ -16,7 +16,7 @@ public class DdipController {
 	
 	@RequestMapping("{url}.do")
 	public String userViewPage(@PathVariable String url) {
-		System.out.println("## user Controller 진입 ##" + url);
+		
 		
 		return "/ddip/" + url;
 	}

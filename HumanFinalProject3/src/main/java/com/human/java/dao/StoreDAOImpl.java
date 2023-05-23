@@ -59,7 +59,7 @@ public class StoreDAOImpl implements StoreDAO{
 	public List<CustomerVO> getCustomerList(ConditionVO conditionVO) {
 		
 		List<CustomerVO> aa = mybatis.selectList("storeDAO.getCustomerList",conditionVO);
-		System.out.println("a:     "+aa);
+	
 		return aa;
 		
 	}

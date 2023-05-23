@@ -397,17 +397,17 @@
 						  </tbody>
 						</table>
 					</div> 
-					<div>
-					쿠폰사용 :  <select id="m_combo1" class="m_combo">
-								      <option value="none" selected>사용 가능 쿠폰</option>
-								      <option value="chicken">1000원 할인 쿠폰</option>
-								      <option value="pizza">2000원 할인 쿠폰</option>
-								      <option value="snack">3000원 할인 쿠폰</option>
-								    </select>
-					</div>
-					<div>
-					띱 할인 : 	
-					</div>
+<!-- 					<div> -->
+<!-- 					쿠폰사용 :  <select id="m_combo1" class="m_combo"> -->
+<!-- 								      <option value="none" selected>사용 가능 쿠폰</option> -->
+<!-- 								      <option value="chicken">1000원 할인 쿠폰</option> -->
+<!-- 								      <option value="pizza">2000원 할인 쿠폰</option> -->
+<!-- 								      <option value="snack">3000원 할인 쿠폰</option> -->
+<!-- 								    </select> -->
+<!-- 					</div> -->
+<!-- 					<div> -->
+<!-- 					띱 할인 : 	 -->
+<!-- 					</div> -->
 		      	최종 가격 : <span class="menuSum"></span> ₩
 		    </div>
 		    <div class="m_footer">

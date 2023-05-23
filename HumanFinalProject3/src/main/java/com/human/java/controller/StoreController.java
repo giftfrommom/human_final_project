@@ -79,7 +79,7 @@ public class StoreController {
 		} 
 		
 		List<StoreVO> storeList = storeService.getStoreList();
-		System.out.println("storeList : "+storeList);
+
 		model.addAttribute("storeList", storeList);
 
 		return "/ddip/03_StoreList";
@@ -101,7 +101,7 @@ public class StoreController {
 	public Map<String, List<StoreVO>> getReviewList(int store_id) {
 
 		List<StoreVO> reviewList = storeService.getReviewList(store_id);
-		System.out.println("reviewList : " +reviewList);
+
 		Map<String, List<StoreVO>> reviewMap = new HashMap<String, List<StoreVO>>();
 		reviewMap.put("reviewMap", reviewList);
 
@@ -186,14 +186,14 @@ public class StoreController {
 			model.addAttribute("myMoney", customerVO.getCustomer_money());
 
 		} 
-		System.out.println("1111111111111111");
+
 		Gson gson = new Gson();
 		Type type = new TypeToken<List<MenuVO>>() {
 		}.getType();
 		List<MenuVO> menuList = gson.fromJson(menuList_JSON, type);
 		List<DdipVO> ddipList = new ArrayList<>();
-		System.out.println("22222222222222222");
-		System.out.println("menuList:"+menuList);
+
+
 
 		for (MenuVO menuVO : menuList) {
 
@@ -218,13 +218,11 @@ public class StoreController {
 			ddipList.add(ddipVO2);
 			
 		}
-		System.out.println("3333333333333333");
+	
 		ddipService.setDdip(ddipList, store_id);
 		
 		int menuSum =Integer.parseInt(session.getAttribute("menuSum").toString());
-		
-		System.out.println("menuSum : "+menuSum);
-		System.out.println("customer_id : "+(int) customer_id);
+	
 		ddipService.minusMoney(menuSum,(int) customer_id);
 		model.addAttribute("ddipList", ddipService.getDdipList());
 
@@ -384,11 +382,11 @@ public class StoreController {
 	@RequestMapping("get_list")
 	@ResponseBody
 	public Map<String,Object> get_list(@RequestBody ConditionVO conditionVO) {
-
+		
 		List<CustomerVO> customerList = storeService.getCustomerList(conditionVO);
 		Map<String,Object> customerMap = new HashMap<String, Object>();
 		customerMap.put("customerMap",customerList);
-		
+		//
 		return customerMap;
 	}
 	// 11

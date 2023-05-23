@@ -22,8 +22,7 @@ public class MemberDAOImpl implements MemberDAO{
 
 	@Override
 	public int memberInsert(CustomerVO vo) {
-		System.out.println("vo : "+vo);
-		System.out.println("여긴 회원가입에서 DAO");
+
 		int aa = mybatis.insert("memberDAO.memberInsert", vo);
 		for(int i=1; i<5; i++) {
 			mybatis.insert("memberDAO.couponInsert"+i+"");			
@@ -33,7 +32,7 @@ public class MemberDAOImpl implements MemberDAO{
 
 	@Override
 	public CustomerVO memberLogin(CustomerVO vo) {
-		System.out.println("==>> CustomerVO memberLogin DAO 진입");
+
 		return mybatis.selectOne("memberDAO.memberLogin",vo);
 	}
 
@@ -45,14 +44,12 @@ public class MemberDAOImpl implements MemberDAO{
 
 	@Override
 	public CustomerVO memberEmail(CustomerVO vo) {
-		System.out.println("==>> CustomerVO memberEmail DAO 진입");
+
 		return mybatis.selectOne("memberDAO.memberEmail",vo);
 	}
 
 	@Override
 	public CustomerVO Login(CustomerVO vo) {
-
-		System.out.println("여긴 로그인 DAO ");
 		
 		return mybatis.selectOne("memberDAO.memberLogin",vo);
 	}

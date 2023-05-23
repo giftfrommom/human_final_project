@@ -267,7 +267,7 @@
 									required>
 							<div class="invalid-feedback">음식</div>
 							<div class="col-6">
-								<label for="address" class="form-label">선호가게메뉴</label> <input
+								<label for="address" class="form-label"></label> <input
 									type="text" class="form-control" id="CUSTOMER_PREFERSTORE" name="CUSTOMER_PREFERSTORE"
 									placeholder="가게" required>
 								<div class="invalid-feedback">메뉴</div>

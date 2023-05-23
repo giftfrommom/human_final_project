@@ -16,8 +16,9 @@ public class CenterController {
 	
 	@RequestMapping("{url}.do")
 	   public String userViewPage(@PathVariable String url) {
-	      System.out.println("## user Controller 진입 ##" + url);
+	      
 	      return "/center/" + url;
+	      
 	   }
 	
 //	@RequestMapping("/board/getBoardList.do")

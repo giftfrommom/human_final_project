@@ -94,7 +94,7 @@ $(function() {
 	
 	//03_StoreList.jsp ajax 메뉴 탭 이동
 	$('.TabMenu').on('click','.nav-link',function(){
-
+		
 		$(this).addClass('selected');
 		$('.nav-link').not(this).removeClass('selected');
 		

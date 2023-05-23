@@ -146,7 +146,7 @@
   		DELETE FROM REVIEW
   		WHERE REVIEW_ID = #{review_id}
   	</delete>
-	   
+	     
 	
 	
 	

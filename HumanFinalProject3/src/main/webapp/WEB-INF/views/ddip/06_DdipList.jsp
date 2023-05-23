@@ -127,7 +127,7 @@
       </ul>
     </header>
 </div>
-<p> <a href='05_DdipWrite.do'>05_DdipWrite </a> </p>
+
 	<section>
             <div class="container px-lg-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">

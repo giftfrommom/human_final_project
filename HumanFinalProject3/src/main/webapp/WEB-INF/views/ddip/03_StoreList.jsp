@@ -200,7 +200,7 @@
 </head>
 <body>
 <%@ include file="/header.jsp" %>
-<div class="container TabMenu">
+<div class="container1 TabMenu">
     <header class="d-flex justify-content-center py-3">
       <ul class="nav nav-pills">
         <li class="nav-item"><a href="#" class="nav-link selected" id="all">전체</a></li>

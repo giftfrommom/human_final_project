@@ -74,7 +74,7 @@ public class DdipDAOImpl implements DdipDAO{
 
 	@Override
 	public void minusMoney(int menuSum,int customer_id) {
-		System.out.println("여기11111111111111111111111111111");
+
 		Map<String, Integer> paramMap = new HashMap<>();
 		paramMap.put("menuSum",menuSum);
 		paramMap.put("customer_id",customer_id);

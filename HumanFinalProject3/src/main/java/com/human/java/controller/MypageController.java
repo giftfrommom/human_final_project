@@ -32,7 +32,7 @@ public class MypageController {
    private StoreService storeService;
    @RequestMapping("{url}.do")
    public String userViewPage(@PathVariable String url) {
-      System.out.println("## user Controller 진입 ##" + url);
+
       return "/mypage/" + url;
    }
    
@@ -48,7 +48,7 @@ public class MypageController {
 
 		} 
       
-      System.out.println("입력한 값 " + vo.getCUSTOMER_LOGINID() );
+  
       // session 저장
       session.setAttribute("CUSTOMER_LOGINID", CUSTOMER_LOGINID);
       
@@ -63,7 +63,7 @@ public class MypageController {
 	   if(sessionChk != null) {
 		   
 	       CustomerVO vo = new CustomerVO();
-	       System.out.println("rr:"+Integer.parseInt(sessionChk.toString()));
+	    
 	       vo.setCUSTOMER_ID(Integer.parseInt(sessionChk.toString()));
 
 	       CustomerVO vo2 = mypageService.info(vo);
@@ -81,7 +81,7 @@ public class MypageController {
    
    @RequestMapping("02_edit")
    public String edit(CustomerVO vo, Model model, HttpSession session) {
-	   System.out.println(vo);
+	 
 	   vo.setCUSTOMER_ID(((int) session.getAttribute("customer_id")));
 	   CustomerVO vo2 = mypageService.edit(vo);
 
@@ -105,7 +105,7 @@ public class MypageController {
 		vo.setCUSTOMER_ID(((int) session.getAttribute("customer_id")));
 		       
 		CustomerVO vo3 = mypageService.Payment(vo);
-		System.out.println(vo3);
+	
 		model.addAttribute("vo3", vo3);
         
 	   return "/mypage/08_Payment";
@@ -118,14 +118,12 @@ public class MypageController {
    
    @RequestMapping("08_ChargeMoney")
    public String ChargeMoney(int chargeAmount, Model model,HttpSession session){
-	   System.out.println(chargeAmount);
 	   
 	   CustomerVO vo = new CustomerVO();
 	   vo.setCustomer_money(chargeAmount);
 	   vo.setCUSTOMER_ID(((int) session.getAttribute("customer_id")));
 	   
 	   CustomerVO vo3 = mypageService.ChargeMoney(vo);
-	   System.out.println(vo3);
 	   
 	   model.addAttribute("vo3",vo3);
 	   
@@ -138,7 +136,6 @@ public class MypageController {
 	   Object sessionChk = session.getAttribute("customer_id");
 	      
 	   if(sessionChk != null) {
-	   System.out.println("09_Orderdetails1.do 호출 완료");
 	   
 	   DdipVO vo = new DdipVO();
 	   vo.setCustomer_id(((int) session.getAttribute("customer_id")));

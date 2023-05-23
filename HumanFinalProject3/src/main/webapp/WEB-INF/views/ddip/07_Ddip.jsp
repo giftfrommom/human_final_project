@@ -379,10 +379,10 @@
 		  </div>
 		</div>
         
-        <div class="containerBtn_07" >
-			<a id="modal_btn_07" class="btn ddip" href="#">띱 버튼</a>
-			<a class="btn preview" href='04_Store.do?id=${store_id}'>이전 버튼</a>
-		</div>
+<!--         <div class="containerBtn_07" > -->
+<!-- 			<a id="modal_btn_07" class="btn ddip" href="#">띱 버튼</a> -->
+<%-- 			<a class="btn preview" href='04_Store.do?id=${store_id}'>이전 버튼</a> --%>
+<!-- 		</div> -->
 		
         <!-- Footer-->
         <footer class="py-5 bg-dark">
